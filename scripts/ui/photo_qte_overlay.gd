@@ -10,6 +10,9 @@ extends CanvasLayer
 
 signal photo_result(success: bool)
 
+const DIALOG_RESERVE := 260  # px reserved at bottom for Dialogic dialog box
+const EDGE_MARGIN    := 20   # px kept clear from every edge
+
 var _resolved: bool = false
 var _tween: Tween
 
@@ -56,8 +59,14 @@ func show_opportunity(window_ms: float, portrait_path: String) -> bool:
 			await flash.finished
 		tease_photo.visible = false
 
-	# Phase 2: QTE
+	# Phase 2: QTE at a random safe position
 	_resolved = false
+	var vp   := get_viewport().get_visible_rect().size
+	var panel := qte_panel.get_combined_minimum_size()
+	qte_panel.position = Vector2(
+		randf_range(EDGE_MARGIN, vp.x - panel.x - EDGE_MARGIN),
+		randf_range(EDGE_MARGIN, vp.y - panel.y - DIALOG_RESERVE)
+	)
 	qte_panel.visible = true
 	timer_bar.max_value = window_ms
 	timer_bar.value = window_ms
