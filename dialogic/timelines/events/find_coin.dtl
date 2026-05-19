@@ -1,0 +1,8 @@
+Just before finishing your run, a glint of metal on the sidewalk catches your eye. A coin. You have a second before your momentum carries you past.
+- Dive for it! |
+	Your hand closes around it. Lucky find.
+	do GameState.add_stat_xp("perception", 2)
+	jump morning_menu/activity_choice
+- Keep the pace. |
+	You stride past. Someone else's lucky day.
+	jump morning_menu/activity_choice

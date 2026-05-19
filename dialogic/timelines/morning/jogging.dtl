@@ -2,8 +2,14 @@ You lace up and hit the pavement. Three kilometers ahead.
 - Push through the discomfort |
 	You dig in, breathing through the burn. Controlled. Deliberate.
 	do GameState.add_stat_xp("patience", 3)
-	jump morning_menu/activity_choice
+	jump jogging/check_event
 - Easy pace, enjoy the air |
 	You keep it light. Pleasant enough.
 	do GameState.add_stat_xp("patience", 1)
-	jump morning_menu/activity_choice
+	jump jogging/check_event
+
+label check_event
+do GameState.roll_chance(100)
+if {check_result}:
+	jump find_coin/
+jump morning_menu/activity_choice
