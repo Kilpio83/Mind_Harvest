@@ -24,7 +24,7 @@ func _add_slot_row(slot_name: String, index: int) -> void:
 
 	var label := Label.new()
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var display := info["name"] if (not info.is_empty() and info["name"] != "") else "Slot %d" % index
+	var display: String = info["name"] if (not info.is_empty() and info["name"] != "") else "Slot %d" % index
 	label.text = (
 		"%s  —  Day %d" % [display, info["day"]]
 		if not info.is_empty() else "Slot %d  —  Empty" % index

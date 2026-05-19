@@ -101,7 +101,7 @@ func _add_slot_row(entry: Dictionary) -> void:
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 	if entry.has("day"):
-		var display := entry["name"] if entry["name"] != "" else slot_name
+		var display: String = entry["name"] if entry["name"] != "" else slot_name
 		label.text = "%s  —  Day %d  —  %s" % [display, entry["day"], entry["date"]]
 		row.add_child(label)
 
