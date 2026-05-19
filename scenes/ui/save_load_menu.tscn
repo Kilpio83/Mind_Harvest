@@ -25,7 +25,7 @@ grow_vertical = 2
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-add_theme_constant_override("separation", 12)
+theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="Panel/VBox"]
 layout_mode = 2
@@ -35,7 +35,7 @@ horizontal_alignment = 1
 [node name="SlotsContainer" type="VBoxContainer" parent="Panel/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-add_theme_constant_override("separation", 8)
+theme_override_constants/separation = 8
 
 [node name="CloseButton" type="Button" parent="Panel/VBox"]
 layout_mode = 2

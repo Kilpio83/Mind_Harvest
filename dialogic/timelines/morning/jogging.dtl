@@ -1,9 +1,9 @@
 You lace up and hit the pavement. Three kilometers ahead.
-- Push through the discomfort |
+- Push through the discomfort
 	You dig in, breathing through the burn. Controlled. Deliberate.
 	do GameState.add_stat_xp("patience", 3)
 	jump jogging/check_event
-- Easy pace, enjoy the air |
+- Easy pace, enjoy the air
 	You keep it light. Pleasant enough.
 	do GameState.add_stat_xp("patience", 1)
 	jump jogging/check_event

@@ -86,6 +86,14 @@ const MORNING_ACTIVITY_FLAGS := [
 ]
 
 
+func reset_game() -> void:
+	Dialogic.VAR.reset()
+	PatientManager.photos_by_patient = {}
+	PatientManager.notes_by_patient = {}
+	PatientManager.bea_relationship = 0
+	patient_queue.clear()
+
+
 func advance_day() -> void:
 	var current_day: int = int(Dialogic.VAR.get_variable("game.day", 1))
 	Dialogic.VAR.set_variable("game.day", current_day + 1)

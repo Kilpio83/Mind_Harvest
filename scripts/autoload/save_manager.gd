@@ -6,13 +6,15 @@ const SAVE_EXT := ".tres"
 const AUTOSAVE_SLOT := "slot_0"
 const MAX_MANUAL_SLOTS := 3
 
+var current_save_slot: String = AUTOSAVE_SLOT
+
 
 func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(SAVE_DIR)
 
 
 func autosave() -> void:
-	save_to_slot(AUTOSAVE_SLOT)
+	save_to_slot(current_save_slot)
 
 
 func save_to_slot(slot_name: String) -> void:

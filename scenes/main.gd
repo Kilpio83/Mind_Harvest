@@ -6,4 +6,4 @@ func _ready() -> void:
 	# Populate Dialogic's runtime directory so 'jump <name>/' works in timelines.
 	DialogicResourceUtil.update_directory(".dtl")
 	DialogicResourceUtil.update_directory(".dch")
-	Dialogic.start("intro")
+	add_child(load("res://scenes/ui/main_menu.tscn").instantiate())
