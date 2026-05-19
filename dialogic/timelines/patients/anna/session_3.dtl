@@ -1,3 +1,62 @@
-[PLACEHOLDER — Anna Session 3 not yet implemented (M6)]
+Anna is, for the first time, two minutes late.
+She also isn't carrying the notebook.
+"I wrote a letter," she says, before she's even sat down. "I'm not going to send it."
+"What kind of letter?"
+She passes you her phone without a word.
+It's a resignation letter to her boss. It is extremely professional. The formal language cannot entirely conceal that the emotional subtext is: please tell me exactly what to do, in detail, always, or I am leaving.
+[photo_opportunity id="anna_resignation" patient="anna" title="The Resignation Letter" description="A resignation letter that is structurally a very formal request for micromanagement." portrait="res://assets/photos/anna/resignation_letter.png"]
+if {flags.last_photo_success}:
+	Her expression as she watches you read — anxious, a little mortified, possibly relieved — lands.
+	do PatientManager.add_trust("anna", 3)
+"I'm not going to send it," she says again.
+"You said."
+"I just — I needed to write it. To see what it looked like written down."
+[stat_check stat="knowledge" base_chance=50 chance_per_point=10]
+if {check_result}:
+	do GameState.add_stat_xp("knowledge", 1)
+	"Writing the unsendable letter is a legitimate processing technique. You didn't avoid the feeling — you contained it."
+	"That's — yes. That's exactly how it felt."
+	do PatientManager.add_trust("anna", 8)
+else:
+	"That took some courage to write."
+	"I don't know if I'd call it courage."
+	do PatientManager.add_trust("anna", 3)
+- "What would happen if you did send it?" | [if {patients.anna.trust} >= 50]
+	She's quiet for a long time.
+	"He'd probably accommodate me," she says. "He's not a bad manager. He just assumes I prefer autonomy." A pause. "Everyone assumes I prefer autonomy."
+	"Do you?"
+	A longer pause.
+	"I prefer things to be correct," she says. "And correct requires someone defining correct."
+	do PatientManager.add_trust("anna", 10)
+- "What do you want to do about it?"
+	"I don't know. That's why I'm here."
+	do PatientManager.add_trust("anna", 2)
+if {patients.anna.trust} >= 70 and {flags.anna_named_fixation_s2}:
+	"I've been looking into things," Anna says, pulling at a thread on her sleeve. "There are structured work environments. Very prescriptive project frameworks — mandatory sign-offs, weighted criteria at every stage."
+	"There are."
+	"I've been researching those." A beat. "And also other things."
+	She says it in a tone that suggests she has been googling extensively and is now very carefully filing that information into a color-coded internal folder.
+	"That sounds like progress, Anna."
+	"It sounds like homework," she says. "I prefer homework to uncertainty."
+	"I'll write you a rubric," you say.
+	She laughs. It's genuine. First one.
+	set {patients.anna.ending} = "breakthrough"
+	[add_note patient="anna" note="Breakthrough. Named the preference, began researching practical outlets. Prognosis: good, given sufficient structure."]
+else:
+	if {patients.anna.trust} < 30:
+		She stands before the session ends. Smooths her jacket precisely.
+		"I don't think talking helps. I have a system. The system works." She picks up her bag. "Thank you for your time."
+		The door closes. Quietly. Correctly.
+		set {patients.anna.ending} = "bad"
+		[add_note patient="anna" note="Withdrew before arc completion. Rejected the therapeutic framework. Left with her original premise intact."]
+	else:
+		"Anyway," Anna says, on her way out. "The sleep is better."
+		"Good."
+		"And I didn't reorganize your desk today."
+		"I noticed."
+		"Progress," she says, and it almost sounds like a question.
+		"Progress," you agree, and it almost sounds like an answer.
+		set {patients.anna.ending} = "stuck"
+		[add_note patient="anna" note="Inconclusive arc. Core fixation unaddressed but coping improved. Left door open for return."]
 do PatientManager.mark_session_done("anna")
 jump between_patients/

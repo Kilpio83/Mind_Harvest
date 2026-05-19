@@ -1,3 +1,62 @@
-[PLACEHOLDER — Anna Session 2 not yet implemented (M6)]
+Anna is three minutes early again. You found a timestamp on the post-it she left on your desk rearrangement.
+"I've been thinking about what we discussed," she says, notebook already open. This one has four colour categories of highlights.
+"So have I."
+She gives you a sharp look. Then, softer\: "I had a weird dream."
+She says it lightly, but she's already uncapping and recapping her pen.
+"Tell me."
+"It's — I mean, it's just a dream. But it kept recurring and I figured you'd probably want to know."
+"Probably, yes."
+"So there's a project at work — hypothetically. And my boss is directing it very specifically. Like, there's a rubric. For everything. Weighted scoring criteria for every deliverable."
+A beat.
+"And in the dream," she says carefully, "that's... fine. Actually."
+She stops.
+"Just fine?" you prompt.
+A very careful recalibration behind her eyes.
+"I kept a log of the recurring elements. In case it's useful."
+She opens her phone. It's a spreadsheet. The dream journal has a pivot table.
+[photo_opportunity id="anna_spreadsheet" patient="anna" title="The Spreadsheet Confession" description="A color-coded dream journal with emotional-valence columns and conditional formatting." portrait="res://assets/photos/anna/spreadsheet.png"]
+if {flags.last_photo_success}:
+	The expression when she shows you the screen — half sheepish, half defiant — is a useful data point.
+	do PatientManager.add_trust("anna", 3)
+"What were you feeling in the dream?" you ask.
+"Calm," she says, immediately. Then\: "Focused."
+"Mmm."
+"It's just — work stress manifests in dreams. I looked it up."
+"It does, yes."
+She's recapping the pen faster now.
+[stat_check stat="perception"]
+if {check_result}:
+	There's a tell. The pen speed correlates with the gap between what she's saying and what she means.
+	- "Anna. You weren't anxious in the dream. You wanted the rubric." | [if {stats.intelligence} >= 2]
+		A long silence.
+		"I don't—"
+		"The dream wasn't a stress dream. It was a wish."
+		She puts the pen down. Stares at it.
+		"That's a very specific interpretation," she says, quietly.
+		"Is it wrong?"
+		No answer. Which is an answer.
+		set {flags.anna_named_fixation_s2} = true
+		do PatientManager.add_trust("anna", 12)
+		[add_note patient="anna" note="Session 2 — Named the fixation directly: craves structured direction, not autonomy. She didn't deny it."]
+	- "Tell me more about what 'calm' felt like."
+		She considers. "Like everything was in its place."
+		"Everything, or you?"
+		A flicker. Then\: "Anyway, the sleep has actually been better."
+		do PatientManager.add_trust("anna", 5)
+else:
+	- "Dreams about work are usually just processing stress. That sounds healthy."
+		"Right. Yes. That's what I thought." Relief that's almost desperate.
+		do PatientManager.add_trust("anna", -3)
+	- "Tell me more about the rubric itself."
+		"It's — it's just a rubric."
+		You wait.
+		"It had color coding," she admits. "By priority tier."
+		"That sounds like something you'd design."
+		"It sounds like something any rational person would design."
+		do PatientManager.add_trust("anna", 2)
+"Before we close — how's the sleep now?"
+"Four AM is now four-thirty," she says. "Progress."
+"Progress," you agree.
+[add_note patient="anna" note="Session 2 — Described recurring dream involving explicit task frameworks and structured direction. Deflection noted."]
 do PatientManager.mark_session_done("anna")
 jump between_patients/
