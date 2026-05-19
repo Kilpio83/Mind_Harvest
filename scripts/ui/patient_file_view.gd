@@ -7,8 +7,8 @@ extends CanvasLayer
 @onready var popup_close: Button = $PhotoPopup/PopupClose
 
 const PATIENTS := {
-	"anna":    {"display": "Anna Volkov",   "occupation": "Senior Accountant"},
-	"marisol": {"display": "Marisol Reyes", "occupation": "Romance Novelist"},
+	"anna":    {"display": "Anna Volkov",   "occupation": "Senior Accountant", "portrait": "res://assets/portraits/anna/file_header_photo.png"},
+	"marisol": {"display": "Marisol Reyes", "occupation": "Romance Novelist",  "portrait": "res://assets/portraits/marisol/file_header_photo.png"},
 }
 
 
@@ -18,10 +18,10 @@ func _ready() -> void:
 	photo_popup.visible = false
 	for patient_id in PATIENTS:
 		var d: Dictionary = PATIENTS[patient_id]
-		_build_tab(patient_id, d["display"], d["occupation"])
+		_build_tab(patient_id, d["display"], d["occupation"], d["portrait"])
 
 
-func _build_tab(patient_id: String, display_name: String, occupation: String) -> void:
+func _build_tab(patient_id: String, display_name: String, occupation: String, portrait_path: String = "") -> void:
 	var scroll := ScrollContainer.new()
 	scroll.name = display_name
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -31,9 +31,18 @@ func _build_tab(patient_id: String, display_name: String, occupation: String) ->
 	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(vbox)
 
-	# Header: info block
+	# Header: portrait left, info right
 	var header := HBoxContainer.new()
+	header.add_theme_constant_override("separation", 16)
 	vbox.add_child(header)
+
+	var portrait_rect := TextureRect.new()
+	portrait_rect.custom_minimum_size = Vector2(120, 160)
+	portrait_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	portrait_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if portrait_path != "" and ResourceLoader.exists(portrait_path):
+		portrait_rect.texture = load(portrait_path)
+	header.add_child(portrait_rect)
 
 	var info := VBoxContainer.new()
 	info.size_flags_horizontal = Control.SIZE_EXPAND_FILL
