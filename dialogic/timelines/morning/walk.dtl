@@ -1,7 +1,9 @@
 Fresh air. A pigeon judges you. You press on regardless.
-do GameState.roll_random_stat()
-if {check_result}:
-	The walk clears something. You return sharper — something about your {game.last_random_stat} feels different.
-else:
+- Observe your surroundings carefully |
+	You notice the way the light hits the street. Small details sharpen.
+	do GameState.add_stat_xp("perception", 3)
+	jump morning_menu/activity_choice
+- Let your mind wander |
 	Scenic. Uneventful. You feel vaguely refreshed anyway.
-jump morning_menu/activity_choice
+	do GameState.add_stat_xp("perception", 1)
+	jump morning_menu/activity_choice

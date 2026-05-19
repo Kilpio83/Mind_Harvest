@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://5qgh2hrfgq58"]
 
 [ext_resource type="Script" uid="uid://8jlet5x821x6" path="res://scenes/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/ui/stat_xp_panel.tscn" id="2_stat_xp"]
 
 [node name="Main" type="Node" unique_id=1162970514]
 script = ExtResource("1_main")
+
+[node name="StatXPPanel" parent="." instance=ExtResource("2_stat_xp")]

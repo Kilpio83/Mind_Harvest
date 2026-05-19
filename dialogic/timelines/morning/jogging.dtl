@@ -1,9 +1,9 @@
-Three kilometers. Respectable. You return slightly less tense.
-do GameState.roll_chance(70)
-if {check_result}:
-	You feel genuinely calm. Whatever the day throws at you, you're ready.
-	if {stats.patience} < 10:
-		set {stats.patience} += 1
-else:
-	Legs tired. Patience approximately the same. Probably worth it.
-jump morning_menu/activity_choice
+You lace up and hit the pavement. Three kilometers ahead.
+- Push through the discomfort |
+	You dig in, breathing through the burn. Controlled. Deliberate.
+	do GameState.add_stat_xp("patience", 3)
+	jump morning_menu/activity_choice
+- Easy pace, enjoy the air |
+	You keep it light. Pleasant enough.
+	do GameState.add_stat_xp("patience", 1)
+	jump morning_menu/activity_choice

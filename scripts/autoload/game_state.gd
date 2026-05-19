@@ -2,6 +2,8 @@ extends Node
 ## Manages the current day, phase, and patient queue.
 ## This autoload is the bridge between Dialogic variable state and GDScript game logic.
 
+signal stat_xp_changed(stat: String, old_xp: int, new_xp: int, old_stat: int, new_stat: int)
+
 var patient_queue: Array[String] = []
 
 
@@ -36,20 +38,23 @@ func roll_chance(base_chance: int) -> void:
 	Dialogic.VAR.set_variable("check_result", randi() % 100 < base_chance)
 
 
-## Rolls a 40% chance to boost a random stat by 1 (hard-capped at 10).
-## Writes result to {check_result} and the chosen stat name to {game.last_random_stat}.
-func roll_random_stat() -> void:
-	var success: bool = randi() % 100 < 40
-	Dialogic.VAR.set_variable("check_result", success)
-	if success:
-		var stats := ["intelligence", "patience", "knowledge", "perception"]
-		var chosen: String = stats[randi() % stats.size()]
-		Dialogic.VAR.set_variable("game.last_random_stat", chosen)
-		var key := "stats." + chosen
-		var current: int = int(Dialogic.VAR.get_variable(key, 1))
-		Dialogic.VAR.set_variable(key, min(current + 1, 10))
-	else:
-		Dialogic.VAR.set_variable("game.last_random_stat", "")
+## Adds XP toward a stat. At 10 XP the stat increases by 1 (carry-over style).
+## Emits stat_xp_changed so the UI panel can animate.
+func add_stat_xp(stat: String, amount: int) -> void:
+	var xp_key  := "stats." + stat + "_xp"
+	var stat_key := "stats." + stat
+	var old_xp   := int(Dialogic.VAR.get_variable(xp_key,  0))
+	var old_stat := int(Dialogic.VAR.get_variable(stat_key, 1))
+	var new_xp   := old_xp + amount
+	var new_stat := old_stat
+	while new_xp >= 10 and new_stat < 10:
+		new_xp  -= 10
+		new_stat += 1
+	if new_stat >= 10:
+		new_xp = 0
+	Dialogic.VAR.set_variable(xp_key,  new_xp)
+	Dialogic.VAR.set_variable(stat_key, new_stat)
+	stat_xp_changed.emit(stat, old_xp, new_xp, old_stat, new_stat)
 
 
 const MORNING_ACTIVITY_FLAGS := [

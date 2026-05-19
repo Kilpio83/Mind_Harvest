@@ -1,9 +1,9 @@
-You pull up today's patient files and work through them methodically.
-do GameState.roll_chance(75)
-if {check_result}:
-	A few details crystallize — useful context for later.
-	if {stats.knowledge} < 10:
-		set {stats.knowledge} += 1
-else:
-	Nothing new stands out today. Still, you're better organized than yesterday.
-jump morning_menu/activity_choice
+You open the patient folders and sit with the details.
+- Cross-reference everything systematically |
+	You connect threads across cases. Slow work, but thorough.
+	do GameState.add_stat_xp("knowledge", 3)
+	jump morning_menu/activity_choice
+- Quick scan for anything urgent |
+	You catch the highlights. Good enough for now.
+	do GameState.add_stat_xp("knowledge", 1)
+	jump morning_menu/activity_choice

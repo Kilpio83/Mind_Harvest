@@ -93,9 +93,13 @@ variables={
 },
 "stats": {
 "intelligence": 1,
+"intelligence_xp": 0,
 "knowledge": 1,
+"knowledge_xp": 0,
 "patience": 1,
-"perception": 1
+"patience_xp": 0,
+"perception": 1,
+"perception_xp": 0
 }
 }
 glossary/default_case_sensitive=true

@@ -3,18 +3,14 @@ You settle in with your case notes.
 	set {flags.analyzed_anna} = true
 	You revisit Anna's session notes carefully.
 	Something clarifies — you know exactly what to probe next time.
+	do GameState.add_stat_xp("knowledge", 3)
 	jump morning_menu/activity_choice
 - Review Marisol's file | [if {patients.marisol.progress} > 0 and not {flags.analyzed_marisol}]
 	set {flags.analyzed_marisol} = true
 	Marisol's notes are theatrical even on paper. But you see a clear thread.
+	do GameState.add_stat_xp("knowledge", 3)
 	jump morning_menu/activity_choice
 - General case study
 	No specific sessions to draw from yet. You study general therapeutic frameworks instead.
-	do GameState.roll_chance(60)
-	if {check_result}:
-		A technique you'd glossed over before suddenly makes sense.
-		if {stats.knowledge} < 10:
-			set {stats.knowledge} += 1
-	else:
-		Dense reading. Your highlighter gets a workout.
+	do GameState.add_stat_xp("knowledge", 1)
 	jump morning_menu/activity_choice
