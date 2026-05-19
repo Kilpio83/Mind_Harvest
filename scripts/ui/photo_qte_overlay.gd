@@ -22,7 +22,10 @@ func _ready() -> void:
 func show_opportunity(window_ms: float, portrait_path: String) -> bool:
 	var texture: Texture2D = null
 	if portrait_path != "":
-		texture = load(portrait_path)
+		if ResourceLoader.exists(portrait_path):
+			texture = load(portrait_path)
+		else:
+			push_warning("[PhotoQTE] Portrait not imported or missing: " + portrait_path)
 
 	# Phase 1: tease flash (0.1 s)
 	tease_photo.texture = texture
