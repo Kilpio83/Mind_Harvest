@@ -9,7 +9,7 @@ You lace up and hit the pavement. Three kilometers ahead.
 	jump jogging/check_event
 
 label check_event
-do GameState.roll_chance(100)
+do GameState.roll_unique_event("find_coin", 100)
 if {check_result}:
 	jump find_coin/
 jump morning_menu/activity_choice
