@@ -19,6 +19,13 @@ func _ready() -> void:
 	snap_button.pressed.connect(_on_snap_pressed)
 
 
+func _region_texture(base: Texture2D, region: Rect2) -> AtlasTexture:
+	var at := AtlasTexture.new()
+	at.atlas = base
+	at.region = region
+	return at
+
+
 func show_opportunity(window_ms: float, portrait_path: String) -> bool:
 	var texture: Texture2D = null
 	if portrait_path != "":
@@ -27,19 +34,26 @@ func show_opportunity(window_ms: float, portrait_path: String) -> bool:
 		else:
 			push_warning("[PhotoQTE] Portrait not imported or missing: " + portrait_path)
 
-	# Phase 1: strobe flash to grab attention
+	# Phase 1: 3 flashes, each showing a different zoomed region
 	if texture != null:
-		tease_photo.texture = texture
-		tease_photo.modulate.a = 0.0
+		var s := texture.get_size()
+		var crop_h := s.y * 0.4
+		var regions := [
+			Rect2(0, s.y * 0.6, s.x, crop_h),  # flash 1 — bottom
+			Rect2(0, 0,         s.x, crop_h),   # flash 2 — top
+			Rect2(0, s.y * 0.3, s.x, crop_h),  # flash 3 — center
+		]
+		var durations := [[0.04, 0.04], [0.06, 0.04], [0.08, 0.2]]
+
+		tease_photo.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		tease_photo.visible = true
-		var flash := create_tween()
-		flash.tween_property(tease_photo, "modulate:a", 1.0, 0.04)
-		flash.tween_property(tease_photo, "modulate:a", 0.0, 0.04)
-		flash.tween_property(tease_photo, "modulate:a", 1.0, 0.06)
-		flash.tween_property(tease_photo, "modulate:a", 0.0, 0.04)
-		flash.tween_property(tease_photo, "modulate:a", 1.0, 0.08)
-		flash.tween_property(tease_photo, "modulate:a", 0.0, 0.2)
-		await flash.finished
+		for i in 3:
+			tease_photo.texture = _region_texture(texture, regions[i])
+			tease_photo.modulate.a = 0.0
+			var flash := create_tween()
+			flash.tween_property(tease_photo, "modulate:a", 1.0, durations[i][0])
+			flash.tween_property(tease_photo, "modulate:a", 0.0, durations[i][1])
+			await flash.finished
 		tease_photo.visible = false
 
 	# Phase 2: QTE
