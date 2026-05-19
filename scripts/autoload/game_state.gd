@@ -44,23 +44,6 @@ func roll_chance(base_chance: int) -> void:
 	Dialogic.VAR.set_variable("check_result", randi() % 100 < base_chance)
 
 
-## Rolls a repeatable random event. Sets {check_result} true if it fires.
-func roll_random_event(event_id: String, chance: int) -> void:
-	Dialogic.VAR.set_variable("check_result", randi() % 100 < chance)
-
-
-## Rolls a one-off random event. Fires at most once per playthrough.
-## Sets {check_result} false immediately if already seen.
-func roll_unique_event(event_id: String, chance: int) -> void:
-	var seen_key := "flags.event_" + event_id + "_seen"
-	if bool(Dialogic.VAR.get_variable(seen_key, false)):
-		Dialogic.VAR.set_variable("check_result", false)
-		return
-	var fires: bool = randi() % 100 < chance
-	Dialogic.VAR.set_variable("check_result", fires)
-	if fires:
-		Dialogic.VAR.set_variable(seen_key, true)
-
 
 ## Adds XP toward a stat. At 10 XP the stat increases by 1 (carry-over style).
 ## Emits stat_xp_changed so the UI panel can animate.
