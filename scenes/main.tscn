@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://8jlet5x821x6" path="res://scenes/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/ui/stat_xp_panel.tscn" id="2_stat_xp"]
+[ext_resource type="PackedScene" path="res://scenes/ui/photo_qte_overlay.tscn" id="3_photo_qte"]
 
 [node name="Main" type="Node" unique_id=1162970514]
 script = ExtResource("1_main")
 
-[node name="StatXPPanel" parent="." instance=ExtResource("2_stat_xp")]
+[node name="StatXPPanel" parent="." unique_id=919142210 instance=ExtResource("2_stat_xp")]
+[node name="PhotoQteOverlay" parent="." instance=ExtResource("3_photo_qte")]
