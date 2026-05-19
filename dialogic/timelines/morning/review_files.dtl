@@ -1,4 +1,5 @@
 You open the patient folders and sit with the details.
+do GameState.open_patient_files()
 - Cross-reference everything systematically |
 	You connect threads across cases. Slow work, but thorough.
 	do GameState.add_stat_xp("knowledge", 3)

@@ -64,6 +64,12 @@ func add_stat_xp(stat: String, amount: int) -> void:
 	stat_xp_changed.emit(stat, old_xp, new_xp, old_stat, new_stat)
 
 
+## Opens the patient file view as a CanvasLayer overlay over the current scene.
+func open_patient_files() -> void:
+	var scene: PackedScene = load("res://scenes/ui/patient_file_view.tscn")
+	get_tree().root.add_child(scene.instantiate())
+
+
 const MORNING_ACTIVITY_FLAGS := [
 	"flags.did_review_files",
 	"flags.did_read_book",

@@ -4,7 +4,7 @@ What would you like to do?
 	[start_session]
 	jump between_patients/
 - Open Patient Files
-	(Patient files — coming soon.)
+	do GameState.open_patient_files()
 	jump between_patients/
 - End Day
 	jump end_of_day/
