@@ -1,3 +1,10 @@
 Bea glances up from her magazine. One eyebrow, as usual, doing most of the work.
-[PLACEHOLDER — chat_bea activity not yet implemented]
+do GameState.roll_chance(50)
+if {check_result}:
+	Something she says sticks with you. You file it away for later.
+	if {stats.perception} < 10:
+		set {stats.perception} += 1
+else:
+	You chat about nothing in particular. Comfortable, at least.
+do PatientManager.add_bea_relationship(1)
 jump morning_menu/activity_choice

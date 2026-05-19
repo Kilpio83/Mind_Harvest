@@ -1,3 +1,9 @@
-You flip through today's patient files. Surprisingly organized for a chaos operation.
-[PLACEHOLDER — review_files activity not yet implemented]
+You pull up today's patient files and work through them methodically.
+do GameState.roll_chance(75)
+if {check_result}:
+	A few details crystallize — useful context for later.
+	if {stats.knowledge} < 10:
+		set {stats.knowledge} += 1
+else:
+	Nothing new stands out today. Still, you're better organized than yesterday.
 jump morning_menu/activity_choice

@@ -1,3 +1,9 @@
 You settle into a chapter of something dry and useful. Or possibly just dry.
-[PLACEHOLDER — read_book activity not yet implemented]
+do GameState.roll_chance(60)
+if {check_result}:
+	A concept you'd half-forgotten snaps into focus.
+	if {stats.intelligence} < 10:
+		set {stats.intelligence} += 1
+else:
+	You retain approximately nothing. Comfortable morning, though.
 jump morning_menu/activity_choice

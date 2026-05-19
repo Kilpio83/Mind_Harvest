@@ -31,6 +31,27 @@ func has_patients() -> bool:
 	return not patient_queue.is_empty()
 
 
+## Rolls a plain chance check and writes result to {check_result}.
+func roll_chance(base_chance: int) -> void:
+	Dialogic.VAR.set_variable("check_result", randi() % 100 < base_chance)
+
+
+## Rolls a 40% chance to boost a random stat by 1 (hard-capped at 10).
+## Writes result to {check_result} and the chosen stat name to {game.last_random_stat}.
+func roll_random_stat() -> void:
+	var success: bool = randi() % 100 < 40
+	Dialogic.VAR.set_variable("check_result", success)
+	if success:
+		var stats := ["intelligence", "patience", "knowledge", "perception"]
+		var chosen: String = stats[randi() % stats.size()]
+		Dialogic.VAR.set_variable("game.last_random_stat", chosen)
+		var key := "stats." + chosen
+		var current: int = int(Dialogic.VAR.get_variable(key, 1))
+		Dialogic.VAR.set_variable(key, min(current + 1, 10))
+	else:
+		Dialogic.VAR.set_variable("game.last_random_stat", "")
+
+
 const MORNING_ACTIVITY_FLAGS := [
 	"flags.did_review_files",
 	"flags.did_read_book",

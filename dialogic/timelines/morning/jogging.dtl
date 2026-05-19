@@ -1,3 +1,9 @@
-Three kilometers. Respectable. You return slightly less tense and considerably more smug.
-[PLACEHOLDER — jogging activity not yet implemented]
+Three kilometers. Respectable. You return slightly less tense.
+do GameState.roll_chance(70)
+if {check_result}:
+	You feel genuinely calm. Whatever the day throws at you, you're ready.
+	if {stats.patience} < 10:
+		set {stats.patience} += 1
+else:
+	Legs tired. Patience approximately the same. Probably worth it.
 jump morning_menu/activity_choice

@@ -1,3 +1,7 @@
-Fresh air. A pigeon judges you. You feel vaguely refreshed anyway.
-[PLACEHOLDER — walk activity not yet implemented]
+Fresh air. A pigeon judges you. You press on regardless.
+do GameState.roll_random_stat()
+if {check_result}:
+	The walk clears something. You return sharper — something about your {game.last_random_stat} feels different.
+else:
+	Scenic. Uneventful. You feel vaguely refreshed anyway.
 jump morning_menu/activity_choice

@@ -3,6 +3,11 @@ extends Node
 
 var photos_by_patient: Dictionary = {}
 var notes_by_patient: Dictionary = {}
+var bea_relationship: int = 0
+
+
+func add_bea_relationship(delta: int) -> void:
+	bea_relationship += delta
 
 
 func add_photo(patient_name: String, photo: PhotoData) -> void:
