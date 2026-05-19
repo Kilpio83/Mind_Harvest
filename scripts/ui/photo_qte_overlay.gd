@@ -58,6 +58,7 @@ func show_opportunity(window_ms: float, portrait_path: String) -> bool:
 			flash.tween_property(tease_photo, "modulate:a", 0.0, durations[i][1])
 			await flash.finished
 		tease_photo.visible = false
+		tease_photo.texture = null
 
 	# Phase 2: QTE at a random safe position
 	_resolved = false
@@ -82,6 +83,7 @@ func show_opportunity(window_ms: float, portrait_path: String) -> bool:
 		reveal_panel.visible = true
 		await close_button.pressed
 		reveal_panel.visible = false
+		reveal_photo.texture = null
 
 	return success
 
