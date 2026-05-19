@@ -1,3 +1,4 @@
+do SaveManager.autosave()
 Good morning, Doctor. Day {game.day}.
 label activity_choice
 if {game.morning_slots_left} <= 0:
@@ -27,5 +28,8 @@ You have {game.morning_slots_left} activity slot(s) remaining before appointment
 	set {flags.did_walk} = true
 	do GameState.use_morning_slot()
 	jump walk/
+- Save / Load
+	do GameState.open_save_menu()
+	jump morning_menu/activity_choice
 - Skip to work
 	jump day_intro/

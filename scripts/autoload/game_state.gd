@@ -70,6 +70,12 @@ func open_patient_files() -> void:
 	get_tree().root.add_child(scene.instantiate())
 
 
+## Opens the save/load menu as a CanvasLayer overlay.
+func open_save_menu() -> void:
+	var scene: PackedScene = load("res://scenes/ui/save_load_menu.tscn")
+	get_tree().root.add_child(scene.instantiate())
+
+
 const MORNING_ACTIVITY_FLAGS := [
 	"flags.did_review_files",
 	"flags.did_read_book",
@@ -89,4 +95,3 @@ func advance_day() -> void:
 	for flag in MORNING_ACTIVITY_FLAGS:
 		Dialogic.VAR.set_variable(flag, false)
 	patient_queue.clear()
-	SaveManager.autosave()

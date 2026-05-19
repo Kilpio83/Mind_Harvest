@@ -20,7 +20,8 @@ func save_to_slot(slot_name: String) -> void:
 	data.day = int(Dialogic.VAR.get_variable("game.day", 1))
 	data.photos_by_patient = PatientManager.photos_by_patient.duplicate(true)
 	data.notes_by_patient = PatientManager.notes_by_patient.duplicate(true)
-	data.bea_relationship = 0
+	data.bea_relationship = PatientManager.bea_relationship
+	data.save_date = Time.get_datetime_string_from_system()
 	data.dialogic_save_slot = slot_name
 
 	var path := SAVE_DIR + slot_name + SAVE_EXT
@@ -51,6 +52,15 @@ func load_from_slot(slot_name: String) -> bool:
 
 func slot_exists(slot_name: String) -> bool:
 	return FileAccess.file_exists(SAVE_DIR + slot_name + SAVE_EXT)
+
+
+func get_slot_info(slot_name: String) -> Dictionary:
+	if not slot_exists(slot_name):
+		return {}
+	var data := ResourceLoader.load(SAVE_DIR + slot_name + SAVE_EXT) as GameSave
+	if not data:
+		return {}
+	return {"day": data.day, "date": data.save_date}
 
 
 func get_manual_slots() -> Array[String]:
