@@ -76,9 +76,9 @@ func _build_tab(patient_id: String, display_name: String, occupation: String) ->
 		none_lbl.text = "Nothing recorded yet."
 		vbox.add_child(none_lbl)
 	else:
-		for fact_id: String in notes:
+		for note: String in notes:
 			var note_lbl := Label.new()
-			note_lbl.text = "• " + fact_id.replace("_", " ").capitalize()
+			note_lbl.text = "• " + note
 			note_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			vbox.add_child(note_lbl)
 
