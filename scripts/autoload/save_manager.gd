@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func autosave() -> void:
-	save_to_slot(current_save_slot)
+	save_to_slot(AUTOSAVE_SLOT)
 
 
 func save_to_slot(slot_name: String, save_name: String = "") -> void:

@@ -11,6 +11,26 @@ func _build_slots() -> void:
 	for child in slots_container.get_children():
 		child.queue_free()
 
+	# Autosave row at top
+	var auto_info := SaveManager.get_slot_info(SaveManager.AUTOSAVE_SLOT)
+	if not auto_info.is_empty():
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 12)
+		slots_container.add_child(row)
+
+		var label := Label.new()
+		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		label.text = "Autosave  —  Day %d" % auto_info["day"]
+		row.add_child(label)
+
+		var load_btn := Button.new()
+		load_btn.text = "Continue"
+		load_btn.pressed.connect(_on_load.bind(SaveManager.AUTOSAVE_SLOT))
+		row.add_child(load_btn)
+
+		slots_container.add_child(HSeparator.new())
+
+	# Manual slots
 	for i in range(1, SaveManager.MAX_MANUAL_SLOTS + 1):
 		_add_slot_row("slot_%d" % i, i)
 
