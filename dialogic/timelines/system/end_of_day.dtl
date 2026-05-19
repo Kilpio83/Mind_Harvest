@@ -1,0 +1,3 @@
+set {game.phase} = "evening"
+Day {game.day} is done. Another small victory for licensed therapy.
+[end_day]

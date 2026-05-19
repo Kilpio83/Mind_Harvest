@@ -1,0 +1,3 @@
+[PLACEHOLDER — Marisol Session 3 not yet implemented (M7)]
+do PatientManager.mark_session_done("marisol")
+jump between_patients/

@@ -1,0 +1,31 @@
+Good morning, Doctor. Day {game.day}.
+label activity_choice
+if {game.morning_slots_left} <= 0:
+	jump day_intro/
+You have {game.morning_slots_left} activity slot(s) remaining before appointments begin.
+- Review Patient Files | [if not {flags.did_review_files}]
+	set {flags.did_review_files} = true
+	set {game.morning_slots_left} -= 1
+	jump review_files/
+- Read a Book | [if not {flags.did_read_book}]
+	set {flags.did_read_book} = true
+	set {game.morning_slots_left} -= 1
+	jump read_book/
+- Go Jogging | [if not {flags.did_jogging}]
+	set {flags.did_jogging} = true
+	set {game.morning_slots_left} -= 1
+	jump jogging/
+- Chat with Bea | [if not {flags.did_chat_bea}]
+	set {flags.did_chat_bea} = true
+	set {game.morning_slots_left} -= 1
+	jump chat_bea/
+- Analyze Last Session | [if not {flags.did_analyze_session}]
+	set {flags.did_analyze_session} = true
+	set {game.morning_slots_left} -= 1
+	jump analyze_session/
+- Go for a Walk | [if not {flags.did_walk}]
+	set {flags.did_walk} = true
+	set {game.morning_slots_left} -= 1
+	jump walk/
+- Skip to work
+	jump day_intro/

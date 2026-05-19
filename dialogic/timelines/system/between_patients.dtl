@@ -1,0 +1,10 @@
+do GameState.build_patient_queue()
+What would you like to do?
+- Next Patient | [if {game.has_patients}]
+	[start_session]
+	jump between_patients/
+- Open Patient Files
+	(Patient files — coming soon.)
+	jump between_patients/
+- End Day
+	jump end_of_day/

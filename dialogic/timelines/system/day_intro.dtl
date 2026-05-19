@@ -1,0 +1,4 @@
+set {game.phase} = "day"
+do GameState.build_patient_queue()
+Day {game.day} — appointments begin.
+jump between_patients/
