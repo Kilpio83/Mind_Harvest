@@ -21,7 +21,7 @@ else:
 	"That took some courage to write."
 	"I don't know if I'd call it courage."
 	do PatientManager.add_trust("anna", 3)
-- "What would happen if you did send it?" | [if {patients.anna.trust} >= 50]
+- "What would happen if you did send it?" | [if {patients.anna.trust} >= 50] [else="disable"] [alt_text="[Trust ≥ 50]"]
 	She's quiet for a long time.
 	"He'd probably accommodate me," she says. "He's not a bad manager. He just assumes I prefer autonomy." A pause. "Everyone assumes I prefer autonomy."
 	"Do you?"

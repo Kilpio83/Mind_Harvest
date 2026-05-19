@@ -5,7 +5,7 @@ Your desk is in a different configuration by the time you've both sat down.
 "Sorry," Anna says, not sounding sorry at all. "Anyway."
 - Let it go.
 	She seems relieved you didn't mention it. You file it away for later.
-	do PatientManager.add_trust("anna", 3)
+	do PatientManager.add_trust("anna", 20)
 - "You reorganized my desk."
 	She goes briefly rigid. "It was just — the pen cup was on the left. That doesn't make sense."
 	"Does it need to make sense?"
@@ -13,7 +13,7 @@ Your desk is in a different configuration by the time you've both sat down.
 	do PatientManager.add_trust("anna", -5)
 "The sleep thing," she says. "That's the main issue. I wake up at four and just — lie there. Thinking about what I didn't finish."
 "What kind of things?"
-- "Work tasks, you mean?" | [if {stats.knowledge} >= 2]
+- "Work tasks, you mean?" | [if {stats.knowledge} >= 2] [else="disable"] [alt_text="[Knowledge ≥ 2]"]
 	"Yes. Mostly." A microsecond of hesitation. "Work things."
 	You note the hesitation. She notes you noting it. A small negotiation passes between you.
 	do PatientManager.add_trust("anna", 5)
