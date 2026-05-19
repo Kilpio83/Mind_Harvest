@@ -5,8 +5,8 @@ extends CanvasLayer
 @onready var snap_button: Button = $QtePanel/SnapButton
 @onready var timer_bar: ProgressBar = $QtePanel/TimerBar
 @onready var reveal_panel: Control = $RevealPanel
-@onready var reveal_photo: TextureRect = $RevealPanel/CenterBox/RevealPhoto
-@onready var close_button: Button = $RevealPanel/CenterBox/CloseButton
+@onready var reveal_photo: TextureRect = $RevealPanel/RevealPhoto
+@onready var close_button: Button = $RevealPanel/CloseButton
 
 signal photo_result(success: bool)
 
@@ -27,11 +27,20 @@ func show_opportunity(window_ms: float, portrait_path: String) -> bool:
 		else:
 			push_warning("[PhotoQTE] Portrait not imported or missing: " + portrait_path)
 
-	# Phase 1: tease flash (0.1 s)
-	tease_photo.texture = texture
-	tease_photo.visible = true
-	await get_tree().create_timer(0.1).timeout
-	tease_photo.visible = false
+	# Phase 1: strobe flash to grab attention
+	if texture != null:
+		tease_photo.texture = texture
+		tease_photo.modulate.a = 0.0
+		tease_photo.visible = true
+		var flash := create_tween()
+		flash.tween_property(tease_photo, "modulate:a", 1.0, 0.04)
+		flash.tween_property(tease_photo, "modulate:a", 0.0, 0.04)
+		flash.tween_property(tease_photo, "modulate:a", 1.0, 0.06)
+		flash.tween_property(tease_photo, "modulate:a", 0.0, 0.04)
+		flash.tween_property(tease_photo, "modulate:a", 1.0, 0.08)
+		flash.tween_property(tease_photo, "modulate:a", 0.0, 0.2)
+		await flash.finished
+		tease_photo.visible = false
 
 	# Phase 2: QTE
 	_resolved = false
