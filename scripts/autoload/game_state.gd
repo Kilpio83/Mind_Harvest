@@ -62,6 +62,9 @@ func add_stat_xp(stat: String, amount: int) -> void:
 	Dialogic.VAR.set_variable(xp_key,  new_xp)
 	Dialogic.VAR.set_variable(stat_key, new_stat)
 	stat_xp_changed.emit(stat, old_xp, new_xp, old_stat, new_stat)
+	print("[XP] %s  +%d  (was %d xp / Lv %d)  →  %d xp / Lv %d" % [stat, amount, old_xp, old_stat, new_xp, new_stat])
+	if new_stat > old_stat:
+		print("[XP] *** LEVEL UP  %s  Lv %d → Lv %d ***" % [stat, old_stat, new_stat])
 
 
 ## Opens the patient file view as a CanvasLayer overlay over the current scene.

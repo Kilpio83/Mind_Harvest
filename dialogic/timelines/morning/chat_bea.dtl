@@ -1,11 +1,11 @@
 Bea glances up from her magazine. One eyebrow, as usual, doing most of the work.
 - Really listen — watch her reactions |
 	You pay close attention. Something she says sticks with you.
-	do GameState.add_stat_xp("perception", 3)
+	do GameState.add_stat_xp("perception", 10)
 	do PatientManager.add_bea_relationship(1)
 	jump morning_menu/activity_choice
 - Chat casually |
 	You trade small talk. Comfortable, at least.
-	do GameState.add_stat_xp("perception", 1)
+	do GameState.add_stat_xp("perception", 10)
 	do PatientManager.add_bea_relationship(1)
 	jump morning_menu/activity_choice

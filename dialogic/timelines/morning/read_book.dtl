@@ -1,9 +1,9 @@
 You settle in with something dry and useful. Or possibly just dry.
 - Take notes, work through the hard parts |
 	You wrestle each concept until it clicks.
-	do GameState.add_stat_xp("intelligence", 3)
+	do GameState.add_stat_xp("intelligence", 10)
 	jump morning_menu/activity_choice
 - Skim comfortably |
 	Relaxed reading. Some of it sticks.
-	do GameState.add_stat_xp("intelligence", 1)
+	do GameState.add_stat_xp("intelligence", 10)
 	jump morning_menu/activity_choice

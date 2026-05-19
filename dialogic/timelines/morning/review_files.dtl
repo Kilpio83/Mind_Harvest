@@ -2,9 +2,9 @@ You open the patient folders and sit with the details.
 do GameState.open_patient_files()
 - Cross-reference everything systematically |
 	You connect threads across cases. Slow work, but thorough.
-	do GameState.add_stat_xp("knowledge", 3)
+	do GameState.add_stat_xp("knowledge", 10)
 	jump morning_menu/activity_choice
 - Quick scan for anything urgent |
 	You catch the highlights. Good enough for now.
-	do GameState.add_stat_xp("knowledge", 1)
+	do GameState.add_stat_xp("knowledge", 10)
 	jump morning_menu/activity_choice

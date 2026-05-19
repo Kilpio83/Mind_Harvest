@@ -37,6 +37,12 @@ func _execute() -> void:
 	var success: bool = roll < effective_chance
 
 	Dialogic.VAR.set_variable(result_variable, success)
+	print("[STAT CHECK] stat=%s  value=%d  threshold=%d  base=%d%%  per_pt=%d  effective=%d%%  roll=%d  →  %s" % [
+		stat if not stat.is_empty() else "none",
+		stat_value, threshold, base_chance, chance_per_point,
+		effective_chance, roll,
+		"SUCCESS" if success else "FAIL"
+	])
 
 	if not quality_variable.is_empty():
 		var quality: String

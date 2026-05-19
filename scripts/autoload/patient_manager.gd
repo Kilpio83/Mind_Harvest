@@ -28,7 +28,9 @@ func add_note(patient_name: String, fact_id: String) -> void:
 func add_trust(patient_name: String, delta: int) -> void:
 	var key := "patients." + patient_name + ".trust"
 	var current: int = int(Dialogic.VAR.get_variable(key, 30))
-	Dialogic.VAR.set_variable(key, clampi(current + delta, 0, 100))
+	var new_val: int = clampi(current + delta, 0, 100)
+	Dialogic.VAR.set_variable(key, new_val)
+	print("[TRUST] %s  %+d  (was %d)  →  %d/100" % [patient_name, delta, current, new_val])
 
 
 func get_next_session_timeline(patient_name: String) -> String:
