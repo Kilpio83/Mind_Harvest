@@ -33,7 +33,7 @@ func _execute() -> void:
 	var effective_ms: float = window_ms + perception * perception_bonus_ms
 
 	var overlay = dialogic.get_tree().get_first_node_in_group("photo_qte")
-	var success: bool = await overlay.show_opportunity(effective_ms)
+	var success: bool = await overlay.show_opportunity(effective_ms, portrait)
 
 	Dialogic.VAR.set_variable("flags.last_photo_success", success)
 	if success:

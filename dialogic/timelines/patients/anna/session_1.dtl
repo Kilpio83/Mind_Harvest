@@ -1,6 +1,6 @@
 [PLACEHOLDER — Anna Session 1 not yet implemented (M6)]
 Anna reorganizes your desk, unprompted, with alarming efficiency. For a moment she goes still — entirely focused, entirely in her element.
-[photo_opportunity id="anna_desk_demo" patient="anna" title="The Desk Demonstration" description="Anna re-enacting her boss's spreadsheet, with full theatrical commitment." window_ms=1500 perception_bonus_ms=300 portrait=""]
+[photo_opportunity id="anna_desk_demo" patient="anna" title="The Desk Demonstration" description="Anna re-enacting her boss's spreadsheet, with full theatrical commitment." window_ms=1500 perception_bonus_ms=300 portrait="res://assets/photos/anna/joyful.png"]
 if {flags.last_photo_success}:
 	The shutter clicks. She doesn't notice.
 else:

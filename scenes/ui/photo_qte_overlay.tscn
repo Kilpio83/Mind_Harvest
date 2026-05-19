@@ -6,7 +6,23 @@
 layer = 20
 script = ExtResource("1_script")
 
-[node name="Panel" type="VBoxContainer" parent="."]
+[node name="TeasePhoto" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="QtePanel" type="VBoxContainer" parent="."]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -17,12 +33,48 @@ offset_right = -10.0
 offset_bottom = 210.0
 grow_horizontal = 0
 
-[node name="SnapButton" type="Button" parent="Panel"]
+[node name="SnapButton" type="Button" parent="QtePanel"]
 layout_mode = 2
 text = "[ SNAP ]"
 
-[node name="TimerBar" type="ProgressBar" parent="Panel"]
+[node name="TimerBar" type="ProgressBar" parent="QtePanel"]
 layout_mode = 2
 max_value = 1500.0
 value = 1500.0
 show_percentage = false
+
+[node name="RevealPanel" type="Control" parent="."]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="RevealPanel"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.8)
+
+[node name="CenterBox" type="VBoxContainer" parent="RevealPanel"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -280.0
+offset_right = 250.0
+offset_bottom = 280.0
+alignment = 1
+
+[node name="RevealPhoto" type="TextureRect" parent="RevealPanel/CenterBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(500, 500)
+size_flags_horizontal = 4
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CloseButton" type="Button" parent="RevealPanel/CenterBox"]
+layout_mode = 2
+text = "Close"
