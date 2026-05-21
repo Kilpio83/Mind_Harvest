@@ -8,6 +8,8 @@ var bea_relationship: int = 0
 
 func add_bea_relationship(delta: int) -> void:
 	bea_relationship += delta
+	if Dialogic.VAR:
+		Dialogic.VAR.set_variable("game.bea_relationship", bea_relationship)
 
 
 func add_photo(patient_name: String, photo: PhotoData) -> void:

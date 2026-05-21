@@ -14,14 +14,25 @@ func _execute() -> void:
 		printerr("[EndDay] GameState autoload not found!")
 		finish()
 		return
+
+	# Fade to black before switching timeline.
+	var trans: Node = dialogic.get_node_or_null("/root/ScreenTransition")
+	if trans:
+		await trans.fade_out()
+
 	# advance_day also calls SaveManager.autosave()
 	game_state.advance_day()
 
 	var morning_menu := DialogicResourceUtil.get_timeline_resource("morning_menu")
 	if morning_menu:
 		dialogic.start_timeline(morning_menu)
+		# Morning menu is now running behind the black screen — fade back in.
+		if trans:
+			trans.fade_in()   # fire-and-forget; no await needed
 	else:
 		printerr("[EndDay] Could not find 'morning_menu' timeline. Check that update_directory was called.")
+		if trans:
+			trans.fade_in()
 		finish()
 
 #endregion

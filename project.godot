@@ -23,6 +23,7 @@ PatientManager="*res://scripts/autoload/patient_manager.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 HudBar="*res://scenes/ui/hud_bar.tscn"
 ToastLayer="*res://scenes/ui/toast_container.tscn"
+ScreenTransition="*res://scripts/ui/screen_transition.gd"
 
 [dialogic]
 
@@ -79,6 +80,7 @@ variables={
 "met_marisol": false
 },
 "game": {
+"bea_relationship": 0,
 "current_patient": "",
 "day": 1,
 "has_patients": false,

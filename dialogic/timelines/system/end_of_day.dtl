@@ -1,3 +1,12 @@
 set {game.phase} = "evening"
-Day {game.day} is done. Another small victory for licensed therapy.
+narrator: "You lock up the office."
+if {patients.anna.progress} > 0 and {patients.anna.ending} == "":
+	narrator: "Anna's trust is at {patients.anna.trust}/100."
+if {patients.marisol.progress} > 0 and {patients.marisol.ending} == "":
+	narrator: "Marisol's trust is at {patients.marisol.trust}/100."
+if {patients.anna.ending} != "" or {patients.marisol.ending} != "":
+	narrator: "Some cases have reached their conclusion."
+if {photos.count} > 0:
+	narrator: "The album grows. {photos.count} photo(s) so far."
+narrator: "Day {game.day} is done."
 [end_day]
