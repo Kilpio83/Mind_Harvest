@@ -1,25 +1,280 @@
 {
 "@path": "res://addons/dialogic/Resources/character.gd",
 "@subpath": NodePath(""),
-"_translation_id": "",
-"color": Color(0.8, 0.6, 0.5, 1),
-"custom_info": {
+&"_translation_id": "",
+&"color": Color(0.8, 0.6, 0.5, 1),
+&"custom_info": {
+"prefix": "",
 "sound_mood_default": "",
 "sound_moods": {},
-"style": ""
+"style": "",
+"suffix": ""
 },
-"default_portrait": "default",
-"description": "Marisol.",
-"display_name": "Marisol",
+&"default_portrait": "Neutral",
+&"description": "Marisol.",
+&"display_name": "Marisol",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 40),
+&"portraits": {
+"Admiration": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/admiration.png\""
+},
 "mirror": false,
-"nicknames": [""],
 "offset": Vector2(0, 0),
-"portraits": {
+"scale": 1,
+"scene": ""
+},
+"Amusement": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/amusement.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Anger": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/anger.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Annoyance": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/annoyance.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Approval": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/approval.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Caring": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/caring.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Confusion": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/confusion.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Curiosity": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/curiosity.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Desire": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/desire.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disappointment": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/disappointment.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disapproval": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/disapproval.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disgust": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/disgust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Embarrassment": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/embarrassment.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Excitement": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/excitement.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Fear": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/fear.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Gratitude": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/gratitude.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Grief": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/grief.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Joy": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/joy.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Love": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/love.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Nervousness": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/nervousness.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Neutral": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/neutral.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Optimism": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/optimism.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Pride": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/pride.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Realization": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/realization.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Relief": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/relief.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Remorse": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/remorse.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sadness": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/sadness.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Surprise": {
+"export_overrides": {
+"image": "\"res://assets/portraits/marisol/surprise.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "default": {
 "export_overrides": {
 "image": "res://assets/characters/marisol/default.png"
-}
+},
+"offset": Vector2(0, 0)
 }
 },
-"scale": 1.0
+&"scale": 1.0
 }

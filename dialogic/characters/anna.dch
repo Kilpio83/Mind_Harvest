@@ -15,7 +15,7 @@
 &"display_name": "Anna",
 &"mirror": false,
 &"nicknames": [""],
-&"offset": Vector2(0, 250),
+&"offset": Vector2(0, 40),
 &"portraits": {
 "Admiration": {
 "export_overrides": {

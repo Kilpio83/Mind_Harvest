@@ -1,25 +1,25 @@
 [background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 set {flags.met_marisol} = true
 bea: Marisol Reyes, 11 AM. Writer's block. She brought her own chair cushion.
-join marisol (Neutral) center
+join marisol (Neutral) leftmost
 narrator: She doesn't so much enter as arrive. There's a distinction.
 narrator: The cigarette holder has no cigarette. It doesn't need one. It's doing its job.
-marisol: "Doctor."
+marisol (Annoyance): "Doctor."
 narrator: The word lands like a ship name.
 player: "Ms. Reyes."
-marisol: "Marisol. The pen name is for the books."
+marisol (Caring): "Marisol. The pen name is for the books."
 narrator: She surveys the office. You can see her filing everything under 'set dressing.'
-marisol: "It's the block. Three months. Nothing. The words simply..."
+marisol (Disgust): "It's the block. Three months. Nothing. The words simply..."
 narrator: She pauses. Her hand drifts upward.
-marisol: "...refuse to come."
+marisol (Fear): "...refuse to come."
 player: "Tell me about the block."
 - What were you working on when it started? | [if {stats.knowledge} >= 2] [else="disable" alt_text="need 2 knowledge"]
 	marisol: "The Corsair's Surrender. Book seven of the Crimson Tide series."
 	narrator: She says it the way other people say "my family."
 	player: "What happens in book seven?"
-	marisol: "Captain Rodrigo de Valcourt must choose between his oath to the Crimson Brotherhood and the woman who has set fire to his carefully ordered world."
+	marisol (Curiosity): "Captain Rodrigo de Valcourt must choose between his oath to the Crimson Brotherhood and the woman who has set fire to his carefully ordered world."
 	narrator: A beat.
-	marisol: "It's a metaphor."
+	marisol (Gratitude): "It's a metaphor."
 	do PatientManager.add_trust("marisol", 5)
 	do GameState.add_stat_xp("knowledge", 1)
 - What does writer's block feel like, for you?
@@ -31,16 +31,16 @@ player: "Tell me about the block."
 if {check_result}:
 	narrator: She's not distressed. She's performing distress. The cigarette holder spins when she's composing, not when she's suffering — and it's been spinning since she sat down.
 	- You don't actually seem that upset about it.
-		marisol: "I beg your—"
+		marisol (Joy): "I beg your—"
 		player: "The cigarette holder. It spins when you're thinking, not when you're troubled."
 		narrator: A very long pause.
 		marisol: "You're more observant than I expected."
 		narrator: She doesn't put the holder down. But it stops spinning.
 		do PatientManager.add_trust("marisol", 12)
 	- Tell me what you do instead of writing.
-		marisol: "Research. Extensively."
+		marisol (Surprise): "Research. Extensively."
 		player: "Into?"
-		marisol: "Maritime history. Piracy. The social hierarchies of privateering vessels."
+		marisol (Love): "Maritime history. Piracy. The social hierarchies of privateering vessels."
 		narrator: She says this with a composure that cannot entirely contain how much she enjoyed saying it.
 		do PatientManager.add_trust("marisol", 5)
 else:
@@ -63,7 +63,7 @@ marisol: "And that's when Rodrigo realizes the oath was never really about the B
 narrator: She smooths her jacket with one hand.
 marisol: "...Where were we?"
 player: "Your block."
-marisol: "Ah. Yes."
+marisol (Relief): "Ah. Yes."
 narrator: She doesn't look blocked.
 [add_note patient="marisol" note="Presents with writer's block. Theatrical throughout — performing distress rather than experiencing it. The fantasy material (pirate-romance, elaborate scenarios) is vivid, immediately accessible, and clearly more alive to her than the problem she came in to discuss."]
 leave marisol

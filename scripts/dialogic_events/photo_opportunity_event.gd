@@ -38,6 +38,8 @@ func _execute() -> void:
 	Dialogic.VAR.set_variable("flags.last_photo_success", success)
 	if success:
 		PatientManager.add_photo(patient, photo)
+		if ToastLayer:
+			ToastLayer.show_toast("Photo captured", photo.title, "photo")
 
 	finish()
 

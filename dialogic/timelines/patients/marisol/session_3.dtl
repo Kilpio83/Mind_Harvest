@@ -1,7 +1,7 @@
 narrator: Marisol arrives on time. To the minute.
 narrator: She isn't carrying the notebook.
 narrator: She also isn't carrying the cigarette holder.
-join marisol (Neutral) center
+join marisol (Neutral) leftmost
 player: "No holder today."
 marisol: "I put it away. It was becoming a prop."
 narrator: She sits. Without theatrics.
@@ -13,7 +13,7 @@ narrator: A pause.
 marisol: "And then I deleted it."
 player: "How did that feel?"
 marisol: "Like putting a book back on the shelf. It was adequate. As a chapter. But it wasn't what I was trying to write."
-[stat_check stat="patience" base_chance=50 chance_per_point=10]
+[stat_check stat="patience"]
 if {check_result}:
 	do GameState.add_stat_xp("patience", 1)
 	narrator: You wait. She's working up to something. Interrupting now would be like breaking tension in chapter twenty-three.

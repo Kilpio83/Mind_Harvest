@@ -2,8 +2,6 @@ extends Node
 ## Manages the current day, phase, and patient queue.
 ## This autoload is the bridge between Dialogic variable state and GDScript game logic.
 
-signal stat_xp_changed(stat: String, old_xp: int, new_xp: int, old_stat: int, new_stat: int)
-
 var patient_queue: Array[String] = []
 
 
@@ -61,10 +59,21 @@ func add_stat_xp(stat: String, amount: int) -> void:
 		new_xp = 0
 	Dialogic.VAR.set_variable(xp_key,  new_xp)
 	Dialogic.VAR.set_variable(stat_key, new_stat)
-	stat_xp_changed.emit(stat, old_xp, new_xp, old_stat, new_stat)
 	print("[XP] %s  +%d  (was %d xp / Lv %d)  →  %d xp / Lv %d" % [stat, amount, old_xp, old_stat, new_xp, new_stat])
-	if new_stat > old_stat:
-		print("[XP] *** LEVEL UP  %s  Lv %d → Lv %d ***" % [stat, old_stat, new_stat])
+
+	if ToastLayer:
+		var stat_display := stat.capitalize()
+		if new_stat > old_stat:
+			print("[XP] *** LEVEL UP  %s  Lv %d → Lv %d ***" % [stat, old_stat, new_stat])
+			ToastLayer.show_toast(
+				"%s increased to %d" % [stat_display, new_stat],
+				"%d → %d xp carry-over" % [old_xp + amount, new_xp],
+				"stat")
+		else:
+			ToastLayer.show_toast(
+				"%s +%d xp" % [stat_display, amount],
+				"%d / 10 xp" % new_xp,
+				"stat")
 
 
 ## Opens the patient file view as a CanvasLayer overlay over the current scene.

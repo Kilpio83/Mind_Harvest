@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3]
+
+## Mind Harvest shared theme.
+## Design tokens live in scripts/ui/mh_tokens.gd (class_name MHTokens).
+## Assign this theme to root Control nodes so font overrides cascade.
+## Populate colour/font entries here via the Theme editor as needed.
+
+[resource]

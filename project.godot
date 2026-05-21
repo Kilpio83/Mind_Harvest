@@ -21,6 +21,8 @@ Dialogic="*uid://ds2q0uclmolvu"
 GameState="*res://scripts/autoload/game_state.gd"
 PatientManager="*res://scripts/autoload/patient_manager.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
+HudBar="*res://scenes/ui/hud_bar.tscn"
+ToastLayer="*res://scenes/ui/toast_container.tscn"
 
 [dialogic]
 
@@ -52,7 +54,10 @@ directories/dtl_directory={
 "session_3": "res://dialogic/timelines/patients/anna/session_3.dtl",
 "walk": "res://dialogic/timelines/morning/walk.dtl"
 }
-layout/style_directory={}
+layout/style_directory={
+"": "res://dialogic/layouts/mind_harvest_style.tres",
+"Mind Harvest": "res://dialogic/layouts/mind_harvest_style.tres"
+}
 extensions_folder="res://addons/dialogic_additions/"
 variables={
 "check_result": false,
@@ -112,8 +117,8 @@ variables={
 }
 }
 glossary/default_case_sensitive=true
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://dialogic/layouts/mind_harvest_style.tres"]
+layout/default_style="res://dialogic/layouts/mind_harvest_style.tres"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
@@ -155,7 +160,7 @@ translation/add_separator=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 [input]
 

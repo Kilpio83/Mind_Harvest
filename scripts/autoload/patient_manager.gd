@@ -32,6 +32,16 @@ func add_trust(patient_name: String, delta: int) -> void:
 	Dialogic.VAR.set_variable(key, new_val)
 	print("[TRUST] %s  %+d  (was %d)  →  %d/100" % [patient_name, delta, current, new_val])
 
+	# Toast — only show meaningful deltas (skip tiny ±1..2 noise)
+	if ToastLayer and abs(delta) >= 3:
+		var display_name := patient_name.capitalize()
+		if delta > 0:
+			ToastLayer.show_toast(
+				"Trust with %s +%d" % [display_name, delta], "", "success")
+		else:
+			ToastLayer.show_toast(
+				"Trust with %s %d" % [display_name, delta], "", "warning")
+
 
 func get_next_session_timeline(patient_name: String) -> String:
 	var progress: int = int(Dialogic.VAR.get_variable("patients." + patient_name + ".progress", 0))

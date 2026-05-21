@@ -1,6 +1,6 @@
 narrator: Marisol is seven minutes late. She doesn't apologize for this.
 narrator: She's carrying a leather-bound notebook clutched to her chest like a recovered relic.
-join marisol (Neutral) center
+join marisol (Neutral) leftmost
 marisol: "Doctor. I've been writing."
 narrator: She says it like a confession and a boast simultaneously.
 player: "The block lifted?"
@@ -54,7 +54,7 @@ player: "It's good."
 marisol: "The prose is rough."
 player: "The feeling isn't."
 narrator: She uncaps the cigarette holder. Recaps it.
-[stat_check stat="intelligence" base_chance=45 chance_per_point=10]
+[stat_check stat="intelligence"]
 if {check_result}:
 	do GameState.add_stat_xp("intelligence", 1)
 	narrator: Three divorced husbands. Six books. Elaborate pirate fantasies. A very specific chapter about a therapist. The pattern is not subtle once you see it — she builds perfectly ordered worlds where desire is requited and connection is inevitable, because the real version has kept not being.

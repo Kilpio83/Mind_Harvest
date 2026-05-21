@@ -44,6 +44,14 @@ func _execute() -> void:
 		"SUCCESS" if success else "FAIL"
 	])
 
+	# Toast notification
+	if ToastLayer:
+		var stat_display := stat.capitalize() if not stat.is_empty() else "Chance"
+		if success:
+			ToastLayer.show_toast("%s check passed" % stat_display, "", "success")
+		else:
+			ToastLayer.show_toast("%s check failed" % stat_display, "", "warning")
+
 	if not quality_variable.is_empty():
 		var quality: String
 		if success and roll < base_chance - 30:
