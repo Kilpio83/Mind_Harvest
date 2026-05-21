@@ -1,3 +1,98 @@
-[PLACEHOLDER — Marisol Session 2 not yet implemented (M7)]
+narrator: Marisol is seven minutes late. She doesn't apologize for this.
+narrator: She's carrying a leather-bound notebook clutched to her chest like a recovered relic.
+join marisol (Neutral) center
+marisol: "Doctor. I've been writing."
+narrator: She says it like a confession and a boast simultaneously.
+player: "The block lifted?"
+marisol: "The block redirected."
+narrator: A beat. The notebook is still held close.
+player: "Redirected how?"
+marisol: "I wrote something different. Not Rodrigo's story."
+narrator: She straightens. Lifts her chin slightly.
+marisol: "I wrote about a therapist."
+narrator: There is a pause that contains a great deal.
+marisol: "He's nothing like you. He has a beard."
+player: "I see."
+marisol: "He's brooding. Very capable. Metaphorically commands a ship. And his patients..."
+player: "His patients."
+marisol: "...are drawn to his quiet authority. Naturally."
+narrator: She's watching you very carefully.
+[stat_check stat="perception"]
+if {check_result}:
+	narrator: She watches you the way she'd watch someone read her work. She wants a reaction. She's mapped every possible response and prepared to write whichever one she gets.
+	- You're watching me react.
+		marisol: "I'm a novelist. I watch everyone react."
+		player: "Specifically to this."
+		narrator: The notebook drops fractionally.
+		marisol: "It's research."
+		narrator: She says this with great conviction.
+		do PatientManager.add_trust("marisol", 10)
+	- What does this therapist look like?
+		marisol: "Irrelevant. Completely beside the point. The character is the archetype, not the individual."
+		narrator: She describes him for forty-five seconds. In detail. With comparisons to known literary figures.
+		do PatientManager.add_trust("marisol", 5)
+else:
+	- That sounds like progress.
+		marisol: "It is. Of a sort."
+		narrator: She's slightly disappointed at this response. She adjusts.
+		do PatientManager.add_trust("marisol", 2)
+	- May I read it?
+		marisol: "Eventually. It's not ready."
+		narrator: The notebook moves slightly closer to her chest.
+		do PatientManager.add_trust("marisol", 3)
+player: "I'd like to read what you've written."
+marisol: "The prose isn't final."
+player: "I'm not a literary critic."
+narrator: A very brief internal struggle. Then she opens the notebook, selects a page with the precision of someone who has already decided which page she would select, and holds it out.
+narrator: You read it. It is specific.
+[photo_opportunity id="marisol_manuscript" patient="marisol" title="The Manuscript" description="A handwritten page featuring a scene of exceptional intimacy between a brooding therapist and a 'red-lipped, inconveniently perceptive patient.' The prose is not rough." portrait="res://assets/photos/marisol/manuscript.png"]
+if {flags.last_photo_success}:
+	narrator: Her expression while she watches you read — anticipatory, a little mortified, intensely hopeful — is a portrait in three emotions at once.
+	do PatientManager.add_trust("marisol", 15)
+narrator: You hand it back.
+player: "It's good."
+marisol: "The prose is rough."
+player: "The feeling isn't."
+narrator: She uncaps the cigarette holder. Recaps it.
+[stat_check stat="intelligence" base_chance=45 chance_per_point=10]
+if {check_result}:
+	do GameState.add_stat_xp("intelligence", 1)
+	narrator: Three divorced husbands. Six books. Elaborate pirate fantasies. A very specific chapter about a therapist. The pattern is not subtle once you see it — she builds perfectly ordered worlds where desire is requited and connection is inevitable, because the real version has kept not being.
+	- Marisol. The block isn't in the writing. | [if {patients.marisol.trust} >= 45] [else="disable" alt_text="need 45 trust"]
+		marisol: "I beg your—"
+		player: "You can write. You wrote this. What you're blocked on isn't the page."
+		narrator: A long silence.
+		player: "You write connection as inevitable because in practice it keeps not being."
+		narrator: She looks at the notebook.
+		marisol: "That's a confident interpretation, Doctor."
+		player: "Is it wrong?"
+		narrator: She puts the cigarette holder down.
+		marisol: "...My cats are named after qualities my husbands lacked. Constancy. Presence. Sincerity."
+		narrator: A beat.
+		marisol: "They're also named after characters in books, so."
+		set {flags.marisol_named_escapism_s2} = true
+		do PatientManager.add_trust("marisol", 20)
+		[add_note patient="marisol" note="Session 2 — Named it: the fantasy is a structural substitute for real connection. She deflected but didn't deny. The cats are named Constancy, Presence, and Sincerity."]
+	- Tell me about the last time you weren't blocked.
+		marisol: "Book four. I was going through my second divorce."
+		player: "And you wrote through it."
+		marisol: "I wrote instead of it. There's a difference."
+		narrator: She says this like it isn't a revelation.
+		do PatientManager.add_trust("marisol", 10)
+else:
+	- The book sounds like it's coming along.
+		marisol: "It has a momentum. Whether that momentum is therapeutic is a separate question."
+		do PatientManager.add_trust("marisol", 3)
+	- Do your other books draw this heavily from real life?
+		marisol: "All fiction is biographical. All biography is fiction."
+		narrator: She sounds very pleased with this formulation.
+		do PatientManager.add_trust("marisol", 2)
+marisol: "The block isn't gone, you understand. Rodrigo is still standing at the wheel."
+player: "What does he need?"
+marisol: "Wind."
+narrator: She considers this.
+marisol: "Or someone to tell him where he's going."
+[add_note patient="marisol" note="Session 2 — Revealed she's been writing the therapist as a character. Observing reactions. The fantasy material is a structurally identical substitution for intimacy she's not getting elsewhere."]
+leave marisol
 do PatientManager.mark_session_done("marisol")
 jump between_patients/

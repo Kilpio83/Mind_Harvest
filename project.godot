@@ -25,6 +25,11 @@ SaveManager="*res://scripts/autoload/save_manager.gd"
 [dialogic]
 
 directories/dch_directory={
+"anna": "res://dialogic/characters/anna.dch",
+"bea": "res://dialogic/characters/bea.dch",
+"marisol": "res://dialogic/characters/marisol.dch",
+"narrator": "res://dialogic/characters/narrator.dch",
+"player": "res://dialogic/characters/player.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch"
 }
 directories/dtl_directory={
@@ -64,6 +69,7 @@ variables={
 "event_find_coin_seen": false,
 "intro_done": false,
 "last_photo_success": false,
+"marisol_named_escapism_s2": false,
 "met_anna": false,
 "met_marisol": false
 },

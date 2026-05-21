@@ -8,4 +8,5 @@
 script = ExtResource("1_main")
 
 [node name="StatXPPanel" parent="." unique_id=919142210 instance=ExtResource("2_stat_xp")]
-[node name="PhotoQteOverlay" parent="." instance=ExtResource("3_photo_qte")]
+
+[node name="PhotoQteOverlay" parent="." unique_id=1266320429 instance=ExtResource("3_photo_qte")]

@@ -1,0 +1,290 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(0.6, 0.75, 0.9, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Neutral",
+&"description": "Anna Volkov. Work stress, insomnia. Organizational compulsions. Referred by GP.",
+&"display_name": "Anna",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 250),
+&"portraits": {
+"Admiration": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/admiration.png\""
+},
+"ignore_char_scale": false,
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1.0,
+"scene": ""
+},
+"Amusement": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/amusement.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Anger": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/anger.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Annoyance": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/annoyance.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Approval": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/approval.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Blush": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/blush.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Caring": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/caring.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Confusion": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/confusion.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Curiosity": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/curiosity.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Desire": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/desire.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disappointment": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/disappointment.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disapproval": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/disapproval.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disgust": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/disgust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Embarrassment": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/embarrassment.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Excitement": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/excitement.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Fear": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/fear.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Gratitude": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/gratitude.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Grief": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/grief.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Joy": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/joy.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Love": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/love.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Nervousness": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/nervousness.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Neutral": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/neutral.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Optimism": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/optimism.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Pride": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/pride.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Realization": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/realization.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Relief": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/relief.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Remorse": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/remorse.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sadness": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/sadness.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Surprise": {
+"export_overrides": {
+"image": "\"res://assets/portraits/anna/surprise.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"default": {
+"export_overrides": {
+"image": "res://assets/characters/anna/default.png"
+},
+"offset": Vector2(0, 0)
+}
+},
+&"scale": 1.0
+}

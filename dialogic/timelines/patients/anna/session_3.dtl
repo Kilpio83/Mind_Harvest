@@ -1,62 +1,75 @@
-Anna is, for the first time, two minutes late.
-She also isn't carrying the notebook.
-"I wrote a letter," she says, before she's even sat down. "I'm not going to send it."
-"What kind of letter?"
-She passes you her phone without a word.
-It's a resignation letter to her boss. It is extremely professional. The formal language cannot entirely conceal that the emotional subtext is: please tell me exactly what to do, in detail, always, or I am leaving.
+narrator: Anna is, for the first time, two minutes late.
+narrator: She also isn't carrying the notebook.
+join anna (Neutral) center
+anna: "I wrote a letter. I'm not going to send it."
+player: "What kind of letter?"
+narrator: She passes you her phone without a word.
+narrator: It's a resignation letter to her boss. It is extremely professional. The formal language cannot entirely conceal that the emotional subtext is: please tell me exactly what to do, in detail, always, or I am leaving.
 [photo_opportunity id="anna_resignation" patient="anna" title="The Resignation Letter" description="A resignation letter that is structurally a very formal request for micromanagement." portrait="res://assets/photos/anna/resignation_letter.png"]
 if {flags.last_photo_success}:
-	Her expression as she watches you read — anxious, a little mortified, possibly relieved — lands.
+	narrator: Her expression as she watches you read — anxious, a little mortified, possibly relieved — lands.
 	do PatientManager.add_trust("anna", 3)
-"I'm not going to send it," she says again.
-"You said."
-"I just — I needed to write it. To see what it looked like written down."
+anna: "I'm not going to send it."
+player: "You said."
+anna: "I just — I needed to write it. To see what it looked like written down."
 [stat_check stat="knowledge" base_chance=50 chance_per_point=10]
 if {check_result}:
 	do GameState.add_stat_xp("knowledge", 1)
-	"Writing the unsendable letter is a legitimate processing technique. You didn't avoid the feeling — you contained it."
-	"That's — yes. That's exactly how it felt."
+	player: "Writing the unsendable letter is a legitimate processing technique. You didn't avoid the feeling — you contained it."
+	anna: "That's — yes. That's exactly how it felt."
 	do PatientManager.add_trust("anna", 8)
 else:
-	"That took some courage to write."
-	"I don't know if I'd call it courage."
+	player: "That took some courage to write."
+	anna: "I don't know if I'd call it courage."
 	do PatientManager.add_trust("anna", 3)
-- "What would happen if you did send it?" | [if {patients.anna.trust} >= 50] [else="disable"] [alt_text="[Trust ≥ 50]"]
-	She's quiet for a long time.
-	"He'd probably accommodate me," she says. "He's not a bad manager. He just assumes I prefer autonomy." A pause. "Everyone assumes I prefer autonomy."
-	"Do you?"
-	A longer pause.
-	"I prefer things to be correct," she says. "And correct requires someone defining correct."
+- What would happen if you did send it? | [if {patients.anna.trust} >= 50] [else="disable" alt_text="need 50 trust"]
+	narrator: She's quiet for a long time.
+	anna: "He'd probably accommodate me. He's not a bad manager. He just assumes I prefer autonomy."
+	narrator: A pause.
+	anna: "Everyone assumes I prefer autonomy."
+	player: "Do you?"
+	narrator: A longer pause.
+	anna: "I prefer things to be correct. And correct requires someone defining correct."
 	do PatientManager.add_trust("anna", 10)
-- "What do you want to do about it?"
-	"I don't know. That's why I'm here."
+- What do you want to do about it?
+	anna: "I don't know. That's why I'm here."
 	do PatientManager.add_trust("anna", 2)
 if {patients.anna.trust} >= 70 and {flags.anna_named_fixation_s2}:
-	"I've been looking into things," Anna says, pulling at a thread on her sleeve. "There are structured work environments. Very prescriptive project frameworks — mandatory sign-offs, weighted criteria at every stage."
-	"There are."
-	"I've been researching those." A beat. "And also other things."
-	She says it in a tone that suggests she has been googling extensively and is now very carefully filing that information into a color-coded internal folder.
-	"That sounds like progress, Anna."
-	"It sounds like homework," she says. "I prefer homework to uncertainty."
-	"I'll write you a rubric," you say.
-	She laughs. It's genuine. First one.
+	anna: "I've been looking into things."
+	narrator: She pulls at a thread on her sleeve.
+	anna: "There are structured work environments. Very prescriptive project frameworks — mandatory sign-offs, weighted criteria at every stage."
+	player: "There are."
+	anna: "I've been researching those."
+	narrator: A beat.
+	anna: "And also other things."
+	narrator: She says it in a tone that suggests she has been googling extensively and is now very carefully filing that information into a color-coded internal folder.
+	player: "That sounds like progress, Anna."
+	anna: "It sounds like homework. I prefer homework to uncertainty."
+	player: "I'll write you a rubric."
+	narrator: She laughs. It's genuine. First one.
 	set {patients.anna.ending} = "breakthrough"
 	[add_note patient="anna" note="Breakthrough. Named the preference, began researching practical outlets. Prognosis: good, given sufficient structure."]
 else:
 	if {patients.anna.trust} < 30:
-		She stands before the session ends. Smooths her jacket precisely.
-		"I don't think talking helps. I have a system. The system works." She picks up her bag. "Thank you for your time."
-		The door closes. Quietly. Correctly.
+		narrator: She stands before the session ends. Smooths her jacket precisely.
+		anna: "I don't think talking helps. I have a system. The system works."
+		narrator: She picks up her bag.
+		anna: "Thank you for your time."
+		narrator: The door closes. Quietly. Correctly.
+		leave anna
 		set {patients.anna.ending} = "bad"
 		[add_note patient="anna" note="Withdrew before arc completion. Rejected the therapeutic framework. Left with her original premise intact."]
 	else:
-		"Anyway," Anna says, on her way out. "The sleep is better."
-		"Good."
-		"And I didn't reorganize your desk today."
-		"I noticed."
-		"Progress," she says, and it almost sounds like a question.
-		"Progress," you agree, and it almost sounds like an answer.
+		anna: "Anyway. The sleep is better."
+		player: "Good."
+		anna: "And I didn't reorganize your desk today."
+		player: "I noticed."
+		anna: "Progress."
+		narrator: It almost sounds like a question.
+		player: "Progress."
+		narrator: It almost sounds like an answer.
 		set {patients.anna.ending} = "stuck"
 		[add_note patient="anna" note="Inconclusive arc. Core fixation unaddressed but coping improved. Left door open for return."]
+leave anna
 do PatientManager.mark_session_done("anna")
 jump between_patients/

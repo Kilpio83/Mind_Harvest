@@ -1,45 +1,55 @@
+[background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 set {flags.met_anna} = true
-Anna Volkov, 9 AM. Work stress, insomnia. Referred by her GP.
-She arrives three minutes early. You know this because she pointedly checks her watch when you open the door at the scheduled time.
-Your desk is in a different configuration by the time you've both sat down.
-"Sorry," Anna says, not sounding sorry at all. "Anyway."
+[voice path="res://assets/audio/audio.wav" volume="-4.0"]
+bea: Anna Volkov, 9 AM. Work stress, insomnia..
+join anna (Nervousness) leftmost
+[voice path="res://assets/audio/audio (1).wav" volume="-10.0"]
+narrator: She arrives three minutes early. You know this because she pointedly checks her watch when you open the door at the scheduled time.
+[voice path="res://assets/audio/audio (2).wav" volume="0.0"]
+narrator: Your desk is in a different configuration by the time you've both sat down.
+[voice path="res://assets/audio/audio (3).wav" volume="0.0"]
+anna (Amusement): "Sorry, ... Anyway."
+player: <Empty Text Event>
 - Let it go.
-	She seems relieved you didn't mention it. You file it away for later.
+	narrator: She seems relieved you didn't mention it. You file it away for later.
+	update anna (Relief)
 	do PatientManager.add_trust("anna", 20)
 - "You reorganized my desk."
-	She goes briefly rigid. "It was just — the pen cup was on the left. That doesn't make sense."
-	"Does it need to make sense?"
-	A very long pause. "Anyway."
+	anna (Disapproval): "It was just — the pen cup was on the left. That doesn't make sense."
+	player: "Does it need to make sense?"
+	anna (Annoyance): "...... Anyway."
 	do PatientManager.add_trust("anna", -5)
-"The sleep thing," she says. "That's the main issue. I wake up at four and just — lie there. Thinking about what I didn't finish."
-"What kind of things?"
-- "Work tasks, you mean?" | [if {stats.knowledge} >= 2] [else="disable"] [alt_text="[Knowledge ≥ 2]"]
-	"Yes. Mostly." A microsecond of hesitation. "Work things."
-	You note the hesitation. She notes you noting it. A small negotiation passes between you.
+anna (Sadness): "The sleep thing, That's the main issue. I wake up at four and just — lie there. Thinking about what I didn't finish."
+player: "What kind of things?"
+- Work tasks, you mean? | [if {stats.knowledge} >= 2] [else="disable" alt_text="need 2 knowledge"]
+	anna (Anger): "Yes. Mostly." .... "Work things."
+	narrator: You note the hesitation. She notes you noting it. A small negotiation passes between you.
 	do PatientManager.add_trust("anna", 5)
 	do GameState.add_stat_xp("knowledge", 1)
 - "Is there a particular project weighing on you?"
-	She blinks. "I — yes. There are several. I keep a log."
-	She produces a color-coded notebook.
+	anna (Embarrassment): "I — yes. There are several. I keep a log."
+	narrator: She produces a color-coded notebook.
 	do PatientManager.add_trust("anna", 5)
 - "That sounds exhausting."
-	"It is," she says, with evident relief that you're not asking follow-up questions.
+	anna (Relief): "It is..."
 	do PatientManager.add_trust("anna", 3)
-"Your boss," she says eventually. "He gives me a lot of latitude. Which is obviously ideal."
-"Obviously."
-She doesn't look like it's ideal.
-Before you can push further, she's already pivoting. "The desk — I could actually show you. A better layout."
-"Please."
-What follows is four minutes of silent, methodical rearrangement, conducted with the focused intensity of someone defusing a bomb she personally assembled.
+anna: "My boss, He gives me a lot of latitude. Which is obviously ideal."
+player: "Obviously."
+narrator: She doesn't look like it's ideal.
+narrator: Before you can push further, she's already pivoting.
+anna (Caring): "The desk — I could actually show you. A better layout."
+player: "Please."
+narrator: What follows is four minutes of silent, methodical rearrangement, conducted with the focused intensity of someone defusing a bomb she personally assembled.
 [photo_opportunity id="anna_desk_demo" patient="anna" title="The Desk Demonstration" description="Anna reorganizes a stranger's workspace with surgical precision and audible satisfaction." portrait="res://assets/photos/anna/desk_demo.png"]
 if {flags.last_photo_success}:
-	Something in her expression as she steps back — a private, complete satisfaction — lands perfectly in the frame.
+	narrator: Something in her expression as she steps back — a private, complete satisfaction — lands perfectly in the frame.
 	do PatientManager.add_trust("anna", 3)
 else:
-	By the time you reach for your phone, she's already looking away. The moment dissolves.
-She clears her throat. "Anyway. The sleep thing."
-"Right," you say. "The sleep thing."
+	narrator: By the time you reach for your phone, she's already looking away. The moment dissolves.
+anna (Blush): "Anyway. The sleep thing."
+player: "Right, The sleep thing."
 [add_note patient="anna" note="Presents with insomnia and work stress. Strong organizational compulsions — rearranged the office within two minutes of arrival."]
 [add_note patient="anna" note="States boss gives her full autonomy. Her expression suggests this is not entirely welcome."]
+leave anna
 do PatientManager.mark_session_done("anna")
 jump between_patients/
