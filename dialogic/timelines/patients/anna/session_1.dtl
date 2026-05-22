@@ -24,18 +24,19 @@ player: "What kind of things?"
 - Work tasks, you mean? | [if {stats.knowledge} >= 2] [else="disable" alt_text="need 2 knowledge"]
 	anna (Anger): "Yes. Mostly." .... "Work things."
 	narrator: You note the hesitation. She notes you noting it. A small negotiation passes between you.
-	do PatientManager.add_therapy("anna", 5)
+	do PatientManager.add_bond("anna", 10)
 	do GameState.add_stat_xp("knowledge", 1)
 - "Is there a particular project weighing on you?"
 	anna (Embarrassment): "I — yes. There are several. I keep a log."
 	narrator: She produces a color-coded notebook.
-	do PatientManager.add_therapy("anna", 5)
+	do PatientManager.add_bond("anna", 5)
 - "That sounds exhausting."
 	anna (Relief): "It is..."
 	do PatientManager.add_therapy("anna", 3)
 anna: "My boss, He gives me a lot of latitude. Which is obviously ideal."
 player: "Obviously."
 narrator: She doesn't look like it's ideal.
+[offer_notes patient="anna" title="Something registers. What do you file away?" ids="anna_anyway_tell,anna_autonomy_discomfort"]
 narrator: Before you can push further, she's already pivoting.
 anna (Caring): "The desk — I could actually show you. A better layout."
 player: "Please."
@@ -48,6 +49,7 @@ else:
 	narrator: By the time you reach for your phone, she's already looking away. The moment dissolves.
 anna (Blush): "Anyway. The sleep thing."
 player: "Right, The sleep thing."
+[offer_notes patient="anna" title="Four minutes of focused rearrangement. What does it tell you?" ids="anna_desk_compulsion,anna_anyway_tell,anna_autonomy_discomfort"]
 [add_note patient="anna" note="Presents with insomnia and work stress. Strong organizational compulsions — rearranged the office within two minutes of arrival."]
 [add_note patient="anna" note="States boss gives her full autonomy. Her expression suggests this is not entirely welcome."]
 leave anna

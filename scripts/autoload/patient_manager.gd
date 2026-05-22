@@ -1,8 +1,9 @@
 extends Node
 ## Manages per-patient photos, notes, and dual-axis meters. Bridges Dialogic variables with UI scenes.
 
-var photos_by_patient: Dictionary = {}
-var notes_by_patient: Dictionary = {}
+var photos_by_patient:      Dictionary = {}
+var notes_by_patient:       Dictionary = {}
+var discoveries_by_patient: Dictionary = {}
 var bea_relationship: int = 0
 
 
@@ -57,6 +58,29 @@ func add_bond(patient_name: String, delta: int, reason: String = "") -> void:
 		ToastLayer.show_toast(
 			"%s Bond %s%d" % [patient_name.capitalize(), sign_str, delta],
 			reason, toast_type)
+
+
+## Adds a discovery by ID. Ignores duplicates. Fires a toast.
+func add_discovery(patient_name: String, discovery_id: String) -> void:
+	if not patient_name in discoveries_by_patient:
+		discoveries_by_patient[patient_name] = []
+	var arr: Array = discoveries_by_patient[patient_name]
+	for existing: DiscoveryCard in arr:
+		if existing.id == discovery_id:
+			return  # already collected
+	var card := DiscoveryRegistry.get_card(discovery_id)
+	if card == null:
+		return
+	card.session_added = int(Dialogic.VAR.get_variable(
+		"patients." + patient_name + ".progress", 0))
+	arr.append(card)
+	print("[DISCOVERY] %s — %s" % [patient_name, discovery_id])
+	if ToastLayer:
+		ToastLayer.show_toast("Discovery noted", card.short_label, "photo")
+
+
+func get_discoveries(patient_name: String) -> Array:
+	return discoveries_by_patient.get(patient_name, [])
 
 
 func get_next_session_timeline(patient_name: String) -> String:

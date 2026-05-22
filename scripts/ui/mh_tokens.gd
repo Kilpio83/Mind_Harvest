@@ -18,6 +18,13 @@ const ACCENT_PHOTO   := Color(0.831, 0.659, 0.290, 1.0)  ## #d4a84a — photo / 
 const ACCENT_STAT    := Color(0.353, 0.624, 0.831, 1.0)  ## #5a9fd4 — stat-gain / blue
 
 # ─── HUD stat label colours ──────────────────────────────────────────────────
+# ─── discovery category colours ─────────────────────────────────────────────
+const DISC_OBSERVATION   := Color(0.847, 0.659, 0.659, 1.0)  ## #d8a8a8
+const DISC_CONFESSION    := Color(0.937, 0.690, 0.286, 1.0)  ## #efb049
+const DISC_CONTRADICTION := Color(0.353, 0.624, 0.831, 1.0)  ## #5a9fd4
+const DISC_VULNERABILITY := Color(0.592, 0.769, 0.349, 1.0)  ## #97c459
+
+# ─── HUD stat label colours — Perception · Intellect · Knowledge · Composure · Nerve
 const PER_COLOR  := Color(0.847, 0.659, 0.659, 1.0)  ## #d8a8a8 — Perception
 const INT_COLOR  := Color(0.624, 0.722, 0.847, 1.0)  ## #9fb8d8 — Intellect
 const KNO_COLOR  := Color(0.659, 0.784, 0.588, 1.0)  ## #a8c896 — Knowledge
