@@ -90,18 +90,20 @@ variables={
 },
 "patients": {
 "anna": {
+"committed_intent": "",
 "ending": "",
-"last_day": -1,
 "next_day": 0,
+"personal_bond": 0,
 "progress": 0,
-"trust": 30
+"therapy_progress": 30
 },
 "marisol": {
+"committed_intent": "",
 "ending": "",
-"last_day": -1,
 "next_day": 0,
+"personal_bond": 0,
 "progress": 0,
-"trust": 30
+"therapy_progress": 30
 }
 },
 "photos": {

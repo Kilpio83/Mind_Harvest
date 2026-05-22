@@ -1,9 +1,9 @@
 set {game.phase} = "evening"
 narrator: "You lock up the office."
 if {patients.anna.progress} > 0 and {patients.anna.ending} == "":
-	narrator: "Anna's trust is at {patients.anna.trust}/100."
+	narrator: "Anna — therapy {patients.anna.therapy_progress}/100, bond {patients.anna.personal_bond}."
 if {patients.marisol.progress} > 0 and {patients.marisol.ending} == "":
-	narrator: "Marisol's trust is at {patients.marisol.trust}/100."
+	narrator: "Marisol — therapy {patients.marisol.therapy_progress}/100, bond {patients.marisol.personal_bond}."
 if {patients.anna.ending} != "" or {patients.marisol.ending} != "":
 	narrator: "Some cases have reached their conclusion."
 if {photos.count} > 0:

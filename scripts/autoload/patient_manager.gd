@@ -1,5 +1,5 @@
 extends Node
-## Manages per-patient photos, notes, and trust. Bridges Dialogic variables with UI scenes.
+## Manages per-patient photos, notes, and dual-axis meters. Bridges Dialogic variables with UI scenes.
 
 var photos_by_patient: Dictionary = {}
 var notes_by_patient: Dictionary = {}
@@ -27,22 +27,28 @@ func add_note(patient_name: String, fact_id: String) -> void:
 		notes_by_patient[patient_name].append(fact_id)
 
 
-func add_trust(patient_name: String, delta: int) -> void:
-	var key := "patients." + patient_name + ".trust"
-	var current: int = int(Dialogic.VAR.get_variable(key, 30))
-	var new_val: int = clampi(current + delta, 0, 100)
+## Adjusts therapy_progress (clamped 0–100) or personal_bond (clamped −50–+50).
+## Called from session timelines via  do PatientManager.apply_meter_delta(...).
+func apply_meter_delta(patient_name: String, axis: String, delta: int, reason: String = "") -> void:
+	var key := "patients." + patient_name + "." + axis
+	var current: int = int(Dialogic.VAR.get_variable(key, 0))
+	var new_val: int
+	if axis == "therapy_progress":
+		new_val = clampi(current + delta, 0, 100)
+	else:
+		new_val = clampi(current + delta, -50, 50)
 	Dialogic.VAR.set_variable(key, new_val)
-	print("[TRUST] %s  %+d  (was %d)  →  %d/100" % [patient_name, delta, current, new_val])
 
-	# Toast — only show meaningful deltas (skip tiny ±1..2 noise)
-	if ToastLayer and abs(delta) >= 3:
+	var sign_str := "+" if delta >= 0 else ""
+	print("[METER] %s.%s  %s%d  (%d → %d)" % [patient_name, axis, sign_str, delta, current, new_val])
+
+	if ToastLayer and delta != 0:
 		var display_name := patient_name.capitalize()
-		if delta > 0:
-			ToastLayer.show_toast(
-				"Trust with %s +%d" % [display_name, delta], "", "success")
-		else:
-			ToastLayer.show_toast(
-				"Trust with %s %d" % [display_name, delta], "", "warning")
+		var axis_label   := "Therapy" if axis == "therapy_progress" else "Bond"
+		var toast_type   := "success" if delta > 0 else "warning"
+		ToastLayer.show_toast(
+			"%s %s %s%d" % [display_name, axis_label, sign_str, delta],
+			reason, toast_type)
 
 
 func get_next_session_timeline(patient_name: String) -> String:
@@ -57,5 +63,24 @@ func mark_session_done(patient_name: String) -> void:
 	Dialogic.VAR.set_variable(progress_key, progress + 1)
 
 	var day: int = int(Dialogic.VAR.get_variable("game.day", 1))
-	Dialogic.VAR.set_variable("patients." + patient_name + ".last_day", day)
 	Dialogic.VAR.set_variable("patients." + patient_name + ".next_day", day + 2)
+
+
+## Returns the quadrant ending family for a patient, or "" if arc should continue.
+##   "lover"    — therapy >= 70 AND bond >= +20
+##   "graduate" — therapy >= 70 AND bond <  +20
+##   "devotee"  — therapy <= 30 AND bond >= +20
+##   "nemesis"  — therapy <= 30 AND bond <= -20
+##   ""         — intermediate; arc continues
+func check_arc_resolution(patient_name: String) -> String:
+	var therapy: int = int(Dialogic.VAR.get_variable("patients." + patient_name + ".therapy_progress", 30))
+	var bond:    int = int(Dialogic.VAR.get_variable("patients." + patient_name + ".personal_bond",    0))
+
+	if therapy >= 70:
+		return "lover" if bond >= 20 else "graduate"
+	elif therapy <= 30:
+		if bond >= 20:
+			return "devotee"
+		elif bond <= -20:
+			return "nemesis"
+	return ""

@@ -26,20 +26,20 @@ if {check_result}:
 		narrator: The notebook drops fractionally.
 		marisol: "It's research."
 		narrator: She says this with great conviction.
-		do PatientManager.add_trust("marisol", 10)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 10)
 	- What does this therapist look like?
 		marisol: "Irrelevant. Completely beside the point. The character is the archetype, not the individual."
 		narrator: She describes him for forty-five seconds. In detail. With comparisons to known literary figures.
-		do PatientManager.add_trust("marisol", 5)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 5)
 else:
 	- That sounds like progress.
 		marisol: "It is. Of a sort."
 		narrator: She's slightly disappointed at this response. She adjusts.
-		do PatientManager.add_trust("marisol", 2)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 2)
 	- May I read it?
 		marisol: "Eventually. It's not ready."
 		narrator: The notebook moves slightly closer to her chest.
-		do PatientManager.add_trust("marisol", 3)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 3)
 player: "I'd like to read what you've written."
 marisol: "The prose isn't final."
 player: "I'm not a literary critic."
@@ -48,7 +48,7 @@ narrator: You read it. It is specific.
 [photo_opportunity id="marisol_manuscript" patient="marisol" title="The Manuscript" description="A handwritten page featuring a scene of exceptional intimacy between a brooding therapist and a 'red-lipped, inconveniently perceptive patient.' The prose is not rough." portrait="res://assets/photos/marisol/manuscript.png"]
 if {flags.last_photo_success}:
 	narrator: Her expression while she watches you read — anticipatory, a little mortified, intensely hopeful — is a portrait in three emotions at once.
-	do PatientManager.add_trust("marisol", 15)
+	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 15)
 narrator: You hand it back.
 player: "It's good."
 marisol: "The prose is rough."
@@ -58,7 +58,7 @@ narrator: She uncaps the cigarette holder. Recaps it.
 if {check_result}:
 	do GameState.add_stat_xp("intellect", 1)
 	narrator: Three divorced husbands. Six books. Elaborate pirate fantasies. A very specific chapter about a therapist. The pattern is not subtle once you see it — she builds perfectly ordered worlds where desire is requited and connection is inevitable, because the real version has kept not being.
-	- Marisol. The block isn't in the writing. | [if {patients.marisol.trust} >= 45] [else="disable" alt_text="need 45 trust"]
+	- Marisol. The block isn't in the writing. | [if {patients.marisol.therapy_progress} >= 45] [else="disable" alt_text="need 45 therapy"]
 		marisol: "I beg your—"
 		player: "You can write. You wrote this. What you're blocked on isn't the page."
 		narrator: A long silence.
@@ -71,22 +71,22 @@ if {check_result}:
 		narrator: A beat.
 		marisol: "They're also named after characters in books, so."
 		set {flags.marisol_named_escapism_s2} = true
-		do PatientManager.add_trust("marisol", 20)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 20)
 		[add_note patient="marisol" note="Session 2 — Named it: the fantasy is a structural substitute for real connection. She deflected but didn't deny. The cats are named Constancy, Presence, and Sincerity."]
 	- Tell me about the last time you weren't blocked.
 		marisol: "Book four. I was going through my second divorce."
 		player: "And you wrote through it."
 		marisol: "I wrote instead of it. There's a difference."
 		narrator: She says this like it isn't a revelation.
-		do PatientManager.add_trust("marisol", 10)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 10)
 else:
 	- The book sounds like it's coming along.
 		marisol: "It has a momentum. Whether that momentum is therapeutic is a separate question."
-		do PatientManager.add_trust("marisol", 3)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 3)
 	- Do your other books draw this heavily from real life?
 		marisol: "All fiction is biographical. All biography is fiction."
 		narrator: She sounds very pleased with this formulation.
-		do PatientManager.add_trust("marisol", 2)
+		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 2)
 marisol: "The block isn't gone, you understand. Rodrigo is still standing at the wheel."
 player: "What does he need?"
 marisol: "Wind."

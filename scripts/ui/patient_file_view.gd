@@ -56,21 +56,91 @@ func _build_tab(patient_id: String, display_name: String, occupation: String, po
 	occ_lbl.text = occupation
 	info.add_child(occ_lbl)
 
-	var trust: int = int(Dialogic.VAR.get_variable("patients." + patient_id + ".trust", 30))
-	var trust_lbl := Label.new()
-	trust_lbl.text = "Trust: %d / 100" % trust
-	info.add_child(trust_lbl)
+	var therapy: int = int(Dialogic.VAR.get_variable("patients." + patient_id + ".therapy_progress", 30))
+	var bond:    int = int(Dialogic.VAR.get_variable("patients." + patient_id + ".personal_bond",    0))
 
-	var trust_bar := ProgressBar.new()
-	trust_bar.max_value = 100
-	trust_bar.value = trust
-	trust_bar.show_percentage = false
-	trust_bar.custom_minimum_size = Vector2(0, 20)
-	info.add_child(trust_bar)
+	# ── Therapy Progress ──────────────────────────────────────────────────────
+	var therapy_header := HBoxContainer.new()
+	therapy_header.add_theme_constant_override("separation", 6)
+	info.add_child(therapy_header)
+	var th_left := Label.new()
+	th_left.text = "STRANGER · 0"
+	th_left.add_theme_font_size_override("font_size", 10)
+	th_left.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	therapy_header.add_child(th_left)
+	var th_spacer := Control.new()
+	th_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	therapy_header.add_child(th_spacer)
+	var th_right := Label.new()
+	th_right.text = "BREAKTHROUGH · 100"
+	th_right.add_theme_font_size_override("font_size", 10)
+	th_right.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	therapy_header.add_child(th_right)
+
+	var therapy_bar := ProgressBar.new()
+	therapy_bar.max_value = 100
+	therapy_bar.value = therapy
+	therapy_bar.show_percentage = false
+	therapy_bar.custom_minimum_size = Vector2(0, 16)
+	info.add_child(therapy_bar)
+
+	var therapy_caption := Label.new()
+	therapy_caption.text = "Therapy: %d  —  %s" % [therapy, _therapy_caption(therapy)]
+	therapy_caption.add_theme_font_size_override("font_size", 11)
+	info.add_child(therapy_caption)
+
+	# ── Personal Bond ─────────────────────────────────────────────────────────
+	var bond_header := HBoxContainer.new()
+	bond_header.add_theme_constant_override("separation", 6)
+	info.add_child(bond_header)
+	var bh_left := Label.new()
+	bh_left.text = "HOSTILE · −50"
+	bh_left.add_theme_font_size_override("font_size", 10)
+	bh_left.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	bond_header.add_child(bh_left)
+	var bh_spacer := Control.new()
+	bh_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bond_header.add_child(bh_spacer)
+	var bh_right := Label.new()
+	bh_right.text = "DEVOTED · +50"
+	bh_right.add_theme_font_size_override("font_size", 10)
+	bh_right.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	bond_header.add_child(bh_right)
+
+	# Bond bar: two halves growing outward from center.
+	var bond_row := HBoxContainer.new()
+	bond_row.add_theme_constant_override("separation", 2)
+	bond_row.custom_minimum_size = Vector2(0, 16)
+	info.add_child(bond_row)
+
+	var neg_bar := ProgressBar.new()
+	neg_bar.max_value = 50
+	neg_bar.value = max(0, -bond)
+	neg_bar.show_percentage = false
+	neg_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	neg_bar.fill_mode = ProgressBar.FILL_END_TO_BEGIN
+	bond_row.add_child(neg_bar)
+
+	var center_sep := VSeparator.new()
+	center_sep.custom_minimum_size = Vector2(3, 0)
+	bond_row.add_child(center_sep)
+
+	var pos_bar := ProgressBar.new()
+	pos_bar.max_value = 50
+	pos_bar.value = max(0, bond)
+	pos_bar.show_percentage = false
+	pos_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bond_row.add_child(pos_bar)
+
+	var bond_caption := Label.new()
+	var bond_sign := "+" if bond >= 0 else ""
+	bond_caption.text = "Bond: %s%d  —  %s" % [bond_sign, bond, _bond_caption(bond)]
+	bond_caption.add_theme_font_size_override("font_size", 11)
+	info.add_child(bond_caption)
 
 	var progress: int = int(Dialogic.VAR.get_variable("patients." + patient_id + ".progress", 0))
 	var sessions_lbl := Label.new()
-	sessions_lbl.text = "Sessions completed: %d / 3" % progress
+	sessions_lbl.text = "Sessions completed: %d" % progress
 	info.add_child(sessions_lbl)
 
 	# Notes
@@ -149,3 +219,21 @@ func _show_photo_popup(photo: PhotoData) -> void:
 func _on_popup_close() -> void:
 	photo_popup.visible = false
 	popup_photo.texture = null
+
+
+# ─── meter captions ───────────────────────────────────────────────────────────
+
+func _therapy_caption(v: int) -> String:
+	if v <= 20:  return "Disengaged"
+	elif v <= 40: return "Guarded"
+	elif v <= 60: return "Opening up"
+	elif v <= 80: return "Trust established"
+	else:         return "Breakthrough near"
+
+
+func _bond_caption(v: int) -> String:
+	if v <= -21:  return "Hostile"
+	elif v <= -6: return "Distant"
+	elif v <= 5:  return "Neutral"
+	elif v <= 20: return "Warm"
+	else:         return "Devoted"

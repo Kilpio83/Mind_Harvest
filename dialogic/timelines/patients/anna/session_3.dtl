@@ -8,7 +8,7 @@ narrator: It's a resignation letter to her boss. It is extremely professional. T
 [photo_opportunity id="anna_resignation" patient="anna" title="The Resignation Letter" description="A resignation letter that is structurally a very formal request for micromanagement." portrait="res://assets/photos/anna/resignation_letter.png"]
 if {flags.last_photo_success}:
 	narrator: Her expression as she watches you read — anxious, a little mortified, possibly relieved — lands.
-	do PatientManager.add_trust("anna", 3)
+	do PatientManager.apply_meter_delta("anna", "therapy_progress", 3)
 anna: "I'm not going to send it."
 player: "You said."
 anna: "I just — I needed to write it. To see what it looked like written down."
@@ -17,12 +17,12 @@ if {check_result}:
 	do GameState.add_stat_xp("knowledge", 1)
 	player: "Writing the unsendable letter is a legitimate processing technique. You didn't avoid the feeling — you contained it."
 	anna: "That's — yes. That's exactly how it felt."
-	do PatientManager.add_trust("anna", 8)
+	do PatientManager.apply_meter_delta("anna", "therapy_progress", 8)
 else:
 	player: "That took some courage to write."
 	anna: "I don't know if I'd call it courage."
-	do PatientManager.add_trust("anna", 3)
-- What would happen if you did send it? | [if {patients.anna.trust} >= 50] [else="disable" alt_text="need 50 trust"]
+	do PatientManager.apply_meter_delta("anna", "therapy_progress", 3)
+- What would happen if you did send it? | [if {patients.anna.therapy_progress} >= 50] [else="disable" alt_text="need 50 therapy"]
 	narrator: She's quiet for a long time.
 	anna: "He'd probably accommodate me. He's not a bad manager. He just assumes I prefer autonomy."
 	narrator: A pause.
@@ -30,11 +30,11 @@ else:
 	player: "Do you?"
 	narrator: A longer pause.
 	anna: "I prefer things to be correct. And correct requires someone defining correct."
-	do PatientManager.add_trust("anna", 10)
+	do PatientManager.apply_meter_delta("anna", "therapy_progress", 10)
 - What do you want to do about it?
 	anna: "I don't know. That's why I'm here."
-	do PatientManager.add_trust("anna", 2)
-if {patients.anna.trust} >= 70 and {flags.anna_named_fixation_s2}:
+	do PatientManager.apply_meter_delta("anna", "therapy_progress", 2)
+if {patients.anna.therapy_progress} >= 70 and {flags.anna_named_fixation_s2}:
 	anna: "I've been looking into things."
 	narrator: She pulls at a thread on her sleeve.
 	anna: "There are structured work environments. Very prescriptive project frameworks — mandatory sign-offs, weighted criteria at every stage."
@@ -50,7 +50,7 @@ if {patients.anna.trust} >= 70 and {flags.anna_named_fixation_s2}:
 	set {patients.anna.ending} = "breakthrough"
 	[add_note patient="anna" note="Breakthrough. Named the preference, began researching practical outlets. Prognosis: good, given sufficient structure."]
 else:
-	if {patients.anna.trust} < 30:
+	if {patients.anna.therapy_progress} < 30:
 		narrator: She stands before the session ends. Smooths her jacket precisely.
 		anna: "I don't think talking helps. I have a system. The system works."
 		narrator: She picks up her bag.
