@@ -32,7 +32,7 @@ narrator: She's recapping the pen faster now.
 [stat_check stat="perception"]
 if {check_result}:
 	narrator: There's a tell. The pen speed correlates with the gap between what she's saying and what she means.
-	- Anna. You weren't anxious in the dream. You wanted the rubric. | [if {stats.intelligence} >= 2] [else="disable" alt_text="need 2 intelligence"]
+	- Anna. You weren't anxious in the dream. You wanted the rubric. | [if {stats.intellect} >= 2] [else="disable" alt_text="need 2 intellect"]
 		narrator: A long silence.
 		anna: "I don't—"
 		player: "The dream wasn't a stress dream. It was a wish."

@@ -10,7 +10,7 @@ extends DialogicEvent
 
 ### Settings
 
-## One of: intelligence, patience, knowledge, perception. Leave blank for a pure RNG check.
+## One of: perception, intellect, knowledge, composure, nerve. Leave blank for a pure RNG check.
 @export var stat: String = ""
 ## Stat value must exceed this before chance_per_point kicks in.
 @export var threshold: int = 0

@@ -108,12 +108,14 @@ variables={
 "count": 0
 },
 "stats": {
-"intelligence": 1,
-"intelligence_xp": 0,
+"composure": 1,
+"composure_xp": 0,
+"intellect": 1,
+"intellect_xp": 0,
 "knowledge": 1,
 "knowledge_xp": 0,
-"patience": 1,
-"patience_xp": 0,
+"nerve": 1,
+"nerve_xp": 0,
 "perception": 1,
 "perception_xp": 0
 }

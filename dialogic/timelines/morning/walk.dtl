@@ -1,9 +1,9 @@
 Fresh air. A pigeon judges you. You press on regardless.
 - Observe your surroundings carefully |
 	You notice the way the light hits the street. Small details sharpen.
-	do GameState.add_stat_xp("perception", 10)
+	do GameState.add_stat_xp("nerve", 10)
 	jump morning_menu/activity_choice
 - Let your mind wander |
 	Scenic. Uneventful. You feel vaguely refreshed anyway.
-	do GameState.add_stat_xp("perception", 10)
+	do GameState.add_stat_xp("nerve", 10)
 	jump morning_menu/activity_choice

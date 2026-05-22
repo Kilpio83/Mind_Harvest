@@ -12,7 +12,7 @@ var _day_lbl    : Label
 var _phase_lbl  : Label
 var _patient_sep: Label
 var _patient_lbl: Label
-var _stat_val   : Dictionary = {}  # "intelligence" → Label  (value text)
+var _stat_val   : Dictionary = {}  # stat key → Label  (value text)
 
 var _t := 0.0
 const _INTERVAL := 0.25  # seconds between variable reads
@@ -72,10 +72,11 @@ func _build() -> void:
 	row.add_child(right)
 
 	for info: Array in [
-		["INT", "intelligence", MHTokens.INT_COLOR],
-		["PAT", "patience",     MHTokens.PAT_COLOR],
-		["KNO", "knowledge",    MHTokens.KNO_COLOR],
-		["PER", "perception",   MHTokens.PER_COLOR],
+		["PER", "perception", MHTokens.PER_COLOR],
+		["INT", "intellect",  MHTokens.INT_COLOR],
+		["KNO", "knowledge",  MHTokens.KNO_COLOR],
+		["COM", "composure",  MHTokens.COMP_COLOR],
+		["NRV", "nerve",      MHTokens.NRV_COLOR],
 	]:
 		var grp := HBoxContainer.new()
 		grp.add_theme_constant_override("separation", 5)
