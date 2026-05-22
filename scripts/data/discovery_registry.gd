@@ -15,7 +15,7 @@ static func get_card(id: String) -> DiscoveryCard:
 	c.patient          = data["patient"]
 	c.short_label      = data["label"]
 	c.description      = data["desc"]
-	c.tags             = data["tags"]
+	c.tags.assign(data["tags"])
 	c.weight           = data["weight"]
 	c.category         = data["category"]
 	c.stat_requirement = data.get("requires", "")
