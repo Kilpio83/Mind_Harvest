@@ -27,27 +27,27 @@ if {check_result}:
 	narrator: A beat.
 	player: "That's not a typical ending for the series."
 	marisol: "No. It isn't."
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 8)
+	do PatientManager.add_therapy("marisol", 8)
 else:
 	player: "You deleted it."
 	marisol: "I deleted it."
 	narrator: A beat.
 	marisol: "I may have also written the ending of Rodrigo's book."
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 3)
+	do PatientManager.add_therapy("marisol", 3)
 [photo_opportunity id="marisol_dedication" patient="marisol" title="The Dedication Page" description="The handwritten dedication of The Corsair's Surrender. Visible just long enough to read one line." portrait="res://assets/photos/marisol/dedication.png"]
 if {flags.last_photo_success}:
 	narrator: She's watching your face. This time she doesn't look like she's mapping responses. She just looks like she wants to know what you think.
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 3)
+	do PatientManager.add_therapy("marisol", 3)
 - What did you learn from writing him? | [if {patients.marisol.therapy_progress} >= 50] [else="disable" alt_text="need 50 therapy"]
 	marisol: "That I am a very good novelist."
 	narrator: A beat.
 	marisol: "And that I have been using very good novelists as an excuse not to be a person."
 	narrator: She says it lightly. It lands hard.
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 12)
+	do PatientManager.add_therapy("marisol", 12)
 - What happens in Rodrigo's ending?
 	marisol: "He stops performing the adventure. He starts living the ordinary one."
 	narrator: She says it as though reciting someone else's work.
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 5)
+	do PatientManager.add_therapy("marisol", 5)
 if {patients.marisol.therapy_progress} >= 70 and {flags.marisol_named_escapism_s2}:
 	marisol: "I've been thinking about what you said. About the block not being in the writing."
 	player: "And?"

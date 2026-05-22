@@ -20,13 +20,13 @@ player: "Tell me about the block."
 	marisol (Curiosity): "Captain Rodrigo de Valcourt must choose between his oath to the Crimson Brotherhood and the woman who has set fire to his carefully ordered world."
 	narrator: A beat.
 	marisol (Gratitude): "It's a metaphor."
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 5)
+	do PatientManager.add_therapy("marisol", 5)
 	do GameState.add_stat_xp("knowledge", 1)
 - What does writer's block feel like, for you?
 	marisol: "Like standing at the wheel of a ship with no wind. Everything correct. Everything still."
 	narrator: She catches herself.
 	marisol: "That's — I apologize. I narrate. It's a professional hazard."
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 3)
+	do PatientManager.add_therapy("marisol", 3)
 [stat_check stat="perception"]
 if {check_result}:
 	narrator: She's not distressed. She's performing distress. The cigarette holder spins when she's composing, not when she's suffering — and it's been spinning since she sat down.
@@ -36,27 +36,27 @@ if {check_result}:
 		narrator: A very long pause.
 		marisol: "You're more observant than I expected."
 		narrator: She doesn't put the holder down. But it stops spinning.
-		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 12)
+		do PatientManager.add_therapy("marisol", 12)
 	- Tell me what you do instead of writing.
 		marisol (Surprise): "Research. Extensively."
 		player: "Into?"
 		marisol (Love): "Maritime history. Piracy. The social hierarchies of privateering vessels."
 		narrator: She says this with a composure that cannot entirely contain how much she enjoyed saying it.
-		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 5)
+		do PatientManager.add_therapy("marisol", 5)
 else:
 	- How long have you been a romance novelist?
 		marisol: "Eleven years. Six books. The seventh is proving... reluctant."
 		narrator: She pronounces it like it's the book's fault.
-		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 3)
+		do PatientManager.add_therapy("marisol", 3)
 	- Is there something else going on in your life right now?
 		marisol: "In my life. No. In my work, yes. The distinction is important."
 		narrator: She says this with great confidence.
-		do PatientManager.apply_meter_delta("marisol", "therapy_progress", 2)
+		do PatientManager.add_therapy("marisol", 2)
 narrator: She has been describing a scene — Rodrigo's crisis of faith mid-voyage — for four minutes. You have watched her become, slightly, someone else.
 [photo_opportunity id="marisol_swoon" patient="marisol" title="The Swoon" description="Marisol re-enacts a pivotal scene from her seventh novel with complete theatrical commitment, including a practiced swoon onto the therapy couch." portrait="res://assets/photos/marisol/swoon.png"]
 if {flags.last_photo_success}:
 	narrator: Her expression mid-swoon — eyes closing, one hand to her chest — is, objectively, a lot.
-	do PatientManager.apply_meter_delta("marisol", "therapy_progress", 3)
+	do PatientManager.add_therapy("marisol", 3)
 else:
 	narrator: By the time you reach for your phone, she's already straightening her jacket.
 marisol: "And that's when Rodrigo realizes the oath was never really about the Brotherhood."

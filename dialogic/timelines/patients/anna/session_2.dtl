@@ -20,7 +20,7 @@ narrator: She opens her phone. It's a spreadsheet. The dream journal has a pivot
 [photo_opportunity id="anna_spreadsheet" patient="anna" title="The Spreadsheet Confession" description="A color-coded dream journal with emotional-valence columns and conditional formatting." portrait="res://assets/photos/anna/spreadsheet.png"]
 if {flags.last_photo_success}:
 	narrator: The expression when she shows you the screen — half sheepish, half defiant — is a useful data point.
-	do PatientManager.apply_meter_delta("anna", "therapy_progress", 15)
+	do PatientManager.add_therapy("anna", 15)
 player: "What were you feeling in the dream?"
 anna: "Calm."
 narrator: Then:
@@ -41,26 +41,26 @@ if {check_result}:
 		player: "Is it wrong?"
 		narrator: No answer. Which is an answer.
 		set {flags.anna_named_fixation_s2} = true
-		do PatientManager.apply_meter_delta("anna", "therapy_progress", 20)
+		do PatientManager.add_therapy("anna", 20)
 		[add_note patient="anna" note="Session 2 — Named the fixation directly: craves structured direction, not autonomy. She didn't deny it."]
 	- Tell me more about what 'calm' felt like.
 		anna: "Like everything was in its place."
 		player: "Everything, or you?"
 		narrator: A flicker. Then:
 		anna: "Anyway, the sleep has actually been better."
-		do PatientManager.apply_meter_delta("anna", "therapy_progress", 20)
+		do PatientManager.add_therapy("anna", 20)
 else:
 	- Dreams about work are usually just processing stress. That sounds healthy.
 		anna: "Right. Yes. That's what I thought."
 		narrator: Relief that's almost desperate.
-		do PatientManager.apply_meter_delta("anna", "therapy_progress", -3)
+		do PatientManager.add_therapy("anna", -3)
 	- Tell me more about the rubric itself.
 		anna: "It's — it's just a rubric."
 		narrator: You wait.
 		anna: "It had color coding. By priority tier."
 		player: "That sounds like something you'd design."
 		anna: "It sounds like something any rational person would design."
-		do PatientManager.apply_meter_delta("anna", "therapy_progress", 2)
+		do PatientManager.add_therapy("anna", 2)
 player: "Before we close — how's the sleep now?"
 anna: "Four AM is now four-thirty."
 narrator: A beat.

@@ -27,27 +27,35 @@ func add_note(patient_name: String, fact_id: String) -> void:
 		notes_by_patient[patient_name].append(fact_id)
 
 
-## Adjusts therapy_progress (clamped 0–100) or personal_bond (clamped −50–+50).
-## Called from session timelines via  do PatientManager.apply_meter_delta(...).
-func apply_meter_delta(patient_name: String, axis: String, delta: int, reason: String = "") -> void:
-	var key := "patients." + patient_name + "." + axis
-	var current: int = int(Dialogic.VAR.get_variable(key, 0))
-	var new_val: int
-	if axis == "therapy_progress":
-		new_val = clampi(current + delta, 0, 100)
-	else:
-		new_val = clampi(current + delta, -50, 50)
+## Adjusts therapy_progress (0–100) for a patient.
+## Usage in timelines:  do PatientManager.add_therapy("anna", 10)
+func add_therapy(patient_name: String, delta: int, reason: String = "") -> void:
+	var key := "patients." + patient_name + ".therapy_progress"
+	var current: int = int(Dialogic.VAR.get_variable(key, 30))
+	var new_val: int = clampi(current + delta, 0, 100)
 	Dialogic.VAR.set_variable(key, new_val)
-
 	var sign_str := "+" if delta >= 0 else ""
-	print("[METER] %s.%s  %s%d  (%d → %d)" % [patient_name, axis, sign_str, delta, current, new_val])
-
+	print("[THERAPY] %s  %s%d  (%d → %d)" % [patient_name, sign_str, delta, current, new_val])
 	if ToastLayer and delta != 0:
-		var display_name := patient_name.capitalize()
-		var axis_label   := "Therapy" if axis == "therapy_progress" else "Bond"
-		var toast_type   := "success" if delta > 0 else "warning"
+		var toast_type := "success" if delta > 0 else "warning"
 		ToastLayer.show_toast(
-			"%s %s %s%d" % [display_name, axis_label, sign_str, delta],
+			"%s Therapy %s%d" % [patient_name.capitalize(), sign_str, delta],
+			reason, toast_type)
+
+
+## Adjusts personal_bond (−50–+50) for a patient.
+## Usage in timelines:  do PatientManager.add_bond("anna", 5)
+func add_bond(patient_name: String, delta: int, reason: String = "") -> void:
+	var key := "patients." + patient_name + ".personal_bond"
+	var current: int = int(Dialogic.VAR.get_variable(key, 0))
+	var new_val: int = clampi(current + delta, -50, 50)
+	Dialogic.VAR.set_variable(key, new_val)
+	var sign_str := "+" if delta >= 0 else ""
+	print("[BOND] %s  %s%d  (%d → %d)" % [patient_name, sign_str, delta, current, new_val])
+	if ToastLayer and delta != 0:
+		var toast_type := "success" if delta > 0 else "warning"
+		ToastLayer.show_toast(
+			"%s Bond %s%d" % [patient_name.capitalize(), sign_str, delta],
 			reason, toast_type)
 
 

@@ -25,28 +25,16 @@ func _execute() -> void:
 		finish()
 		return
 
-	var key := "patients." + patient + "." + axis
-	var current: int = int(Dialogic.VAR.get_variable(key, 0))
-	var new_val: int
+	var pm: Node = Engine.get_singleton("PatientManager") if false \
+		else get_node_or_null("/root/PatientManager")
+	if pm == null:
+		finish()
+		return
 
 	if axis == "therapy_progress":
-		new_val = clampi(current + amount, 0, 100)
+		pm.add_therapy(patient, amount, reason)
 	else:
-		new_val = clampi(current + amount, -50, 50)
-
-	Dialogic.VAR.set_variable(key, new_val)
-
-	var sign_str := "+" if amount >= 0 else ""
-	print("[METER] %s.%s  %s%d  (%d → %d)" % [patient, axis, sign_str, amount, current, new_val])
-
-	if ToastLayer and amount != 0:
-		var display_name := patient.capitalize()
-		var axis_label  := "Therapy" if axis == "therapy_progress" else "Bond"
-		var toast_type  := "success" if amount > 0 else "warning"
-		ToastLayer.show_toast(
-			"%s %s %s%d" % [display_name, axis_label, sign_str, amount],
-			reason,
-			toast_type)
+		pm.add_bond(patient, amount, reason)
 
 	finish()
 

@@ -13,26 +13,26 @@ player: <Empty Text Event>
 - Let it go.
 	narrator: She seems relieved you didn't mention it. You file it away for later.
 	update anna (Relief)
-	do PatientManager.apply_meter_delta("anna", "therapy_progress", 20)
+	do PatientManager.add_therapy("anna", 20)
 - "You reorganized my desk."
 	anna (Disapproval): "It was just — the pen cup was on the left. That doesn't make sense."
 	player: "Does it need to make sense?"
 	anna (Annoyance): "...... Anyway."
-	do PatientManager.apply_meter_delta("anna", "therapy_progress", -5)
+	do PatientManager.add_therapy("anna", -5)
 anna (Sadness): "The sleep thing, That's the main issue. I wake up at four and just — lie there. Thinking about what I didn't finish."
 player: "What kind of things?"
 - Work tasks, you mean? | [if {stats.knowledge} >= 2] [else="disable" alt_text="need 2 knowledge"]
 	anna (Anger): "Yes. Mostly." .... "Work things."
 	narrator: You note the hesitation. She notes you noting it. A small negotiation passes between you.
-	do PatientManager.apply_meter_delta("anna", "therapy_progress", 5)
+	do PatientManager.add_therapy("anna", 5)
 	do GameState.add_stat_xp("knowledge", 1)
 - "Is there a particular project weighing on you?"
 	anna (Embarrassment): "I — yes. There are several. I keep a log."
 	narrator: She produces a color-coded notebook.
-	do PatientManager.apply_meter_delta("anna", "therapy_progress", 5)
+	do PatientManager.add_therapy("anna", 5)
 - "That sounds exhausting."
 	anna (Relief): "It is..."
-	do PatientManager.apply_meter_delta("anna", "therapy_progress", 3)
+	do PatientManager.add_therapy("anna", 3)
 anna: "My boss, He gives me a lot of latitude. Which is obviously ideal."
 player: "Obviously."
 narrator: She doesn't look like it's ideal.
@@ -43,7 +43,7 @@ narrator: What follows is four minutes of silent, methodical rearrangement, cond
 [photo_opportunity id="anna_desk_demo" patient="anna" title="The Desk Demonstration" description="Anna reorganizes a stranger's workspace with surgical precision and audible satisfaction." portrait="res://assets/photos/anna/desk_demo.png"]
 if {flags.last_photo_success}:
 	narrator: Something in her expression as she steps back — a private, complete satisfaction — lands perfectly in the frame.
-	do PatientManager.apply_meter_delta("anna", "therapy_progress", 3)
+	do PatientManager.add_therapy("anna", 3)
 else:
 	narrator: By the time you reach for your phone, she's already looking away. The moment dissolves.
 anna (Blush): "Anyway. The sleep thing."
