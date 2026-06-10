@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var _photo_popup: Control      = $PhotoPopup
 @onready var _popup_photo: TextureRect  = $PhotoPopup/PopupPhoto
 @onready var _popup_close: Button       = $PhotoPopup/PopupClose
+@onready var _tooltip:      PanelContainer = $TooltipOverlay
+@onready var _tooltip_vbox: VBoxContainer  = $TooltipOverlay/TooltipVBox
 
 const PATIENTS := {
 	"anna": {
@@ -47,9 +49,6 @@ const _BOND_SEGS: Array = [
 	["DEVOTED",  50, 30, Color(0.20, 0.68, 0.32)],
 ]
 
-var _tooltip:      PanelContainer = null
-var _tooltip_vbox: VBoxContainer  = null
-
 
 func _ready() -> void:
 	layer = 15
@@ -65,7 +64,6 @@ func _ready() -> void:
 	_close_btn.pressed.connect(queue_free)
 	_popup_close.pressed.connect(_on_popup_close)
 	_photo_popup.visible = false
-	_build_tooltip_overlay()
 
 	for patient_id: String in PATIENTS:
 		_build_patient_tab(patient_id, PATIENTS[patient_id])
@@ -463,28 +461,6 @@ func _on_popup_close() -> void:
 
 
 # ─── bar tooltip overlay ─────────────────────────────────────────────────────
-
-func _build_tooltip_overlay() -> void:
-	_tooltip = PanelContainer.new()
-	var bg := StyleBoxFlat.new()
-	bg.bg_color              = Color(0.07, 0.06, 0.05, 0.97)
-	bg.border_color          = Color(MHTokens.TEXT_ACCENT, 0.35)
-	bg.set_border_width_all(1)
-	bg.content_margin_left   = 14.0
-	bg.content_margin_right  = 14.0
-	bg.content_margin_top    = 12.0
-	bg.content_margin_bottom = 12.0
-	_tooltip.add_theme_stylebox_override("panel", bg)
-	_tooltip.custom_minimum_size = Vector2(290, 0)
-	_tooltip.visible             = false
-	_tooltip.z_index             = 200
-	_tooltip.mouse_filter        = Control.MOUSE_FILTER_IGNORE
-	add_child(_tooltip)
-	_tooltip_vbox = VBoxContainer.new()
-	_tooltip_vbox.add_theme_constant_override("separation", 5)
-	_tooltip_vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_tooltip.add_child(_tooltip_vbox)
-
 
 func _show_tooltip(filler: Callable, anchor: Control) -> void:
 	for c: Node in _tooltip_vbox.get_children():

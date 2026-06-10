@@ -1,6 +1,22 @@
-[gd_scene format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/patient_file_view.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tooltip"]
+bg_color = Color(0.09, 0.076, 0.063, 0.97)
+border_color = Color(0.961, 0.925, 0.859, 0.2)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
 
 [node name="PatientFileView" type="CanvasLayer"]
 layer = 15
@@ -65,3 +81,12 @@ offset_top = -50.0
 offset_right = 60.0
 offset_bottom = -10.0
 text = "Close"
+
+[node name="TooltipOverlay" type="PanelContainer" parent="."]
+visible = false
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tooltip")
+
+[node name="TooltipVBox" type="VBoxContainer" parent="TooltipOverlay"]
+layout_mode = 2
+theme_override_constants/separation = 6

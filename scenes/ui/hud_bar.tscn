@@ -1,6 +1,162 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/hud_bar.gd" id="1_hudbr"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(0.11, 0.094, 0.078, 0.78)
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+
 [node name="HudBar" type="CanvasLayer"]
+layer = 10
 script = ExtResource("1_hudbr")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 11
+anchor_right = 1.0
+custom_minimum_size = Vector2(0, 48)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+
+[node name="Row" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Left" type="HBoxContainer" parent="Panel/Row"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DayLabel" type="Label" parent="Panel/Row/Left"]
+layout_mode = 2
+text = "Day 1"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="Dot1" type="Label" parent="Panel/Row/Left"]
+layout_mode = 2
+text = "  ·  "
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="PhaseLabel" type="Label" parent="Panel/Row/Left"]
+layout_mode = 2
+text = "Morning"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.85)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="PatientSep" type="Label" parent="Panel/Row/Left"]
+layout_mode = 2
+visible = false
+text = "  ·  "
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="PatientLabel" type="Label" parent="Panel/Row/Left"]
+layout_mode = 2
+visible = false
+text = ""
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.85)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Panel/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Right" type="HBoxContainer" parent="Panel/Row"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PerGroup" type="HBoxContainer" parent="Panel/Row/Right"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="PerAbbr" type="Label" parent="Panel/Row/Right/PerGroup"]
+layout_mode = 2
+text = "PER"
+theme_override_colors/font_color = Color(0.847, 0.659, 0.659, 1.0)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="PerVal" type="Label" parent="Panel/Row/Right/PerGroup"]
+layout_mode = 2
+text = "1"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="IntGroup" type="HBoxContainer" parent="Panel/Row/Right"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="IntAbbr" type="Label" parent="Panel/Row/Right/IntGroup"]
+layout_mode = 2
+text = "INT"
+theme_override_colors/font_color = Color(0.624, 0.722, 0.847, 1.0)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="IntVal" type="Label" parent="Panel/Row/Right/IntGroup"]
+layout_mode = 2
+text = "1"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="KnoGroup" type="HBoxContainer" parent="Panel/Row/Right"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="KnoAbbr" type="Label" parent="Panel/Row/Right/KnoGroup"]
+layout_mode = 2
+text = "KNO"
+theme_override_colors/font_color = Color(0.659, 0.784, 0.588, 1.0)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="KnoVal" type="Label" parent="Panel/Row/Right/KnoGroup"]
+layout_mode = 2
+text = "1"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="ComGroup" type="HBoxContainer" parent="Panel/Row/Right"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ComAbbr" type="Label" parent="Panel/Row/Right/ComGroup"]
+layout_mode = 2
+text = "COM"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="ComVal" type="Label" parent="Panel/Row/Right/ComGroup"]
+layout_mode = 2
+text = "1"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="NrvGroup" type="HBoxContainer" parent="Panel/Row/Right"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="NrvAbbr" type="Label" parent="Panel/Row/Right/NrvGroup"]
+layout_mode = 2
+text = "NRV"
+theme_override_colors/font_color = Color(0.937, 0.690, 0.286, 1.0)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="NrvVal" type="Label" parent="Panel/Row/Right/NrvGroup"]
+layout_mode = 2
+text = "1"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1

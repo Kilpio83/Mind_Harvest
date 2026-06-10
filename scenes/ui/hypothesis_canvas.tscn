@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hypothesis_canvas.gd" id="1_canvas"]
+[ext_resource type="Script" path="res://scripts/ui/grid_control.gd" id="2_grid"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+bg_color = Color(0.11, 0.094, 0.078, 0.22)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+
+[node name="HypothesisCanvas" type="VBoxContainer"]
+script = ExtResource("1_canvas")
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="HeaderPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="HeaderRow" type="HBoxContainer" parent="HeaderPanel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Dot" type="ColorRect" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 4
+
+[node name="NameLabel" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+
+[node name="LockedBadge" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+visible = false
+text = "LOCKED"
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 11
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 3
+
+[node name="Grid" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("2_grid")
+
+[node name="StrengthRow" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="StrengthLabel" type="Label" parent="StrengthRow"]
+layout_mode = 2
+text = "Strength"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.55)
+theme_override_font_sizes/font_size = 11
+
+[node name="StrengthBar" type="ProgressBar" parent="StrengthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 14.0
+value = 0.0
+show_percentage = false
+
+[node name="StrengthValue" type="Label" parent="StrengthRow"]
+layout_mode = 2
+text = "0.0"
+custom_minimum_size = Vector2(28, 0)
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.7)
+theme_override_font_sizes/font_size = 11
+
+[node name="FilledLabel" type="Label" parent="."]
+layout_mode = 2
+visible = false
+text = "★ FILLED"
+theme_override_colors/font_color = Color(0.937, 0.690, 0.286, 1.0)
+theme_override_font_sizes/font_size = 11

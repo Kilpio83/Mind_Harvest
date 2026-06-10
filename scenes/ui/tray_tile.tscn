@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/tray_tile.gd" id="1_tile"]
+
+[node name="TrayTile" type="VBoxContainer"]
+script = ExtResource("1_tile")
+theme_override_constants/separation = 4
+
+[node name="PieceSlot" type="Control" parent="."]
+layout_mode = 2
+
+[node name="InfoRow" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="NameLabel" type="Label" parent="InfoRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.55)
+theme_override_font_sizes/font_size = 11
+clip_text = true
+
+[node name="PlacementBadge" type="Label" parent="InfoRow"]
+layout_mode = 2
+visible = false
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.75)
+theme_override_font_sizes/font_size = 11
