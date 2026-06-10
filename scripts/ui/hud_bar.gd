@@ -46,18 +46,18 @@ func _build() -> void:
 	left.add_theme_constant_override("separation", 0)
 	row.add_child(left)
 
-	_day_lbl = _lbl("Day 1", MHTokens.TEXT_PRIMARY, 13, true)
+	_day_lbl = _lbl("Day 1", MHTokens.TEXT_PRIMARY, MHTokens.FONT_BODY, true)
 	left.add_child(_day_lbl)
 	left.add_child(_dot())
 
-	_phase_lbl = _lbl("Morning", Color(MHTokens.TEXT_PRIMARY, 0.85), 13)
+	_phase_lbl = _lbl("Morning", Color(MHTokens.TEXT_PRIMARY, 0.85), MHTokens.FONT_BODY)
 	left.add_child(_phase_lbl)
 
 	_patient_sep         = _dot()
 	_patient_sep.visible = false
 	left.add_child(_patient_sep)
 
-	_patient_lbl         = _lbl("", Color(MHTokens.TEXT_PRIMARY, 0.85), 13)
+	_patient_lbl         = _lbl("", Color(MHTokens.TEXT_PRIMARY, 0.85), MHTokens.FONT_BODY)
 	_patient_lbl.visible = false
 	left.add_child(_patient_lbl)
 
@@ -81,8 +81,8 @@ func _build() -> void:
 		var grp := HBoxContainer.new()
 		grp.add_theme_constant_override("separation", 5)
 		right.add_child(grp)
-		grp.add_child(_lbl(info[0] as String, info[2] as Color, 11, true))
-		var v := _lbl("1", MHTokens.TEXT_PRIMARY, 13, true)
+		grp.add_child(_lbl(info[0] as String, info[2] as Color, MHTokens.FONT_LABEL, true))
+		var v := _lbl("1", MHTokens.TEXT_PRIMARY, MHTokens.FONT_BODY, true)
 		_stat_val[info[1] as String] = v
 		grp.add_child(v)
 
@@ -139,4 +139,4 @@ func _lbl(txt: String, col: Color, size: int, _bold: bool = false) -> Label:
 
 
 func _dot() -> Label:
-	return _lbl("  ·  ", Color(MHTokens.TEXT_PRIMARY, 0.5), 13)
+	return _lbl("  ·  ", Color(MHTokens.TEXT_PRIMARY, 0.5), MHTokens.FONT_BODY)

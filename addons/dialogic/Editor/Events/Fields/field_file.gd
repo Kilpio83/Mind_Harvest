@@ -63,7 +63,10 @@ func _load_display_info(info:Dictionary) -> void:
 	if resource_icon == null and info.has('editor_icon'):
 		resource_icon = callv('get_theme_icon', info.editor_icon)
 
-	type = info.get("type", "")
+	# Some events pass "type" as an Array (e.g. event_voice.gd), others as a
+	# comma-separated String (e.g. event_background.gd). Handle both.
+	var _raw_type: Variant = info.get("type", "")
+	type = ", ".join(_raw_type) if _raw_type is Array else str(_raw_type)
 
 
 func _set_value(value: Variant) -> void:

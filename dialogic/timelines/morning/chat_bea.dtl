@@ -1,14 +1,16 @@
+[background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 if {game.bea_relationship} == 0:
+	join bea leftmost
 	narrator: "Bea glances up from her magazine."
 	narrator: "One eyebrow, as usual, doing most of the work."
 	bea: "You're going to want to know where the coffee is."
-	- "Good morning. I'm Doctor —" |
+	- "Good morning. I'm Doctor —"
 		bea: "I know who you are, Doc."
 		narrator: "She turns a page."
 		bea: "You signed my paycheck."
 		narrator: "A pause."
 		bea: "It cleared. We're fine."
-	- "What's on the schedule?" |
+	- "What's on the schedule?"
 		bea: "One cancellation, two confirmations, and someone who called to ask if the couch was comfortable."
 		narrator: "She turns a page without looking at it."
 		bea: "I told her it was ergonomically optimized. She seemed satisfied."
@@ -37,11 +39,11 @@ else:
 	else:
 		narrator: "You've developed a rhythm. She has coffee ready before you ask."
 		bea: "You look like day {game.day} hit harder than expected."
-		- "I'm managing." |
+		- "I'm managing."
 			bea: "That's what managing looks like."
 			narrator: "She sets the coffee in front of you."
 			bea: "Drink it slow. You've got a long morning."
-		- "It's been a week." |
+		- "It's been a week."
 			bea: "It's been {game.day} days. Technically."
 			narrator: "She says it without looking up."
 			bea: "Though I understand the sentiment."
@@ -52,5 +54,6 @@ if {check_result}:
 	narrator: "Something she says catches — the rhythm of it, the timing."
 	narrator: "She's telling you something without saying it."
 	do GameState.add_stat_xp("perception", 10)
+leave bea
 do PatientManager.add_bea_relationship(1)
 jump morning_menu/activity_choice

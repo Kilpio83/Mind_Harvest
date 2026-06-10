@@ -19,6 +19,7 @@ static func get_card(id: String) -> DiscoveryCard:
 	c.weight           = data["weight"]
 	c.category         = data["category"]
 	c.stat_requirement = data.get("requires", "")
+	c.shape            = data.get("shape", [])
 	return c
 
 
@@ -44,6 +45,8 @@ const _CARDS: Dictionary = {
 		"tags":     ["body_language", "control"],
 		"weight":   1,
 		"category": "observation",
+		# L-triomino — angular, purposeful corner
+		"shape":    [[1,0],[1,1]],
 	},
 	"anna_anyway_tell": {
 		"patient":  "anna",
@@ -52,6 +55,8 @@ const _CARDS: Dictionary = {
 		"tags":     ["body_language"],
 		"weight":   1,
 		"category": "observation",
+		# I-triomino — straight-line deflection
+		"shape":    [[1,1,1]],
 	},
 	"anna_autonomy_discomfort": {
 		"patient":  "anna",
@@ -61,6 +66,8 @@ const _CARDS: Dictionary = {
 		"weight":   2,
 		"category": "observation",
 		"requires": "perception >= 2",
+		# T-tetromino — control fixation radiating outward
+		"shape":    [[1,1,1],[0,1,0]],
 	},
 
 	# ── Anna · Session 2 ──────────────────────────────────────────────────────
@@ -72,6 +79,8 @@ const _CARDS: Dictionary = {
 		"tags":     ["control", "confession"],
 		"weight":   2,
 		"category": "confession",
+		# S-tetromino — shifting, sliding dream logic
+		"shape":    [[0,1,1],[1,1,0]],
 	},
 	"anna_rubric_wish": {
 		"patient":  "anna",
@@ -81,5 +90,7 @@ const _CARDS: Dictionary = {
 		"weight":   3,
 		"category": "vulnerability",
 		"requires": "intellect >= 2",
+		# V-pentomino — vulnerability exposed at a corner
+		"shape":    [[1,0,0],[1,0,0],[1,1,1]],
 	},
 }

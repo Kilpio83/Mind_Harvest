@@ -61,15 +61,15 @@ func show_toast(
 	wrapper.mouse_filter         = Control.MOUSE_FILTER_IGNORE
 	wrapper.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	# Height is deterministic: panel content margins (10 + 10 = 20 px)
-	# + title line at font_size 12 (≈ 17 px) + optional subtitle line at
-	# font_size 11 (≈ 15 px) + 2 px separation.
+	# + title line at FONT_BODY/16 px (≈ 22 px) + optional subtitle line at
+	# FONT_SMALL/14 px (≈ 19 px) + 2 px separation.
 	# We must NOT call get_minimum_size() here — with autowrap labels and no
 	# allocated width yet, the text server would wrap every word onto its own
 	# line and report a height of several hundred pixels, pushing subsequent
 	# toasts far off-screen.
-	var h: float = 20.0 + 17.0                          # 37 — one line
+	var h: float = 20.0 + 22.0                          # 42 — one line
 	if not subtitle.is_empty():
-		h += 2.0 + 15.0                                  # 54 — two lines
+		h += 2.0 + 19.0                                  # 63 — two lines
 	wrapper.custom_minimum_size = Vector2(MHTokens.TOAST_WIDTH, h)
 
 	var row := _build_toast(title, subtitle, accent)
@@ -126,7 +126,7 @@ func _build_toast(title: String, subtitle: String, accent: Color) -> Control:
 	title_lbl.text = title
 	title_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	title_lbl.add_theme_color_override("font_color", MHTokens.TEXT_PRIMARY)
-	title_lbl.add_theme_font_size_override("font_size", 12)
+	title_lbl.add_theme_font_size_override("font_size", MHTokens.FONT_BODY)
 	col.add_child(title_lbl)
 
 	# Subtitle line (optional)
@@ -136,7 +136,7 @@ func _build_toast(title: String, subtitle: String, accent: Color) -> Control:
 		sub_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		sub_lbl.add_theme_color_override("font_color",
 				Color(MHTokens.TEXT_PRIMARY, 0.75))
-		sub_lbl.add_theme_font_size_override("font_size", 11)
+		sub_lbl.add_theme_font_size_override("font_size", MHTokens.FONT_SMALL)
 		col.add_child(sub_lbl)
 
 	return row

@@ -21,3 +21,6 @@ extends Resource
 @export var category: String = "observation"
 ## Stat gate shown in the notes panel. Format: "perception >= 2". Empty = always available.
 @export var stat_requirement: String = ""
+## Polyomino shape for the Hypothesis Board. 2D Array of ints (1 = filled cell).
+## Weight 1 → triomino (3 cells), weight 2 → tetromino (4), weight 3 → pentomino (5).
+@export var shape: Array = []

@@ -20,10 +20,12 @@ config/icon="res://icon.svg"
 Dialogic="*uid://ds2q0uclmolvu"
 GameState="*res://scripts/autoload/game_state.gd"
 PatientManager="*res://scripts/autoload/patient_manager.gd"
+HypothesisManager="*res://scripts/autoload/hypothesis_manager.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 HudBar="*res://scenes/ui/hud_bar.tscn"
 ToastLayer="*res://scenes/ui/toast_container.tscn"
 ScreenTransition="*res://scripts/ui/screen_transition.gd"
+SettingsManager="*res://scripts/autoload/settings_manager.gd"
 
 [dialogic]
 
@@ -62,6 +64,13 @@ layout/style_directory={
 extensions_folder="res://addons/dialogic_additions/"
 variables={
 "check_result": false,
+"discoveries": {
+"anna_anyway_tell": false,
+"anna_autonomy_discomfort": false,
+"anna_desk_compulsion": false,
+"anna_dream_spreadsheet": false,
+"anna_rubric_wish": false
+},
 "flags": {
 "analyzed_anna": false,
 "analyzed_marisol": false,
@@ -163,6 +172,15 @@ translation/file_mode=1
 translation/translation_folder=""
 translation/save_mode=0
 translation/add_separator=false
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

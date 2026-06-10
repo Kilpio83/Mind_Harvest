@@ -20,9 +20,11 @@ func autosave() -> void:
 func save_to_slot(slot_name: String, save_name: String = "") -> void:
 	var data := GameSave.new()
 	data.day = int(Dialogic.VAR.get_variable("game.day", 1))
-	data.photos_by_patient = PatientManager.photos_by_patient.duplicate(true)
-	data.notes_by_patient = PatientManager.notes_by_patient.duplicate(true)
-	data.bea_relationship = PatientManager.bea_relationship
+	data.photos_by_patient      = PatientManager.photos_by_patient.duplicate(true)
+	data.notes_by_patient       = PatientManager.notes_by_patient.duplicate(true)
+	data.discoveries_by_patient = PatientManager.discoveries_by_patient.duplicate(true)
+	data.board_state_by_patient = HypothesisManager.get_all_placements()
+	data.bea_relationship       = PatientManager.bea_relationship
 	data.save_date = Time.get_datetime_string_from_system()
 	data.dialogic_save_slot = slot_name
 	data.save_name = save_name
@@ -47,8 +49,10 @@ func load_from_slot(slot_name: String) -> bool:
 		printerr("[SaveManager] Could not parse save file at slot '%s'." % slot_name)
 		return false
 
-	PatientManager.photos_by_patient = data.photos_by_patient.duplicate(true)
-	PatientManager.notes_by_patient = data.notes_by_patient.duplicate(true)
+	PatientManager.photos_by_patient      = data.photos_by_patient.duplicate(true)
+	PatientManager.notes_by_patient       = data.notes_by_patient.duplicate(true)
+	PatientManager.discoveries_by_patient = data.discoveries_by_patient.duplicate(true)
+	HypothesisManager.load_placements(data.board_state_by_patient)
 	Dialogic.Save.load(slot_name)
 	return true
 

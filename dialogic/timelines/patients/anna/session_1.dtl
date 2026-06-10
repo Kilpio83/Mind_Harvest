@@ -37,11 +37,9 @@ anna: "My boss, He gives me a lot of latitude. Which is obviously ideal."
 player: "Obviously."
 narrator: She doesn't look like it's ideal.
 narrator: Something registers. What do you file away?
-- She uses "anyway" to deflect. |
-	do PatientManager.add_discovery("anna", "anna_anyway_tell")
-- She's uncomfortable with the autonomy she claims to want. | [if {stats.perception} >= 2] [else="disable" alt_text="need 2 perception"]
-	do PatientManager.add_discovery("anna", "anna_autonomy_discomfort")
-- Nothing stands out yet. |
+- "Anyway" as a hard pivot | [if {discoveries.anna_anyway_tell} != true] [else="hide" disco="anna_anyway_tell"]
+- Discomfort with autonomy | [if {discoveries.anna_autonomy_discomfort} != true] [else="hide" disco="anna_autonomy_discomfort"]
+- Nothing stands out yet.
 narrator: Before you can push further, she's already pivoting.
 anna (Caring): "The desk — I could actually show you. A better layout."
 player: "Please."
@@ -55,13 +53,9 @@ else:
 anna (Blush): "Anyway. The sleep thing."
 player: "Right, The sleep thing."
 narrator: Four minutes of focused rearrangement. What does it tell you?
-- She needs to control her environment. |
-	do PatientManager.add_discovery("anna", "anna_desk_compulsion")
-- She uses "anyway" to deflect. |
-	do PatientManager.add_discovery("anna", "anna_anyway_tell")
-- She's uncomfortable with the autonomy she claims to want. | [if {stats.perception} >= 2] [else="disable" alt_text="need 2 perception"]
-	do PatientManager.add_discovery("anna", "anna_autonomy_discomfort")
-- Nothing conclusive yet. |
+- "Anyway" as a hard pivot | [if {discoveries.anna_anyway_tell} != true] [else="hide" disco="anna_anyway_tell"]
+- The desk rearrangement | [if {discoveries.anna_desk_compulsion} != true] [else="hide" disco="anna_desk_compulsion"]
+- Skip it
 [add_note patient="anna" note="Presents with insomnia and work stress. Strong organizational compulsions — rearranged the office within two minutes of arrival."]
 [add_note patient="anna" note="States boss gives her full autonomy. Her expression suggests this is not entirely welcome."]
 leave anna

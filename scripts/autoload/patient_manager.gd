@@ -7,6 +7,22 @@ var discoveries_by_patient: Dictionary = {}
 var bea_relationship: int = 0
 
 
+func _ready() -> void:
+	# Auto-record any discovery choice the player selects.
+	# DiscoveryChoiceEvent always stores disco="<id>" in extra_data, which
+	# Dialogic merges into choice_info before emitting choice_selected.
+	Dialogic.Choices.choice_selected.connect(_on_dialogic_choice_selected)
+
+
+func _on_dialogic_choice_selected(choice_info: Dictionary) -> void:
+	if not "disco" in choice_info:
+		return
+	var discovery_id: String = str(choice_info["disco"])
+	var card := DiscoveryRegistry.get_card(discovery_id)
+	if card:
+		add_discovery(card.patient, discovery_id)
+
+
 func add_bea_relationship(delta: int) -> void:
 	bea_relationship += delta
 	if Dialogic.VAR:
@@ -65,8 +81,8 @@ func add_discovery(patient_name: String, discovery_id: String) -> void:
 	if not patient_name in discoveries_by_patient:
 		discoveries_by_patient[patient_name] = []
 	var arr: Array = discoveries_by_patient[patient_name]
-	for existing: DiscoveryCard in arr:
-		if existing.id == discovery_id:
+	for existing in arr:
+		if (existing as DiscoveryCard).id == discovery_id:
 			return  # already collected
 	var card := DiscoveryRegistry.get_card(discovery_id)
 	if card == null:
@@ -74,6 +90,7 @@ func add_discovery(patient_name: String, discovery_id: String) -> void:
 	card.session_added = int(Dialogic.VAR.get_variable(
 		"patients." + patient_name + ".progress", 0))
 	arr.append(card)
+	Dialogic.VAR.set_variable("discoveries." + discovery_id, true)
 	print("[DISCOVERY] %s — %s" % [patient_name, discovery_id])
 	if ToastLayer:
 		ToastLayer.show_toast("Discovery noted", card.short_label, "photo")
@@ -96,6 +113,8 @@ func mark_session_done(patient_name: String) -> void:
 
 	var day: int = int(Dialogic.VAR.get_variable("game.day", 1))
 	Dialogic.VAR.set_variable("patients." + patient_name + ".next_day", day + 2)
+
+	HypothesisManager.unlock_after_session(patient_name)
 
 
 ## Returns the quadrant ending family for a patient, or "" if arc should continue.

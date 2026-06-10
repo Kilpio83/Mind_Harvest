@@ -10,9 +10,11 @@ var _pending_slot: String = ""
 
 func _ready() -> void:
 	add_to_group("save_menu")
+	close_button.add_theme_font_size_override("font_size", MHTokens.FONT_BODY)
 	close_button.pressed.connect(queue_free)
 	_build_name_dialog()
 	_build_slots()
+	_build_display_section()
 
 
 func _build_name_dialog() -> void:
@@ -36,10 +38,12 @@ func _build_name_dialog() -> void:
 
 	var prompt := Label.new()
 	prompt.text = "Save name:"
+	prompt.add_theme_font_size_override("font_size", MHTokens.FONT_BODY)
 	vbox.add_child(prompt)
 
 	_name_input = LineEdit.new()
 	_name_input.max_length = 32
+	_name_input.add_theme_font_size_override("font_size", MHTokens.FONT_BODY)
 	_name_input.text_submitted.connect(_on_name_confirmed)
 	vbox.add_child(_name_input)
 
@@ -47,17 +51,8 @@ func _build_name_dialog() -> void:
 	btn_row.add_theme_constant_override("separation", 8)
 	vbox.add_child(btn_row)
 
-	var confirm := Button.new()
-	confirm.text = "Save"
-	confirm.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	confirm.pressed.connect(func(): _on_name_confirmed(_name_input.text))
-	btn_row.add_child(confirm)
-
-	var cancel := Button.new()
-	cancel.text = "Cancel"
-	cancel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	cancel.pressed.connect(func(): _name_dialog.hide())
-	btn_row.add_child(cancel)
+	btn_row.add_child(_btn("Save",   func(): _on_name_confirmed(_name_input.text)))
+	btn_row.add_child(_btn("Cancel", func(): _name_dialog.hide()))
 
 
 func _build_slots() -> void:
@@ -70,19 +65,13 @@ func _build_slots() -> void:
 	auto_row.add_theme_constant_override("separation", 12)
 	slots_container.add_child(auto_row)
 
-	var auto_label := Label.new()
-	auto_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	auto_label.text = (
+	auto_row.add_child(_lbl(
 		"Autosave  —  Day %d  —  %s" % [auto_info["day"], auto_info["date"]]
 		if not auto_info.is_empty() else "Autosave  —  No save yet"
-	)
-	auto_row.add_child(auto_label)
+	))
 
 	if not auto_info.is_empty():
-		var load_btn := Button.new()
-		load_btn.text = "Load"
-		load_btn.pressed.connect(_on_load.bind(SaveManager.AUTOSAVE_SLOT))
-		auto_row.add_child(load_btn)
+		auto_row.add_child(_btn("Load", _on_load.bind(SaveManager.AUTOSAVE_SLOT)))
 
 	slots_container.add_child(HSeparator.new())
 
@@ -97,31 +86,30 @@ func _add_slot_row(entry: Dictionary) -> void:
 	row.add_theme_constant_override("separation", 12)
 	slots_container.add_child(row)
 
-	var label := Label.new()
-	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
 	if entry.has("day"):
 		var display: String = entry["name"] if entry["name"] != "" else slot_name
-		label.text = "%s  —  Day %d  —  %s" % [display, entry["day"], entry["date"]]
-		row.add_child(label)
-
-		var load_btn := Button.new()
-		load_btn.text = "Load"
-		load_btn.pressed.connect(_on_load.bind(slot_name))
-		row.add_child(load_btn)
-
-		var overwrite_btn := Button.new()
-		overwrite_btn.text = "Overwrite"
-		overwrite_btn.pressed.connect(_show_name_dialog.bind(slot_name, entry["name"]))
-		row.add_child(overwrite_btn)
+		row.add_child(_lbl("%s  —  Day %d  —  %s" % [display, entry["day"], entry["date"]]))
+		row.add_child(_btn("Load",      _on_load.bind(slot_name)))
+		row.add_child(_btn("Overwrite", _show_name_dialog.bind(slot_name, entry["name"])))
 	else:
-		label.text = "— Empty —"
-		row.add_child(label)
+		row.add_child(_lbl("— Empty —"))
+		row.add_child(_btn("Save Here", _show_name_dialog.bind(slot_name, "")))
 
-		var save_btn := Button.new()
-		save_btn.text = "Save Here"
-		save_btn.pressed.connect(_show_name_dialog.bind(slot_name, ""))
-		row.add_child(save_btn)
+
+func _build_display_section() -> void:
+	var vbox: VBoxContainer = slots_container.get_parent()
+
+	var sep := HSeparator.new()
+	vbox.add_child(sep)
+	vbox.move_child(sep, close_button.get_index())
+
+	var btn := _btn("", func() -> void: pass)
+	btn.text = "Fullscreen" if not SettingsManager.is_fullscreen() else "Windowed"
+	btn.pressed.connect(func() -> void:
+		SettingsManager.toggle_fullscreen()
+		btn.text = "Fullscreen" if not SettingsManager.is_fullscreen() else "Windowed")
+	vbox.add_child(btn)
+	vbox.move_child(btn, close_button.get_index())
 
 
 func _show_name_dialog(slot_name: String, default_name: String) -> void:
@@ -154,3 +142,21 @@ func _unhandled_input(event: InputEvent) -> void:
 			_name_dialog.hide()
 		else:
 			queue_free()
+
+
+# ─── helpers ─────────────────────────────────────────────────────────────────
+
+func _lbl(text: String) -> Label:
+	var l := Label.new()
+	l.text = text
+	l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	l.add_theme_font_size_override("font_size", MHTokens.FONT_BODY)
+	return l
+
+
+func _btn(text: String, callback: Callable) -> Button:
+	var b := Button.new()
+	b.text = text
+	b.add_theme_font_size_override("font_size", MHTokens.FONT_BODY)
+	b.pressed.connect(callback)
+	return b

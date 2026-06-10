@@ -33,6 +33,7 @@ func _execute() -> void:
 		return
 
 	Dialogic.VAR.set_variable("game.current_patient", patient_name)
+	HypothesisManager.lock_for_session(patient_name)
 	var timeline_path: String = patient_mgr.get_next_session_timeline(patient_name)
 
 	if not ResourceLoader.exists(timeline_path):

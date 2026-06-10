@@ -40,6 +40,15 @@ const TOAST_SLIDE_SEC := 0.2
 const TOAST_HOLD_SEC  := 2.5
 const TOAST_FADE_SEC  := 0.3
 
+# ─── font sizes (at 1920×1080 base resolution) ──────────────────────────────
+## These scale down with the window via canvas_items stretch.
+## At the 1280×720 minimum (0.67× scale) they render at roughly:
+##   FONT_BODY  → 11 px   FONT_SMALL → 9 px   FONT_LABEL → 9 px
+const FONT_BODY  := 16   ## notes, discovery labels, primary content
+const FONT_SMALL := 14   ## descriptions, secondary text, photo titles
+const FONT_LABEL := 13   ## compact labels — meter headers, HUD values
+const FONT_MICRO := 12   ## photo subtitles, smallest used element
+
 # ─── layout constants ────────────────────────────────────────────────────────
-const TOAST_WIDTH  := 240
-const HUD_HEIGHT   := 40
+const TOAST_WIDTH  := 320
+const HUD_HEIGHT   := 48
