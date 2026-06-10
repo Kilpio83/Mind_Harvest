@@ -1,0 +1,307 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/patient_tab_page.gd" id="1_tabpage"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+bg_color = Color(0.06, 0.05, 0.04, 1.0)
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 11.0
+content_margin_bottom = 11.0
+
+[node name="PatientTabPage" type="VBoxContainer"]
+script = ExtResource("1_tabpage")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="HeaderPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="HeaderRow" type="HBoxContainer" parent="HeaderPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NameLabel" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+text = "Name — Case File"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 14
+vertical_alignment = 1
+
+[node name="Dot1" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+text = "  ·  "
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.35)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="OccupationLabel" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+text = "Occupation, Age"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.65)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="Dot2" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+text = "  ·  "
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.35)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="SessionsLabel" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+text = "0 sessions completed"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.65)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="AppointmentSep" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+visible = false
+text = "  ·  "
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.35)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="AppointmentLabel" type="Label" parent="HeaderPanel/HeaderRow"]
+layout_mode = 2
+visible = false
+text = "Next appointment: Day 0"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.65)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="Body" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="LeftScroll" type="ScrollContainer" parent="Body"]
+layout_mode = 2
+custom_minimum_size = Vector2(360, 0)
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LeftVBox" type="VBoxContainer" parent="Body/LeftScroll"]
+layout_mode = 2
+custom_minimum_size = Vector2(360, 0)
+theme_override_constants/separation = 13
+
+[node name="Portrait" type="TextureRect" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(360, 360)
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HSep1" type="HSeparator" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+
+[node name="TherapyHeader" type="HBoxContainer" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TherapySection" type="Label" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
+layout_mode = 2
+text = "THERAPY PROGRESS"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="TherapySpacer" type="Control" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TherapyCaption" type="Label" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
+layout_mode = 2
+text = "—"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.85)
+theme_override_font_sizes/font_size = 14
+vertical_alignment = 1
+
+[node name="TherapyValueGap" type="Label" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
+layout_mode = 2
+text = "  "
+theme_override_font_sizes/font_size = 13
+
+[node name="TherapyValue" type="Label" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
+layout_mode = 2
+text = "0 / 100"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.7)
+theme_override_font_sizes/font_size = 14
+vertical_alignment = 1
+
+[node name="TherapyBar" type="ProgressBar" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 14)
+min_value = 0.0
+max_value = 100.0
+value = 30.0
+show_percentage = false
+
+[node name="BondHeader" type="HBoxContainer" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="BondSection" type="Label" parent="Body/LeftScroll/LeftVBox/BondHeader"]
+layout_mode = 2
+text = "PERSONAL BOND"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="BondSpacer" type="Control" parent="Body/LeftScroll/LeftVBox/BondHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BondCaption" type="Label" parent="Body/LeftScroll/LeftVBox/BondHeader"]
+layout_mode = 2
+text = "—"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.85)
+theme_override_font_sizes/font_size = 14
+vertical_alignment = 1
+
+[node name="BondValueGap" type="Label" parent="Body/LeftScroll/LeftVBox/BondHeader"]
+layout_mode = 2
+text = "  "
+theme_override_font_sizes/font_size = 13
+
+[node name="BondValue" type="Label" parent="Body/LeftScroll/LeftVBox/BondHeader"]
+layout_mode = 2
+text = "+0 / 50"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.7)
+theme_override_font_sizes/font_size = 14
+vertical_alignment = 1
+
+[node name="BondBarRow" type="HBoxContainer" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 14)
+theme_override_constants/separation = 2
+
+[node name="NegBar" type="ProgressBar" parent="Body/LeftScroll/LeftVBox/BondBarRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 14)
+min_value = 0.0
+max_value = 50.0
+value = 0.0
+show_percentage = false
+fill_mode = 3
+mouse_filter = 2
+
+[node name="BondCenter" type="VSeparator" parent="Body/LeftScroll/LeftVBox/BondBarRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(3, 0)
+
+[node name="PosBar" type="ProgressBar" parent="Body/LeftScroll/LeftVBox/BondBarRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 14)
+min_value = 0.0
+max_value = 50.0
+value = 0.0
+show_percentage = false
+mouse_filter = 2
+
+[node name="HSep2" type="HSeparator" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+
+[node name="IntentSection" type="Label" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+text = "COMMITTED INTENT"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+
+[node name="IntentValue" type="Label" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+text = "None committed"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="HSep3" type="HSeparator" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+
+[node name="HypoBoardBtn" type="Button" parent="Body/LeftScroll/LeftVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hypothesis Board"
+theme_override_font_sizes/font_size = 16
+
+[node name="VSep1" type="VSeparator" parent="Body"]
+layout_mode = 2
+
+[node name="CenterScroll" type="ScrollContainer" parent="Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CenterVBox" type="VBoxContainer" parent="Body/CenterScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 13
+
+[node name="NotesSection" type="Label" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+text = "CASE NOTES"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+
+[node name="NotesContainer" type="VBoxContainer" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="NotesHSep" type="HSeparator" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+
+[node name="DiscoveriesSection" type="Label" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+text = "DISCOVERIES"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+
+[node name="DiscoveriesContainer" type="VBoxContainer" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="PhotosHSep" type="HSeparator" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+
+[node name="PhotosSection" type="Label" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+text = "PHOTOS"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+
+[node name="PhotosContainer" type="HFlowContainer" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSep2" type="VSeparator" parent="Body"]
+layout_mode = 2
+
+[node name="RightScroll" type="ScrollContainer" parent="Body"]
+layout_mode = 2
+custom_minimum_size = Vector2(300, 0)
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RightVBox" type="VBoxContainer" parent="Body/RightScroll"]
+layout_mode = 2
+custom_minimum_size = Vector2(300, 0)
+theme_override_constants/separation = 16
+
+[node name="TimelineSection" type="Label" parent="Body/RightScroll/RightVBox"]
+layout_mode = 2
+text = "TIMELINE"
+theme_override_colors/font_color = Color(0.753, 0.659, 0.471, 1.0)
+theme_override_font_sizes/font_size = 13
+
+[node name="TimelineContainer" type="VBoxContainer" parent="Body/RightScroll/RightVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
