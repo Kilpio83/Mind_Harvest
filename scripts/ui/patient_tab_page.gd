@@ -360,7 +360,7 @@ func _seg_panel(parent: HBoxContainer, label: String, color: Color,
 	panel.size_flags_stretch_ratio = stretch
 	panel.mouse_filter             = Control.MOUSE_FILTER_IGNORE
 	var style := StyleBoxFlat.new()
-	style.bg_color = color if active else (Color(color, 0.4) if past else Color(0.13, 0.11, 0.10, 1.0))
+	style.bg_color = color if active else (Color(color, 0.4) if past else Color(0.140, 0.168, 0.180, 1.0))
 	panel.add_theme_stylebox_override("panel", style)
 	var lbl := Label.new()
 	lbl.text                 = label

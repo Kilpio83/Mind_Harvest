@@ -16,6 +16,8 @@ var _hovered:   bool  = false
 
 func setup(disc_id: String, rotation: int, flipped: bool,
 		color: Color, cell_size: int = 44) -> void:
+	# Pass all input through so parent controls (TrayTile, GridControl) receive mouse events.
+	mouse_filter = Control.MOUSE_FILTER_PASS
 	_color     = color
 	_cell_size = cell_size
 	_hovered   = false

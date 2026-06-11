@@ -40,6 +40,17 @@ func _on_mouse_exited() -> void:
 	queue_redraw()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_MOUSE_ENTER:
+		# Fire immediately when cursor enters so a stationary cursor over a piece is recognised.
+		var disc_id: String = _get_disc_at(_pos_to_cell(get_local_mouse_position()))
+		if disc_id != _hovered_disc_id:
+			_hovered_disc_id = disc_id
+			if board_ref: board_ref._active_disc_id = disc_id
+			mouse_default_cursor_shape = Control.CURSOR_DRAG if not disc_id.is_empty() else Control.CURSOR_ARROW
+			queue_redraw()
+
+
 func _draw() -> void:
 	var canvas: Array = HypothesisManager.CANVASES.get(intent_id, [])
 	if canvas.is_empty():
@@ -63,9 +74,9 @@ func _draw() -> void:
 		var piece_col: Color = board_ref._get_disc_color(placement["id"])
 		var is_active: bool  = (placement["id"] == board_ref._active_disc_id)
 		var cells: Array = HypothesisManager.get_cells(shape)
-		for cell in cells:
-			var gr: int = placement["row"] + cell.x
-			var gc: int = placement["col"] + cell.y
+		for cell: Vector2i in cells:
+			var gr: int = int(placement["row"]) + cell.x
+			var gc: int = int(placement["col"]) + cell.y
 			if gr >= 0 and gr < 5 and gc >= 0 and gc < 5:
 				var rect := Rect2(gc * CELL_PX + 2, gr * CELL_PX + 2, CELL_PX - 4, CELL_PX - 4)
 				draw_rect(rect, Color(piece_col, 1.0 if is_active else 0.85))
@@ -74,9 +85,9 @@ func _draw() -> void:
 					false, 2.5 if is_active else 1.5)
 		if cells.size() > 0:
 			var min_r := 999; var min_c := 999; var max_r := 0; var max_c := 0
-			for cell in cells:
-				var gr := placement["row"] + cell.x
-				var gc := placement["col"] + cell.y
+			for cell: Vector2i in cells:
+				var gr: int = int(placement["row"]) + cell.x
+				var gc: int = int(placement["col"]) + cell.y
 				if gr < min_r: min_r = gr
 				if gc < min_c: min_c = gc
 				if gr > max_r: max_r = gr
@@ -98,15 +109,16 @@ func _draw() -> void:
 				_hover_cell.x, _hover_cell.y,
 				_hover_data.get("rotation", 0), _hover_data.get("flipped", false),
 				_hover_data["discovery_id"])
-			var piece_col: Color = board_ref._get_disc_color(_hover_data["discovery_id"])
-			var ghost_fill: Color = Color(0.0, 1.0, 0.0, 0.28) if valid else Color(1.0, 0.0, 0.0, 0.28)
-			for cell in cells:
-				var gr := _hover_cell.x + cell.x
-				var gc := _hover_cell.y + cell.y
+			# Subtle cell highlight only — no ghost/shadow piece.
+			var hi_fill:   Color = Color(0.0, 1.0, 0.0, 0.10) if valid else Color(1.0, 0.0, 0.0, 0.10)
+			var hi_border: Color = Color(0.0, 1.0, 0.0, 0.80) if valid else Color(1.0, 0.15, 0.15, 0.80)
+			for cell: Vector2i in cells:
+				var gr: int = _hover_cell.x + cell.x
+				var gc: int = _hover_cell.y + cell.y
 				if gr >= 0 and gr < 5 and gc >= 0 and gc < 5:
-					var rect := Rect2(gc * CELL_PX + 2, gr * CELL_PX + 2, CELL_PX - 4, CELL_PX - 4)
-					draw_rect(rect, ghost_fill)
-					draw_rect(rect, Color(piece_col, 0.70), false, 2.0)
+					var rect := Rect2(gc * CELL_PX, gr * CELL_PX, CELL_PX, CELL_PX)
+					draw_rect(rect, hi_fill)
+					draw_rect(rect, hi_border, false, 2.0)
 
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
@@ -126,6 +138,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		cell.x, cell.y, data.get("rotation", 0), data.get("flipped", false))
 	_hover_cell = Vector2i(-1, -1); _hover_data = {}; queue_redraw()
 	if board_ref:
+		board_ref._drag_data = {}
 		board_ref._refresh_all()
 
 
@@ -144,8 +157,22 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	var piece := PhysicalPiece.new()
 	piece.setup(disc_id, placement["rotation"], placement["flipped"], col, CELL_PX)
 	piece.set_hovered(true)
-	set_drag_preview(piece)
-	return {"discovery_id": disc_id, "rotation": placement["rotation"], "flipped": placement["flipped"]}
+
+	# Anchor the preview to the exact cell that was clicked.
+	var piece_top_left := Vector2(int(placement["col"]) * CELL_PX, int(placement["row"]) * CELL_PX)
+	var grab_offset: Vector2 = (at_position - piece_top_left).clamp(
+		Vector2.ZERO, piece.custom_minimum_size - Vector2.ONE)
+
+	var wrapper := Control.new()
+	wrapper.custom_minimum_size = piece.custom_minimum_size
+	piece.position = -grab_offset
+	wrapper.add_child(piece)
+	set_drag_preview(wrapper)
+
+	var data := {"discovery_id": disc_id, "rotation": placement["rotation"],
+				 "flipped": placement["flipped"], "grab_offset": grab_offset}
+	if board_ref: board_ref._drag_data = data.duplicate()
+	return data
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -185,8 +212,8 @@ func _get_disc_at(cell: Vector2i) -> String:
 		var card := DiscoveryRegistry.get_card(placement["id"])
 		if card == null: continue
 		var shape: Array = HypothesisManager.apply_transform(card.shape, placement["rotation"], placement["flipped"])
-		for c in HypothesisManager.get_cells(shape):
-			if placement["row"] + c.x == cell.x and placement["col"] + c.y == cell.y:
+		for c: Vector2i in HypothesisManager.get_cells(shape):
+			if int(placement["row"]) + c.x == cell.x and int(placement["col"]) + c.y == cell.y:
 				return placement["id"]
 	return ""
 

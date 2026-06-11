@@ -1,33 +1,35 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://c7hfkobprbdwy"]
 
-[ext_resource type="Script" path="res://scripts/ui/save_load_menu.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://csrpi8qjng1wy" path="res://scripts/ui/save_load_menu.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
 bg_color = Color(0.11, 0.094, 0.078, 0.88)
-border_color = Color(0.961, 0.925, 0.859, 0.2)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color(0.961, 0.925, 0.859, 0.2)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
-corner_radius_bottom_left = 6
 corner_radius_bottom_right = 6
-content_margin_left = 16.0
-content_margin_right = 16.0
-content_margin_top = 14.0
-content_margin_bottom = 14.0
+corner_radius_bottom_left = 6
 
-[node name="SaveLoadMenu" type="CanvasLayer"]
+[node name="SaveLoadMenu" type="CanvasLayer" unique_id=1881390915]
 layer = 15
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1696554560]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.75)
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=2037434431]
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -39,30 +41,31 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
+[node name="VBox" type="VBoxContainer" parent="Panel" unique_id=522336791]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="Panel/VBox"]
+[node name="TitleLabel" type="Label" parent="Panel/VBox" unique_id=226944236]
 layout_mode = 2
 text = "Save / Load Game"
 horizontal_alignment = 1
 
-[node name="SlotsContainer" type="VBoxContainer" parent="Panel/VBox"]
+[node name="SlotsContainer" type="VBoxContainer" parent="Panel/VBox" unique_id=1031223902]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="FullscreenButton" type="Button" parent="Panel/VBox"]
+[node name="FullscreenButton" type="Button" parent="Panel/VBox" unique_id=2077277847]
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="CloseButton" type="Button" parent="Panel/VBox"]
+[node name="CloseButton" type="Button" parent="Panel/VBox" unique_id=217639987]
 layout_mode = 2
 text = "Close"
 
-[node name="NameDialog" type="PanelContainer" parent="."]
+[node name="NameDialog" type="PanelContainer" parent="." unique_id=1053579720]
 visible = false
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -75,30 +78,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
 
-[node name="VBox" type="VBoxContainer" parent="NameDialog"]
+[node name="VBox" type="VBoxContainer" parent="NameDialog" unique_id=895951468]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="PromptLabel" type="Label" parent="NameDialog/VBox"]
+[node name="PromptLabel" type="Label" parent="NameDialog/VBox" unique_id=2128239190]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Save name:"
-theme_override_font_sizes/font_size = 16
 
-[node name="NameInput" type="LineEdit" parent="NameDialog/VBox"]
+[node name="NameInput" type="LineEdit" parent="NameDialog/VBox" unique_id=1990309623]
 layout_mode = 2
-max_length = 32
 theme_override_font_sizes/font_size = 16
+max_length = 32
 
-[node name="BtnRow" type="HBoxContainer" parent="NameDialog/VBox"]
+[node name="BtnRow" type="HBoxContainer" parent="NameDialog/VBox" unique_id=1710473458]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="SaveBtn" type="Button" parent="NameDialog/VBox/BtnRow"]
+[node name="SaveBtn" type="Button" parent="NameDialog/VBox/BtnRow" unique_id=1619559895]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Save"
-theme_override_font_sizes/font_size = 16
 
-[node name="CancelBtn" type="Button" parent="NameDialog/VBox/BtnRow"]
+[node name="CancelBtn" type="Button" parent="NameDialog/VBox/BtnRow" unique_id=1784321502]
 layout_mode = 2
-text = "Cancel"
 theme_override_font_sizes/font_size = 16
+text = "Cancel"

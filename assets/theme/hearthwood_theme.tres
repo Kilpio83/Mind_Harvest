@@ -1,0 +1,83 @@
+[gd_resource type="Theme" format=3]
+
+## Hearthwood theme — warm parchment + clay terracotta.
+## Fonts: Newsreader (display/narration) + Mulish (UI/dialogue).
+## Apply via ThemeManager.apply("hearthwood").
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.988, 0.973, 0.937, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.918, 0.863, 0.761, 1.0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.960, 0.937, 0.898, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.918, 0.863, 0.761, 1.0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 14.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.988, 0.957, 0.918, 0.97)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.643, 0.306, 0.180, 0.80)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 14.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.940, 0.904, 0.855, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.643, 0.306, 0.180, 1.0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 14.0
+content_margin_top = 7.0
+content_margin_right = 14.0
+content_margin_bottom = 7.0
+
+[resource]
+Button/colors/font_color = Color(0.231, 0.173, 0.133, 1.0)
+Button/colors/font_focus_color = Color(0.137, 0.090, 0.063, 1.0)
+Button/colors/font_hover_color = Color(0.137, 0.090, 0.063, 1.0)
+Button/colors/font_pressed_color = Color(0.643, 0.306, 0.180, 1.0)
+Button/colors/font_disabled_color = Color(0.231, 0.173, 0.133, 0.30)
+Button/styles/normal = SubResource("StyleBoxFlat_btn_normal")
+Button/styles/hover = SubResource("StyleBoxFlat_btn_hover")
+Button/styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+Button/styles/focus = SubResource("StyleBoxFlat_btn_hover")
+Button/styles/disabled = SubResource("StyleBoxFlat_btn_normal")
+Label/colors/font_color = Color(0.231, 0.173, 0.133, 1.0)
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_panel")

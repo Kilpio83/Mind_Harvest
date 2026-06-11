@@ -1,66 +1,69 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://d2fx11iyylvgi"]
 
-[ext_resource type="Script" path="res://scripts/ui/hypothesis_board.gd" id="1_board"]
+[ext_resource type="Script" uid="uid://tq3vu67x6ww6" path="res://scripts/ui/hypothesis_board.gd" id="1_board"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hypothesis_canvas.tscn" id="2_canvas"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.090, 0.076, 0.063, 0.97)
-border_color = Color(0.961, 0.925, 0.859, 0.15)
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.140, 0.168, 0.180, 0.97)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color(0.953, 0.933, 0.890, 0.15)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
-corner_radius_bottom_left = 8
 corner_radius_bottom_right = 8
-content_margin_left = 16.0
-content_margin_right = 16.0
-content_margin_top = 12.0
-content_margin_bottom = 12.0
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_legend"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
 bg_color = Color(0.961, 0.925, 0.859, 0.05)
-border_color = Color(0.961, 0.925, 0.859, 0.09)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color(0.961, 0.925, 0.859, 0.09)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
-corner_radius_bottom_left = 4
 corner_radius_bottom_right = 4
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key"]
+content_margin_left = 5.0
+content_margin_top = 1.0
+content_margin_right = 5.0
+content_margin_bottom = 1.0
 bg_color = Color(0.961, 0.925, 0.859, 0.16)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
-corner_radius_bottom_left = 3
 corner_radius_bottom_right = 3
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 1.0
-content_margin_bottom = 1.0
+corner_radius_bottom_left = 3
 
-[node name="HypothesisBoard" type="Control"]
-script = ExtResource("1_board")
+[node name="HypothesisBoard" type="Control" unique_id=1494988004]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_board")
 
-[node name="DimOverlay" type="ColorRect" parent="."]
-anchors_preset = 15
+[node name="DimOverlay" type="ColorRect" parent="." unique_id=2090318245]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.65)
 
-[node name="Panel" type="PanelContainer" parent="."]
-anchors_preset = 8
+[node name="Panel" type="PanelContainer" parent="." unique_id=1924330247]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -69,196 +72,200 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="VBox" type="VBoxContainer" parent="Panel"]
+[node name="VBox" type="VBoxContainer" parent="Panel" unique_id=1741482939]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Header" type="HBoxContainer" parent="Panel/VBox"]
+[node name="Header" type="HBoxContainer" parent="Panel/VBox" unique_id=1224723234]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="Panel/VBox/Header"]
+[node name="TitleLabel" type="Label" parent="Panel/VBox/Header" unique_id=1434314557]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Hypothesis Board"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1)
 theme_override_font_sizes/font_size = 16
+text = "Hypothesis Board"
 
-[node name="CloseButton" type="Button" parent="Panel/VBox/Header"]
+[node name="CloseButton" type="Button" parent="Panel/VBox/Header" unique_id=1926507499]
 layout_mode = 2
-text = "✕  Close"
 theme_override_font_sizes/font_size = 13
+text = "✕  Close"
 
-[node name="HSep1" type="HSeparator" parent="Panel/VBox"]
+[node name="HSep1" type="HSeparator" parent="Panel/VBox" unique_id=750343278]
 layout_mode = 2
 
-[node name="Content" type="HBoxContainer" parent="Panel/VBox"]
+[node name="Content" type="HBoxContainer" parent="Panel/VBox" unique_id=1826456528]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="Tray" type="VBoxContainer" parent="Panel/VBox/Content"]
-layout_mode = 2
+[node name="Tray" type="VBoxContainer" parent="Panel/VBox/Content" unique_id=1335537416]
 custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TrayTitle" type="Label" parent="Panel/VBox/Content/Tray"]
+[node name="TrayTitle" type="Label" parent="Panel/VBox/Content/Tray" unique_id=1614877610]
 layout_mode = 2
-text = "PIECES"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.4)
 theme_override_font_sizes/font_size = 11
+text = "PIECES"
 
-[node name="TrayScroll" type="ScrollContainer" parent="Panel/VBox/Content/Tray"]
+[node name="TrayScroll" type="ScrollContainer" parent="Panel/VBox/Content/Tray" unique_id=40041147]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="TrayStack" type="VBoxContainer" parent="Panel/VBox/Content/Tray/TrayScroll"]
+[node name="TrayStack" type="VBoxContainer" parent="Panel/VBox/Content/Tray/TrayScroll" unique_id=868524119]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="VSep" type="VSeparator" parent="Panel/VBox/Content"]
+[node name="VSep" type="VSeparator" parent="Panel/VBox/Content" unique_id=546641271]
 layout_mode = 2
 
-[node name="CanvasArea" type="HBoxContainer" parent="Panel/VBox/Content"]
+[node name="CanvasArea" type="HBoxContainer" parent="Panel/VBox/Content" unique_id=1771262390]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="HealCanvas" parent="Panel/VBox/Content/CanvasArea" instance=ExtResource("2_canvas")]
+[node name="HealCanvas" parent="Panel/VBox/Content/CanvasArea" unique_id=522451487 instance=ExtResource("2_canvas")]
+layout_mode = 2
 intent_id = "heal"
 
-[node name="BefriendCanvas" parent="Panel/VBox/Content/CanvasArea" instance=ExtResource("2_canvas")]
+[node name="BefriendCanvas" parent="Panel/VBox/Content/CanvasArea" unique_id=43828852 instance=ExtResource("2_canvas")]
+layout_mode = 2
 intent_id = "befriend"
 
-[node name="SeduceCanvas" parent="Panel/VBox/Content/CanvasArea" instance=ExtResource("2_canvas")]
+[node name="SeduceCanvas" parent="Panel/VBox/Content/CanvasArea" unique_id=1806329392 instance=ExtResource("2_canvas")]
+layout_mode = 2
 intent_id = "seduce"
 
-[node name="ExploitCanvas" parent="Panel/VBox/Content/CanvasArea" instance=ExtResource("2_canvas")]
+[node name="ExploitCanvas" parent="Panel/VBox/Content/CanvasArea" unique_id=1591918861 instance=ExtResource("2_canvas")]
+layout_mode = 2
 intent_id = "exploit"
 
-[node name="HSep2" type="HSeparator" parent="Panel/VBox"]
+[node name="HSep2" type="HSeparator" parent="Panel/VBox" unique_id=575391241]
 layout_mode = 2
 
-[node name="Footer" type="VBoxContainer" parent="Panel/VBox"]
+[node name="Footer" type="VBoxContainer" parent="Panel/VBox" unique_id=1160011204]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="CommittedLabel" type="Label" parent="Panel/VBox/Footer"]
+[node name="CommittedLabel" type="Label" parent="Panel/VBox/Footer" unique_id=2067109628]
 layout_mode = 2
-text = "Committed intent: None"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.55)
 theme_override_font_sizes/font_size = 13
+text = "Committed intent: None"
 
-[node name="LegendPanel" type="PanelContainer" parent="Panel/VBox/Footer"]
+[node name="LegendPanel" type="PanelContainer" parent="Panel/VBox/Footer" unique_id=1161351703]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_legend")
 
-[node name="LegendRow" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel"]
+[node name="LegendRow" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel" unique_id=2109433802]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Spacer" type="Control" parent="Panel/VBox/Footer/LegendPanel/LegendRow"]
+[node name="Spacer" type="Control" parent="Panel/VBox/Footer/LegendPanel/LegendRow" unique_id=357696665]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="QLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow"]
+[node name="QLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow" unique_id=1833511880]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/QLegend"]
+[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/QLegend" unique_id=2113446277]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
-[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/QLegend/Key"]
+[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/QLegend/Key" unique_id=602207220]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1)
+theme_override_font_sizes/font_size = 11
 text = "Q"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
-theme_override_font_sizes/font_size = 11
 
-[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/QLegend"]
+[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/QLegend" unique_id=1028210222]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
+theme_override_font_sizes/font_size = 11
 text = "Rotate ←"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
-theme_override_font_sizes/font_size = 11
 
-[node name="ELegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow"]
+[node name="ELegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow" unique_id=2064990690]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/ELegend"]
+[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/ELegend" unique_id=1637095389]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
-[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/ELegend/Key"]
+[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/ELegend/Key" unique_id=1404258607]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1)
+theme_override_font_sizes/font_size = 11
 text = "E"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
-theme_override_font_sizes/font_size = 11
 
-[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/ELegend"]
+[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/ELegend" unique_id=211877455]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
+theme_override_font_sizes/font_size = 11
 text = "Rotate →"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
-theme_override_font_sizes/font_size = 11
 
-[node name="RLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow"]
+[node name="RLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow" unique_id=1823657047]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RLegend"]
+[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RLegend" unique_id=877491220]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
-[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RLegend/Key"]
+[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RLegend/Key" unique_id=339336066]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1)
+theme_override_font_sizes/font_size = 11
 text = "R"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
-theme_override_font_sizes/font_size = 11
 
-[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RLegend"]
+[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RLegend" unique_id=1384975473]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
+theme_override_font_sizes/font_size = 11
 text = "Flip"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
-theme_override_font_sizes/font_size = 11
 
-[node name="RMBLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow"]
+[node name="RMBLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow" unique_id=2109873332]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RMBLegend"]
+[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RMBLegend" unique_id=1918956576]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
-[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RMBLegend/Key"]
+[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RMBLegend/Key" unique_id=1532093874]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1)
+theme_override_font_sizes/font_size = 11
 text = "RMB"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
-theme_override_font_sizes/font_size = 11
 
-[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RMBLegend"]
+[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/RMBLegend" unique_id=465776413]
 layout_mode = 2
-text = "Return to tray"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
 theme_override_font_sizes/font_size = 11
+text = "Return to tray"
 
-[node name="EscLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow"]
+[node name="EscLegend" type="HBoxContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow" unique_id=166588665]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/EscLegend"]
+[node name="Key" type="PanelContainer" parent="Panel/VBox/Footer/LegendPanel/LegendRow/EscLegend" unique_id=129922704]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
-[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/EscLegend/Key"]
+[node name="Label" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/EscLegend/Key" unique_id=1509641671]
 layout_mode = 2
-text = "Esc"
-theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1)
 theme_override_font_sizes/font_size = 11
+text = "Esc"
 
-[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/EscLegend"]
+[node name="Desc" type="Label" parent="Panel/VBox/Footer/LegendPanel/LegendRow/EscLegend" unique_id=1493245791]
 layout_mode = 2
-text = "Close"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.5)
 theme_override_font_sizes/font_size = 11
+text = "Close"

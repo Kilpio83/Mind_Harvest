@@ -26,6 +26,7 @@ HudBar="*res://scenes/ui/hud_bar.tscn"
 ToastLayer="*res://scenes/ui/toast_container.tscn"
 ScreenTransition="*res://scripts/ui/screen_transition.gd"
 SettingsManager="*res://scripts/autoload/settings_manager.gd"
+ThemeManager="*res://scripts/autoload/theme_manager.gd"
 
 [dialogic]
 
@@ -58,7 +59,9 @@ directories/dtl_directory={
 "walk": "res://dialogic/timelines/morning/walk.dtl"
 }
 layout/style_directory={
-"": "res://dialogic/layouts/mind_harvest_style.tres",
+"": "res://dialogic/layouts/evenfall/evenfall_style.tres",
+"Evenfall": "res://dialogic/layouts/evenfall/evenfall_style.tres",
+"Hearthwood": "res://dialogic/layouts/hearthwood/hearthwood_style.tres",
 "Mind Harvest": "res://dialogic/layouts/mind_harvest_style.tres"
 }
 extensions_folder="res://addons/dialogic_additions/"
@@ -132,8 +135,8 @@ variables={
 }
 }
 glossary/default_case_sensitive=true
-layout/style_list=["res://dialogic/layouts/mind_harvest_style.tres"]
-layout/default_style="res://dialogic/layouts/mind_harvest_style.tres"
+layout/style_list=["res://dialogic/layouts/mind_harvest_style.tres", "res://dialogic/layouts/evenfall/evenfall_style.tres", "res://dialogic/layouts/hearthwood/hearthwood_style.tres"]
+layout/default_style="res://dialogic/layouts/evenfall/evenfall_style.tres"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
@@ -186,6 +189,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[gui]
+
+theme/custom_font="uid://bndegb8h2ub63"
+
 [input]
 
 dialogic_default_action={
@@ -205,3 +212,4 @@ dialogic_default_action={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+anti_aliasing/quality/use_taa=true

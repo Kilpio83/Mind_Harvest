@@ -79,13 +79,30 @@ func _notification(what: int) -> void:
 			if _piece_node: _piece_node.set_hovered(false)
 
 
-func _get_drag_data(_at_pos: Vector2) -> Variant:
+func _get_drag_data(at_pos: Vector2) -> Variant:
 	var col: Color = board_ref._get_disc_color(discovery_id)
 	var piece := PhysicalPiece.new()
 	piece.setup(discovery_id, _rotation, _flipped, col, PhysicalPiece.CELL_PX)
 	piece.set_hovered(true)
-	set_drag_preview(piece)
-	return {"discovery_id": discovery_id, "rotation": _rotation, "flipped": _flipped}
+
+	# Keep the piece anchored to where the player clicked.
+	# _piece_node is TRAY_CELL px/cell; drag preview is CELL_PX px/cell — scale accordingly.
+	var grab_offset := Vector2.ZERO
+	if _piece_node:
+		grab_offset = _piece_node.get_local_mouse_position() \
+			* (float(PhysicalPiece.CELL_PX) / float(TRAY_CELL))
+	grab_offset = grab_offset.clamp(Vector2.ZERO, piece.custom_minimum_size - Vector2.ONE)
+
+	var wrapper := Control.new()
+	wrapper.custom_minimum_size = piece.custom_minimum_size
+	piece.position = -grab_offset
+	wrapper.add_child(piece)
+	set_drag_preview(wrapper)
+
+	var data := {"discovery_id": discovery_id, "rotation": _rotation,
+				 "flipped": _flipped, "grab_offset": grab_offset}
+	if board_ref: board_ref._drag_data = data.duplicate()
+	return data
 
 
 func _gui_input(event: InputEvent) -> void:

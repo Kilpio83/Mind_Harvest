@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://dk868p7ggua8w"]
+
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="1_style"]
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_layer"]
+[ext_resource type="PackedScene" path="res://dialogic/layouts/mh_textbox_layer.tscn" id="3_textbox"]
+[ext_resource type="Resource" uid="uid://8t1mr302tmqs" path="res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres" id="4_default"]
+[ext_resource type="PackedScene" uid="uid://dhk6j6eb6e3q" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.tscn" id="5_choices"]
+
+[sub_resource type="Resource" id="Resource_base"]
+script = ExtResource("2_layer")
+
+[sub_resource type="Resource" id="Resource_textbox"]
+script = ExtResource("2_layer")
+scene = ExtResource("3_textbox")
+overrides = {
+"bold_font": "\"res://assets/fonts/Mulish-ExtraBold.ttf\"",
+"bold_italics_font": "\"res://assets/fonts/Newsreader-SemiBoldItalic.ttf\"",
+"box_animation_in": "1",
+"box_animation_out": "1",
+"box_color_custom": "Color(0.1882353, 0.17254902, 0.15294118, 0.972549)",
+"box_color_use_global": "false",
+"box_margin_bottom": "0",
+"box_panel": "\"res://dialogic/layouts/evenfall/ev_panel.tres\"",
+"box_size": "Vector2(820, 190)",
+"italics_font": "\"res://assets/fonts/Newsreader-Italic.ttf\"",
+"name_label_box_modulate": "Color(0.886, 0.639, 0.243, 1.0)",
+"name_label_box_offset": "Vector2(0, 13)",
+"name_label_box_panel": "\"res://dialogic/layouts/evenfall/ev_name_badge.tres\"",
+"name_label_box_use_global_color": "false",
+"name_label_custom_color": "Color(0.110, 0.098, 0.063, 1)",
+"name_label_custom_font_size": "19.0",
+"name_label_use_character_color": "true",
+"name_label_use_global_color": "false",
+"name_label_use_global_font_size": "false",
+"normal_font": "\"res://assets/fonts/Mulish-SemiBold.ttf\"",
+"text_custom_color": "Color(0.953, 0.933, 0.890, 1)",
+"text_size": "23.0",
+"text_use_global_color": "false",
+"text_use_global_size": "false"
+}
+
+[sub_resource type="Resource" id="Resource_choices"]
+script = ExtResource("2_layer")
+scene = ExtResource("5_choices")
+overrides = {
+"boxes_fill_width": "true",
+"boxes_min_size": "Vector2(0, 40)",
+"boxes_stylebox_disabled": "\"res://dialogic/layouts/evenfall/ev_choice_disabled.tres\"",
+"boxes_stylebox_focused": "\"res://dialogic/layouts/evenfall/ev_choice_hovered.tres\"",
+"boxes_stylebox_hovered": "\"res://dialogic/layouts/evenfall/ev_choice_hovered.tres\"",
+"boxes_stylebox_normal": "\"res://dialogic/layouts/evenfall/ev_choice_normal.tres\"",
+"boxes_v_separation": "8",
+"font_size_custom": "23.0",
+"font_size_use_global": "false",
+"text_color_custom": "Color(0.9529412, 0.93333334, 0.8901961, 1)",
+"text_color_disabled": "Color(0.953, 0.933, 0.890, 0.35)",
+"text_color_focused": "Color(0.9529412, 0.93333334, 0.8901961, 1)",
+"text_color_hovered": "Color(0.9529412, 0.93333334, 0.8901961, 1)",
+"text_color_use_global": "false"
+}
+
+[resource]
+script = ExtResource("1_style")
+name = "Evenfall"
+inherits = ExtResource("4_default")
+layer_list = Array[String](["13", "15"])
+layer_info = {
+"": SubResource("Resource_base"),
+"13": SubResource("Resource_textbox"),
+"15": SubResource("Resource_choices")
+}
+metadata/_latest_layer = "15"
