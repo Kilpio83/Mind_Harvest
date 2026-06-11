@@ -1,0 +1,280 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(0.6, 0.35, 0.65, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Neutral",
+&"description": "Kamila Vance. Yoga instructor.",
+&"display_name": "Kamila",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 50),
+&"portraits": {
+"Admiration": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/admiration.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Amusement": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/amusement.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Anger": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/anger.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Annoyance": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/annoyance.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Approval": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/approval.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Caring": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/caring.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Confusion": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/confusion.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Curiosity": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/curiosity.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Desire": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/desire.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disappointment": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/disappointment.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disapproval": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/disapproval.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disgust": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/disgust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Embarrassment": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/embarrassment.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Excitement": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/excitement.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Fear": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/fear.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Gratitude": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/gratitude.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Grief": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/grief.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Joy": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/joy.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Love": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/love.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Nervousness": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/nervousness.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Neutral": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/neutral.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Optimism": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/optimism.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Pride": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/pride.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Realization": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/realization.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Relief": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/relief.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Remorse": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/remorse.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sadness": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/sadness.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Surprise": {
+"export_overrides": {
+"image": "\"res://assets/portraits/kamila/surprise.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"default": {
+"export_overrides": {
+"image": "res://assets/portraits/kamila/neutral.png"
+},
+"offset": Vector2(0, 0)
+}
+},
+&"scale": 0.9
+}

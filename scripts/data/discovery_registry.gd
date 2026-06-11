@@ -70,6 +70,30 @@ const _CARDS: Dictionary = {
 		"shape":    [[1,1,1],[0,1,0]],
 	},
 
+	# ── Kamila · Session 1 ────────────────────────────────────────────────────
+
+	"kamila_tyranny_geometry": {
+		"patient":  "kamila",
+		"label":    "The Tyranny of Perfect Geometry",
+		"desc":     "Frames her teaching as 'violent colonization over the self' — control dressed as philosophy.",
+		"tags":     ["control", "self_protection"],
+		"weight":   2,
+		"category": "observation",
+		# S-tetromino — tension held in opposing directions
+		"shape":    [[0,1,1],[1,1,0]],
+	},
+	"kamila_somatic_control": {
+		"patient":  "kamila",
+		"label":    "The Somatic Control Mechanism",
+		"desc":     "Trapezius locked in hyper-tonic spasm. Her body has stopped obeying her own commands.",
+		"tags":     ["body_language", "vulnerability"],
+		"weight":   2,
+		"category": "observation",
+		"requires": "perception >= 2",
+		# L-tetromino — one corner refusing to yield
+		"shape":    [[1,0],[1,0],[1,1]],
+	},
+
 	# ── Anna · Session 2 ──────────────────────────────────────────────────────
 
 	"anna_dream_spreadsheet": {

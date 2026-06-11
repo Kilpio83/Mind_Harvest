@@ -27,12 +27,14 @@ ToastLayer="*res://scenes/ui/toast_container.tscn"
 ScreenTransition="*res://scripts/ui/screen_transition.gd"
 SettingsManager="*res://scripts/autoload/settings_manager.gd"
 ThemeManager="*res://scripts/autoload/theme_manager.gd"
+DebugPanel="*res://scripts/autoload/debug_panel.gd"
 
 [dialogic]
 
 directories/dch_directory={
 "anna": "res://dialogic/characters/anna.dch",
 "bea": "res://dialogic/characters/bea.dch",
+"kamila": "res://dialogic/characters/kamila.dch",
 "marisol": "res://dialogic/characters/marisol.dch",
 "narrator": "res://dialogic/characters/narrator.dch",
 "player": "res://dialogic/characters/player.dch",
@@ -47,6 +49,7 @@ directories/dtl_directory={
 "find_coin": "res://dialogic/timelines/events/find_coin.dtl",
 "intro": "res://dialogic/timelines/system/intro.dtl",
 "jogging": "res://dialogic/timelines/morning/jogging.dtl",
+"kamila/session_1": "res://dialogic/timelines/patients/kamila/session_1.dtl",
 "marisol/session_1": "res://dialogic/timelines/patients/marisol/session_1.dtl",
 "marisol/session_2": "res://dialogic/timelines/patients/marisol/session_2.dtl",
 "marisol/session_3": "res://dialogic/timelines/patients/marisol/session_3.dtl",
@@ -72,7 +75,9 @@ variables={
 "anna_autonomy_discomfort": false,
 "anna_desk_compulsion": false,
 "anna_dream_spreadsheet": false,
-"anna_rubric_wish": false
+"anna_rubric_wish": false,
+"kamila_somatic_control": false,
+"kamila_tyranny_geometry": false
 },
 "flags": {
 "analyzed_anna": false,
@@ -89,6 +94,7 @@ variables={
 "last_photo_success": false,
 "marisol_named_escapism_s2": false,
 "met_anna": false,
+"met_kamila": false,
 "met_marisol": false
 },
 "game": {
@@ -102,6 +108,14 @@ variables={
 },
 "patients": {
 "anna": {
+"committed_intent": "",
+"ending": "",
+"next_day": 0,
+"personal_bond": 0,
+"progress": 0,
+"therapy_progress": 30
+},
+"kamila": {
 "committed_intent": "",
 "ending": "",
 "next_day": 0,
@@ -175,6 +189,8 @@ translation/file_mode=1
 translation/translation_folder=""
 translation/save_mode=0
 translation/add_separator=false
+history/simple_history_enabled=true
+history/simple_history_save=true
 
 [display]
 

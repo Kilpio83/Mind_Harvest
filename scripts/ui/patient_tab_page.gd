@@ -33,6 +33,8 @@ const PATIENTS := {
 				"portrait": "res://assets/portraits/anna/file_header_photo.png"},
 	"marisol": {"display": "Marisol Reyes",  "age": 34, "occupation": "Romance Novelist",
 				"portrait": "res://assets/portraits/marisol/file_header_photo.png"},
+	"kamila":  {"display": "Kamila Vance",   "age": 32, "occupation": "Yoga Instructor",
+				"portrait": "res://assets/portraits/kamila/neutral.png"},
 }
 
 const _THERAPY_SEGS: Array = [

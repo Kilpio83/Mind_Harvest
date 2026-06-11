@@ -44,12 +44,13 @@ script = ExtResource("2_layer")
 scene = ExtResource("5_choices")
 overrides = {
 "boxes_fill_width": "true",
-"boxes_min_size": "Vector2(0, 40)",
+"boxes_min_size": "Vector2(700, 44)",
 "boxes_stylebox_disabled": "\"res://dialogic/layouts/evenfall/ev_choice_disabled.tres\"",
 "boxes_stylebox_focused": "\"res://dialogic/layouts/evenfall/ev_choice_hovered.tres\"",
 "boxes_stylebox_hovered": "\"res://dialogic/layouts/evenfall/ev_choice_hovered.tres\"",
 "boxes_stylebox_normal": "\"res://dialogic/layouts/evenfall/ev_choice_normal.tres\"",
 "boxes_v_separation": "8",
+"choices_custom_button": "\"res://dialogic/layouts/evenfall/ev_choice_button.tscn\"",
 "font_size_custom": "23.0",
 "font_size_use_global": "false",
 "text_color_custom": "Color(0.9529412, 0.93333334, 0.8901961, 1)",

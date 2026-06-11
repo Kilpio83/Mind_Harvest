@@ -64,6 +64,12 @@ layout_mode = 2
 patient_id = "marisol"
 metadata/_tab_index = 1
 
+[node name="Kamila Vance" parent="Panel/VBox/Tabs" unique_id=234567891 instance=ExtResource("2_tabpage")]
+visible = false
+layout_mode = 2
+patient_id = "kamila"
+metadata/_tab_index = 2
+
 [node name="CloseButton" type="Button" parent="Panel/VBox" unique_id=461637972]
 layout_mode = 2
 text = "Close"

@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var _tooltip_vbox: VBoxContainer  = $TooltipOverlay/TooltipVBox
 @onready var _anna_tab:    PatientTabPage  = $"Panel/VBox/Tabs/Anna Volkov"
 @onready var _marisol_tab: PatientTabPage  = $"Panel/VBox/Tabs/Marisol Reyes"
+@onready var _kamila_tab:  PatientTabPage  = $"Panel/VBox/Tabs/Kamila Vance"
 
 
 func _ready() -> void:
@@ -29,6 +30,11 @@ func _ready() -> void:
 
 	_anna_tab.populate(_show_tooltip, _hide_tooltip, _photo_popup)
 	_marisol_tab.populate(_show_tooltip, _hide_tooltip, _photo_popup)
+	_kamila_tab.populate(_show_tooltip, _hide_tooltip, _photo_popup)
+
+	_anna_tab.visible    = bool(Dialogic.VAR.get_variable("flags.met_anna",    false))
+	_marisol_tab.visible = bool(Dialogic.VAR.get_variable("flags.met_marisol", false))
+	_kamila_tab.visible  = bool(Dialogic.VAR.get_variable("flags.met_kamila",  false))
 
 
 # ─── tooltip overlay ─────────────────────────────────────────────────────────

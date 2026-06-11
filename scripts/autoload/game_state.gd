@@ -8,7 +8,7 @@ var patient_queue: Array[String] = []
 func build_patient_queue() -> void:
 	patient_queue.clear()
 	var day: int = int(Dialogic.VAR.get_variable("game.day", 1))
-	for patient_name in ["anna", "marisol"]:
+	for patient_name in ["kamila", "anna", "marisol"]:
 		var next_day: int = int(Dialogic.VAR.get_variable("patients." + patient_name + ".next_day", 0))
 		var progress: int = int(Dialogic.VAR.get_variable("patients." + patient_name + ".progress", 0))
 		var ending: String = str(Dialogic.VAR.get_variable("patients." + patient_name + ".ending", ""))
