@@ -93,6 +93,12 @@ variables={
 "intro_done": false,
 "last_photo_success": false,
 "marisol_named_escapism_s2": false,
+"kamila": {
+"CH_KAM_S1_01": "",
+"CH_KAM_S1_02": "",
+"CH_KAM_S1_03": "",
+"CH_KAM_S1_04": ""
+},
 "met_anna": false,
 "met_kamila": false,
 "met_marisol": false
