@@ -60,13 +60,13 @@ if {patients.marisol.therapy_progress} >= 70 and {flags.marisol_named_escapism_s
 	player: "Of course."
 	marisol: "The book will be done next month. I want to dedicate it properly."
 	narrator: She pauses at the door.
-	marisol: "Thank you, Doctor. For reading carefully."
+	marisol: "Thank you, Dr. {game.player_name}. For reading carefully."
 	set {patients.marisol.ending} = "breakthrough"
 	[add_note patient="marisol" note="Breakthrough. Finished Rodrigo's arc, deleted the therapist chapter, considering the Thursday group. The dedication is presumably significant."]
 else:
 	if {patients.marisol.therapy_progress} < 30:
 		narrator: She stands. Gathers her things with ceremony.
-		marisol: "I appreciate your time, Doctor. Deeply."
+		marisol: "I appreciate your time, Dr. {game.player_name}. Deeply."
 		narrator: She produces a card.
 		marisol: "My publisher is always looking for authentic settings. This office would be useful. For research."
 		narrator: A pause.

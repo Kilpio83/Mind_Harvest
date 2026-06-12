@@ -28,6 +28,9 @@ ScreenTransition="*res://scripts/ui/screen_transition.gd"
 SettingsManager="*res://scripts/autoload/settings_manager.gd"
 ThemeManager="*res://scripts/autoload/theme_manager.gd"
 DebugPanel="*res://scripts/autoload/debug_panel.gd"
+MCPScreenshot="*res://addons/godot_mcp/mcp_screenshot_service.gd"
+MCPInputService="*res://addons/godot_mcp/mcp_input_service.gd"
+MCPGameInspector="*res://addons/godot_mcp/mcp_game_inspector_service.gd"
 
 [dialogic]
 
@@ -91,14 +94,14 @@ variables={
 "did_walk": false,
 "event_find_coin_seen": false,
 "intro_done": false,
-"last_photo_success": false,
-"marisol_named_escapism_s2": false,
 "kamila": {
 "CH_KAM_S1_01": "",
 "CH_KAM_S1_02": "",
 "CH_KAM_S1_03": "",
 "CH_KAM_S1_04": ""
 },
+"last_photo_success": false,
+"marisol_named_escapism_s2": false,
 "met_anna": false,
 "met_kamila": false,
 "met_marisol": false
@@ -110,7 +113,8 @@ variables={
 "has_patients": false,
 "last_random_stat": "",
 "morning_slots_left": 2,
-"phase": "morning"
+"phase": "morning",
+"player_name": "Adrian"
 },
 "patients": {
 "anna": {
@@ -209,7 +213,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/godot_mcp/plugin.cfg")
 
 [gui]
 

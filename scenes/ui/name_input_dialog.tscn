@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://ck2y0yhvu5bqy"]
+[gd_scene format=3 uid="uid://bg2dajwmerv3t"]
 
-[ext_resource type="Script" path="res://scripts/ui/name_input_dialog.gd" id="1_j4ipw"]
+[ext_resource type="Script" path="res://scripts/ui/name_input_dialog.gd" id="1_lj7hj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
 content_margin_left = 20.0
@@ -11,7 +11,7 @@ bg_color = Color(0.133, 0.16, 0.173, 0.88)
 
 [node name="HudBar" type="CanvasLayer" unique_id=857765114]
 layer = 10
-script = ExtResource("1_j4ipw")
+script = ExtResource("1_lj7hj")
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1252309074]
 custom_minimum_size = Vector2(0, 48)

@@ -1,5 +1,5 @@
 do SaveManager.autosave()
-Good morning, Doctor. Day {game.day}.
+Good morning, Dr. {game.player_name}. Day {game.day}.
 label activity_choice
 if {game.morning_slots_left} <= 0:
 	jump day_intro/
