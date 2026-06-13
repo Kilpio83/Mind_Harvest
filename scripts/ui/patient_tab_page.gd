@@ -134,6 +134,7 @@ func populate(show_tooltip_fn: Callable, hide_tooltip_fn: Callable,
 	_intent_value.text = committed.capitalize() if not committed.is_empty() else "None committed"
 
 	# ── hypothesis board button ───────────────────────────────────────────────────
+	_style_primary_btn(_hypo_btn)
 	_hypo_btn.pressed.connect(func() -> void:
 		var cl := CanvasLayer.new()
 		cl.layer = 20
@@ -362,7 +363,7 @@ func _seg_panel(parent: HBoxContainer, label: String, color: Color,
 	panel.size_flags_stretch_ratio = stretch
 	panel.mouse_filter             = Control.MOUSE_FILTER_IGNORE
 	var style := StyleBoxFlat.new()
-	style.bg_color = color if active else (Color(color, 0.4) if past else Color(0.140, 0.168, 0.180, 1.0))
+	style.bg_color = color if active else (Color(color, 0.4) if past else Color(0.110, 0.098, 0.082, 1.0))
 	panel.add_theme_stylebox_override("panel", style)
 	var lbl := Label.new()
 	lbl.text                 = label
@@ -405,6 +406,31 @@ func _disc_color(category: String) -> Color:
 
 
 # ─── widget helpers ──────────────────────────────────────────────────────────
+
+func _style_primary_btn(b: Button) -> void:
+	b.add_theme_font_size_override("font_size", 13)
+	var s_norm := StyleBoxFlat.new()
+	s_norm.bg_color = Color(0.25, 0.23, 0.20, 1.0)
+	s_norm.corner_radius_top_left = 6
+	s_norm.corner_radius_top_right = 6
+	s_norm.corner_radius_bottom_right = 6
+	s_norm.corner_radius_bottom_left = 6
+	s_norm.content_margin_left = 14.0
+	s_norm.content_margin_right = 14.0
+	s_norm.content_margin_top = 7.0
+	s_norm.content_margin_bottom = 7.0
+	var s_hov := s_norm.duplicate() as StyleBoxFlat
+	s_hov.bg_color = Color(0.886, 0.639, 0.243, 1.0)
+	b.add_theme_stylebox_override("normal",   s_norm)
+	b.add_theme_stylebox_override("hover",    s_hov)
+	b.add_theme_stylebox_override("pressed",  s_hov)
+	b.add_theme_stylebox_override("focus",    s_norm)
+	b.add_theme_color_override("font_color",          Color(0.953, 0.933, 0.890, 1.0))
+	b.add_theme_color_override("font_hover_color",    Color(0.188, 0.173, 0.153, 1.0))
+	b.add_theme_color_override("font_pressed_color",  Color(0.188, 0.173, 0.153, 1.0))
+	b.add_theme_color_override("font_focus_color",    Color(0.953, 0.933, 0.890, 1.0))
+	b.add_theme_color_override("font_disabled_color", Color(0.953, 0.933, 0.890, 0.30))
+
 
 func _lbl(txt: String, col: Color, size: int, bold: bool = false) -> Label:
 	var l := Label.new()

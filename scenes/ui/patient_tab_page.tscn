@@ -3,7 +3,9 @@
 [ext_resource type="Script" path="res://scripts/ui/patient_tab_page.gd" id="1_tabpage"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
-bg_color = Color(0.110, 0.133, 0.145, 1.0)
+bg_color = Color(0.110, 0.098, 0.082, 1.0)
+border_width_bottom = 1
+border_color = Color(0.886, 0.639, 0.243, 0.18)
 content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 11.0

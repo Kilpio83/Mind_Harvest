@@ -50,6 +50,7 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 
 	_title_lbl.text = "Hypothesis Board — %s" % patient.capitalize()
+	_style_primary_btn(_close_btn)
 	_close_btn.pressed.connect(queue_free)
 
 	_canvas_nodes = {
@@ -75,6 +76,31 @@ func _ready() -> void:
 
 
 # ─── colour helpers ───────────────────────────────────────────────────────────
+
+func _style_primary_btn(b: Button) -> void:
+	b.add_theme_font_size_override("font_size", 13)
+	var s_norm := StyleBoxFlat.new()
+	s_norm.bg_color = Color(0.25, 0.23, 0.20, 1.0)
+	s_norm.corner_radius_top_left = 6
+	s_norm.corner_radius_top_right = 6
+	s_norm.corner_radius_bottom_right = 6
+	s_norm.corner_radius_bottom_left = 6
+	s_norm.content_margin_left = 14.0
+	s_norm.content_margin_right = 14.0
+	s_norm.content_margin_top = 7.0
+	s_norm.content_margin_bottom = 7.0
+	var s_hov := s_norm.duplicate() as StyleBoxFlat
+	s_hov.bg_color = Color(0.886, 0.639, 0.243, 1.0)
+	b.add_theme_stylebox_override("normal",   s_norm)
+	b.add_theme_stylebox_override("hover",    s_hov)
+	b.add_theme_stylebox_override("pressed",  s_hov)
+	b.add_theme_stylebox_override("focus",    s_norm)
+	b.add_theme_color_override("font_color",          Color(0.953, 0.933, 0.890, 1.0))
+	b.add_theme_color_override("font_hover_color",    Color(0.188, 0.173, 0.153, 1.0))
+	b.add_theme_color_override("font_pressed_color",  Color(0.188, 0.173, 0.153, 1.0))
+	b.add_theme_color_override("font_focus_color",    Color(0.953, 0.933, 0.890, 1.0))
+	b.add_theme_color_override("font_disabled_color", Color(0.953, 0.933, 0.890, 0.30))
+
 
 func _get_disc_color(disc_id: String) -> Color:
 	if disc_id in _disc_colors:

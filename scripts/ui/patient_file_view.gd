@@ -24,6 +24,9 @@ func _ready() -> void:
 	panel.offset_top    = -vp.y * 0.46
 	panel.offset_bottom =  vp.y * 0.46
 
+	_style_primary_btn(_close_btn)
+	_style_primary_btn(_popup_close)
+
 	_close_btn.pressed.connect(queue_free)
 	_popup_close.pressed.connect(_on_popup_close)
 	_photo_popup.visible = false
@@ -49,6 +52,31 @@ func _show_tooltip(filler: Callable, anchor: Control) -> void:
 		clampf(apos.x, 4.0, vp.x - 298.0),
 		apos.y + anchor.size.y + 6.0)
 	_tooltip.visible = true
+
+
+func _style_primary_btn(b: Button) -> void:
+	b.add_theme_font_size_override("font_size", 13)
+	var s_norm := StyleBoxFlat.new()
+	s_norm.bg_color = Color(0.25, 0.23, 0.20, 1.0)
+	s_norm.corner_radius_top_left = 6
+	s_norm.corner_radius_top_right = 6
+	s_norm.corner_radius_bottom_right = 6
+	s_norm.corner_radius_bottom_left = 6
+	s_norm.content_margin_left = 14.0
+	s_norm.content_margin_right = 14.0
+	s_norm.content_margin_top = 7.0
+	s_norm.content_margin_bottom = 7.0
+	var s_hov := s_norm.duplicate() as StyleBoxFlat
+	s_hov.bg_color = Color(0.886, 0.639, 0.243, 1.0)
+	b.add_theme_stylebox_override("normal",   s_norm)
+	b.add_theme_stylebox_override("hover",    s_hov)
+	b.add_theme_stylebox_override("pressed",  s_hov)
+	b.add_theme_stylebox_override("focus",    s_norm)
+	b.add_theme_color_override("font_color",          Color(0.953, 0.933, 0.890, 1.0))
+	b.add_theme_color_override("font_hover_color",    Color(0.188, 0.173, 0.153, 1.0))
+	b.add_theme_color_override("font_pressed_color",  Color(0.188, 0.173, 0.153, 1.0))
+	b.add_theme_color_override("font_focus_color",    Color(0.953, 0.933, 0.890, 1.0))
+	b.add_theme_color_override("font_disabled_color", Color(0.953, 0.933, 0.890, 0.30))
 
 
 func _hide_tooltip() -> void:
