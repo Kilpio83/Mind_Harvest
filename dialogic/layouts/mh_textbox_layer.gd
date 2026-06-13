@@ -10,7 +10,10 @@ var _generation := 0
 
 var _auto_btn: Button
 var _skip_btn: Button
-var _sync_t   := 0.0
+var _sync_t    := 0.0
+var _auto_state: int  = 0   # 0=off  1=normal  2=fast
+var _base_fixed_delay: float    = 1.0
+var _base_delay_modifier: float = 1.0
 
 
 func _ready() -> void:
@@ -22,6 +25,8 @@ func _ready() -> void:
 	var diag := DialogicUtil.autoload()
 	diag.Text.about_to_show_text.connect(_on_about_to_show_text)
 	diag.Inputs.dialogic_action_priority.connect(_on_action_priority)
+	_base_fixed_delay    = diag.Inputs.auto_advance.fixed_delay
+	_base_delay_modifier = diag.Inputs.auto_advance.delay_modifier
 	_build_controls()
 
 
@@ -43,8 +48,8 @@ func _build_controls() -> void:
 
 	row.add_child(_make_sep())
 
-	_auto_btn = _make_btn("Auto", true, font)
-	_auto_btn.toggled.connect(_on_auto_toggled)
+	_auto_btn = _make_btn("Auto", false, font)
+	_auto_btn.pressed.connect(_on_auto_pressed)
 	row.add_child(_auto_btn)
 
 	row.add_child(_make_sep())
@@ -96,9 +101,13 @@ func _process(delta: float) -> void:
 	if _sync_t < 0.25:
 		return
 	_sync_t = 0.0
-	if Dialogic.Inputs:
-		_auto_btn.set_pressed_no_signal(Dialogic.Inputs.auto_advance.enabled_until_user_input)
-		_skip_btn.set_pressed_no_signal(Dialogic.Inputs.auto_skip.enabled)
+	if not Dialogic.Inputs:
+		return
+	# If Dialogic cancelled auto-advance externally, reset to Off
+	if _auto_state != 0 and not Dialogic.Inputs.auto_advance.enabled_until_user_input:
+		_auto_state = 0
+		_update_auto_btn()
+	_skip_btn.set_pressed_no_signal(Dialogic.Inputs.auto_skip.enabled)
 
 
 func _on_history_pressed() -> void:
@@ -106,9 +115,44 @@ func _on_history_pressed() -> void:
 		Dialogic.History.open_requested.emit()
 
 
-func _on_auto_toggled(pressed: bool) -> void:
-	if Dialogic.current_timeline and Dialogic.Inputs:
-		Dialogic.Inputs.auto_advance.enabled_until_user_input = pressed
+func _on_auto_pressed() -> void:
+	if not Dialogic.current_timeline or not Dialogic.Inputs:
+		return
+	_auto_state = (_auto_state + 1) % 3
+	_apply_auto_state()
+
+
+func _apply_auto_state() -> void:
+	var aa := Dialogic.Inputs.auto_advance
+	match _auto_state:
+		0:
+			aa.enabled_until_user_input = false
+		1:
+			aa.fixed_delay    = _base_fixed_delay
+			aa.delay_modifier = _base_delay_modifier
+			aa.enabled_until_user_input = true
+			aa.autoadvance_timer.stop()
+			aa.start()
+		2:
+			aa.fixed_delay    = _base_fixed_delay * 0.5
+			aa.delay_modifier = _base_delay_modifier * 0.5
+			aa.enabled_until_user_input = true
+			aa.autoadvance_timer.stop()
+			aa.start()
+	_update_auto_btn()
+
+
+func _update_auto_btn() -> void:
+	match _auto_state:
+		0:
+			_auto_btn.text = "Auto"
+			_auto_btn.add_theme_color_override("font_color", Color(0.953, 0.933, 0.890, 0.55))
+		1:
+			_auto_btn.text = "Auto 1"
+			_auto_btn.add_theme_color_override("font_color", Color(0.886, 0.639, 0.243, 1.0))
+		2:
+			_auto_btn.text = "Auto 2"
+			_auto_btn.add_theme_color_override("font_color", Color(0.886, 0.639, 0.243, 1.0))
 
 
 func _on_skip_toggled(pressed: bool) -> void:
