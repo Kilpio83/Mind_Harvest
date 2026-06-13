@@ -1,9 +1,12 @@
 extends Node
-## Manages display preferences (fullscreen toggle).
-## Preferences persist across sessions in user://settings.cfg.
+## Manages display preferences (window mode).
+## Persists across sessions in user://settings.cfg.
 
 const _CONFIG_PATH := "user://settings.cfg"
 const _SECTION      := "display"
+
+enum WindowMode { WINDOWED = 0, FULLSCREEN = 1, FRAMELESS = 2 }
+const WINDOW_LABELS := ["Window", "Fullscreen", "Frameless"]
 
 
 func _ready() -> void:
@@ -11,31 +14,50 @@ func _ready() -> void:
 	_apply_saved()
 
 
+func get_window_mode() -> int:
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		return WindowMode.FULLSCREEN
+	if DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS):
+		return WindowMode.FRAMELESS
+	return WindowMode.WINDOWED
+
+
+func set_window_mode(mode: int) -> void:
+	match mode:
+		WindowMode.FULLSCREEN:
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		WindowMode.FRAMELESS:
+			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+			_center_window()
+		_:  # WINDOWED
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			_center_window()
+	_save()
+
+
 func is_fullscreen() -> bool:
-	return DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+	return get_window_mode() == WindowMode.FULLSCREEN
 
 
 func toggle_fullscreen() -> void:
-	if is_fullscreen():
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		_center_window()
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	_save()
+	set_window_mode(WindowMode.WINDOWED if is_fullscreen() else WindowMode.FULLSCREEN)
 
 
 func _apply_saved() -> void:
 	var cfg := ConfigFile.new()
 	if cfg.load(_CONFIG_PATH) != OK:
-		# First launch — start at 1280×720 centered
 		DisplayServer.window_set_size(Vector2i(1280, 720))
 		_center_window()
 		return
-	if cfg.get_value(_SECTION, "fullscreen", false):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		_center_window()
+	# Migrate legacy boolean "fullscreen" key
+	if cfg.has_section_key(_SECTION, "fullscreen"):
+		set_window_mode(WindowMode.FULLSCREEN if cfg.get_value(_SECTION, "fullscreen", false) else WindowMode.WINDOWED)
+		return
+	set_window_mode(cfg.get_value(_SECTION, "window_mode", WindowMode.WINDOWED))
 
 
 func _center_window() -> void:
@@ -46,5 +68,7 @@ func _center_window() -> void:
 
 func _save() -> void:
 	var cfg := ConfigFile.new()
-	cfg.set_value(_SECTION, "fullscreen", is_fullscreen())
+	cfg.load(_CONFIG_PATH)
+	cfg.set_value(_SECTION, "window_mode", get_window_mode())
+	cfg.erase_section_key(_SECTION, "fullscreen")
 	cfg.save(_CONFIG_PATH)

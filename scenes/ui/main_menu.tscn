@@ -1,70 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj77a0dhvdwhh"]
+[gd_scene load_steps=2 format=3 uid="uid://bj77a0dhvdwhh"]
 
 [ext_resource type="Script" uid="uid://13y5q41oh2a1" path="res://scripts/ui/main_menu.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.140, 0.168, 0.180, 0.96)
+bg_color = Color(0.110, 0.098, 0.082, 0.97)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.953, 0.933, 0.890, 0.08)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-content_margin_left = 36.0
-content_margin_top = 32.0
-content_margin_right = 36.0
-content_margin_bottom = 32.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
-bg_color = Color(0.160, 0.195, 0.212, 0.70)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.953, 0.933, 0.890, 0.14)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
-bg_color = Color(0.195, 0.235, 0.255, 0.90)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.886, 0.639, 0.243, 0.65)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
-bg_color = Color(0.120, 0.148, 0.162, 0.96)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.886, 0.639, 0.243, 1.0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
+border_color = Color(0.886, 0.639, 0.243, 0.22)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+content_margin_left = 40.0
+content_margin_top = 36.0
+content_margin_right = 40.0
+content_margin_bottom = 36.0
 
 [node name="MainMenu" type="CanvasLayer" unique_id=605393468]
 layer = 50
@@ -74,7 +26,7 @@ script = ExtResource("1_script")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.133, 0.160, 0.173, 0.94)
+color = Color(0.064, 0.059, 0.051, 0.95)
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=423422346]
 anchors_preset = 8
@@ -82,37 +34,37 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -280.0
-offset_top = -220.0
-offset_right = 280.0
-offset_bottom = 220.0
+offset_left = -310.0
+offset_top = -270.0
+offset_right = 310.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="VBox" type="VBoxContainer" parent="Panel" unique_id=1268069249]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 0
 
 [node name="TitleLabel" type="Label" parent="Panel/VBox" unique_id=308631597]
 layout_mode = 2
 text = "Mind Harvest"
 horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.953, 0.933, 0.890, 1.0)
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
+theme_override_font_sizes/font_size = 28
 
 [node name="SubtitleLabel" type="Label" parent="Panel/VBox" unique_id=134957979]
 layout_mode = 2
 text = "Choose a save slot"
 horizontal_alignment = 1
 theme_override_colors/font_color = Color(0.580, 0.631, 0.651, 1.0)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 
 [node name="Spacer" type="Control" parent="Panel/VBox" unique_id=976532548]
-custom_minimum_size = Vector2(0, 12)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="SlotsContainer" type="VBoxContainer" parent="Panel/VBox" unique_id=762892644]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 0
