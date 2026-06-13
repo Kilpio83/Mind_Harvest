@@ -63,7 +63,7 @@ func _on_action_priority() -> void:
 		return
 	var diag := DialogicUtil.autoload()
 	diag.Text.hide_next_indicators()
-	var next := _page_queue.pop_front()
+	var next: String = _page_queue.pop_front()
 	if not _dialog_text.started_revealing_text.is_connected(_check_overflow):
 		_dialog_text.started_revealing_text.connect(_check_overflow, CONNECT_ONE_SHOT)
 	_dialog_text.finished_revealing_text.connect(_show_next_indicators_after_page, CONNECT_ONE_SHOT)
