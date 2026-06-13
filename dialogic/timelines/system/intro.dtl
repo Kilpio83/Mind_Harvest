@@ -1,5 +1,4 @@
 set {flags.intro_done} = true
-do GameState.request_player_name()
 Mind Harvest — Dr. {game.player_name}, Licensed Therapist.
 Day one. The lease is signed, the couch is second-hand, and the coffee machine is borrowed.
 Bea, who apparently came with the building, is already at the front desk — coffee in hand, eyebrow raised.

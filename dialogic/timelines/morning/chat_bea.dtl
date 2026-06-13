@@ -4,7 +4,8 @@ if {game.bea_relationship} == 0:
 	narrator: "Bea glances up from her magazine."
 	narrator: "One eyebrow, as usual, doing most of the work."
 	bea: "You're going to want to know where the coffee is."
-	- "Good morning. I'm {game.player_name}tor —"
+	- "Good morning. I'm —"
+		[text_input var="game.player_name" text="Your name:" placeholder="Adrian" default="Adrian"]
 		bea: "I know who you are, {game.player_name}."
 		narrator: "She turns a page."
 		bea: "You signed my paycheck."
