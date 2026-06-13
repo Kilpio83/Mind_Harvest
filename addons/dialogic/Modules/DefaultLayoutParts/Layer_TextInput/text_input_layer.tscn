@@ -1,20 +1,68 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvgf4c6gg0tsy"]
+[gd_scene load_steps=9 format=3 uid="uid://cvgf4c6gg0tsy"]
 
 [ext_resource type="Script" uid="uid://cjdvjwjrj86sj" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.gd" id="1_7ahrn"]
 [ext_resource type="Script" uid="uid://biqpjv0qyefvf" path="res://addons/dialogic/Modules/TextInput/node_text_input.gd" id="1_mxdep"]
+[ext_resource type="FontFile" uid="uid://bndegb8h2ub63" path="res://assets/fonts/Mulish-SemiBold.ttf" id="3_font"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dpjm"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 26.0
+content_margin_top = 16.0
+content_margin_right = 26.0
+content_margin_bottom = 16.0
+bg_color = Color(0.1882353, 0.17254902, 0.15294118, 0.972549)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
-[sub_resource type="Theme" id="Theme_8xwp1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.11, 0.10, 1.0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input_focus"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.11, 0.10, 1.0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.886, 0.639, 0.243, 1.0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+bg_color = Color(0.25, 0.23, 0.20, 1.0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+bg_color = Color(0.886, 0.639, 0.243, 1.0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="TextInputLayer" type="Control"]
 layout_mode = 3
@@ -33,10 +81,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -50.0
-offset_right = 210.0
-offset_bottom = 50.0
+offset_left = -410.0
+offset_top = -85.0
+offset_right = 410.0
+offset_bottom = 85.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -48,29 +96,48 @@ metadata/_edit_layout_mode = 1
 
 [node name="TextInputPanel" type="PanelContainer" parent="DialogicNode_TextInput"]
 unique_name_in_owner = true
-self_modulate = Color(0, 0, 0, 0.780392)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3dpjm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DialogicNode_TextInput/TextInputPanel"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="TextLabel" type="Label" parent="DialogicNode_TextInput/TextInputPanel/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
-theme = SubResource("Theme_8xwp1")
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(0.953, 0.933, 0.890, 1.0)
 text = "Please enter some text:"
 autowrap_mode = 3
 
 [node name="InputField" type="LineEdit" parent="DialogicNode_TextInput/TextInputPanel/VBoxContainer"]
 layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 23
+theme_override_colors/font_color = Color(0.953, 0.933, 0.890, 1.0)
+theme_override_colors/font_placeholder_color = Color(0.953, 0.933, 0.890, 0.4)
+theme_override_colors/caret_color = Color(0.886, 0.639, 0.243, 1.0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+theme_override_styles/focus = SubResource("StyleBoxFlat_input_focus")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_input")
 
 [node name="ConfirmationButton" type="Button" parent="DialogicNode_TextInput/TextInputPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(0.953, 0.933, 0.890, 1.0)
+theme_override_colors/font_hover_color = Color(0.1882353, 0.17254902, 0.15294118, 1.0)
+theme_override_colors/font_pressed_color = Color(0.1882353, 0.17254902, 0.15294118, 1.0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_normal")
 text = "Confirm"
