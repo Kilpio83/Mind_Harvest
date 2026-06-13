@@ -1,14 +1,14 @@
 [background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 set {flags.met_kamila} = true
 join bea rightmost [mirrored="true"]
-bea: {game.player_first}? Your first official patient is currently turning our waiting room into a high-stakes psychological battlefield. Her name is Kamila Vance.
+bea: Boss! Boss, emergency! Well, not a medical emergency, but definitely a spiritual-gravitational crisis. Your very first carpet-slide lottery winner is currently in the waiting room, and she is... entirely terrifying.
 player: Is there an issue, Bea? Did she refuse to fill out the medical history form?
-bea: Oh, she filled it out. In flawless, terrifyingly neat calligraphy. But right now, she's wearing an athletic outfit that looks less like clothing and more like a collection of strategically placed structural ribbons.
-bea: And the real kicker? She is executing a perfect, vertical over-split against our main bookshelf while silently judging the chronological order of your DSM-5 manuals.
+bea: Oh, she filled it out. In calligraphy so flawless and neat it looks like it was printed by a high-end laser. But right now, she's wearing an athletic outfit that looks less like clothing and more like a collection of strategically placed structural ribbons.
+bea: And the real kicker? She is currently executing a perfect, vertical over-split against our main bookshelf while silently judging the chronological order of your DSM-5 manuals. Her leg is completely defying physics, Doctor! I walked past her, tripped over my own shoelaces out of pure intimidation, and she didn't even blink.
 player: [i]Five years of grueling academic training. Thousands of pages on neurosis, transference, and cognitive behavioral frameworks. I thought I was armed to the teeth with theory. But standing on the threshold of my own practice, the safe, pristine world of textbooks feels incredibly distant.[/i]
 player: [i]It's as if I've been pulled out of a sterile classroom and dropped directly into an entirely unfamiliar arena. The rules of reality are shifting, the air smells intensely of premium sandalwood, and my very first patient is already dictating the terms of engagement before I even step outside.[/i]
-bea: Word of advice, boss\: if she starts talking about aligning your cosmic vectors or asks you to check her flexibility, do not look her directly in the eyes. I can smell the impending malpractice lawsuits from here.
-bea: Remember the system\: two knocks on the wall means "I'm bringing tea." Three knocks means "I'm calling the medical board to report a casualty." Good luck. You're going to need it.
+bea: Word of advice, Doctor\: if she starts talking about aligning your cosmic vectors or asks you to check her flexibility, do not look her directly in the eyes. I can already smell the impending malpractice lawsuits.
+bea: I set up a wall-thumping safety system just in case. One loud thump on the wall means I'm bringing tea. Two thumps means I tripped over the rug again. Three frantic thumps means save me, she's judging my posture and I need backup. Good luck, Boss! Don't let her bend you into a pretzel!
 leave bea
 narrator: The heavy oak door glides open without making a single sound. Kamila steps into the office, moving with a terrifyingly deliberate, predatory economy of motion.
 join kamila (Pride) leftmost
@@ -236,13 +236,13 @@ kamila (Pride): So remember this when we begin Session Two\: You aren't the one 
 narrator: She pulls away instantly, gives you a chilling, triumphant wink, and slips out the door, shutting it with a loud, resounding click.
 leave kamila
 join bea rightmost [mirrored="true"]
-bea: {game.player_first}... tell me you recorded that session, because if you didn't, the police are going to have a really hard time figuring out your cause of death.
+bea: Doc... tell me you recorded that session. Because if you didn't, the local police are going to have a really hard time figuring out your cause of death. Is your spine still in one piece? Are we alive?
 player: She... she has my financial records, Bea. She knows exactly how critical it is for me to keep this office open.
-bea: Great. Fantastic. My new boss is being psychologically blackmailed by a hyper-flexible yoga tyrant on literally Day One of his career.
-bea: You looked into the abyss, {game.player_first}, and the abyss just gave you her private phone number and a threat to ruin your life. What's our play?
+bea: What?! Oh no, no, no. My shiny new Boss is being psychologically blackmailed by a hyper-flexible yoga tyrant on literally hour one of his career! This is a complete administrative catastrophe!
+bea: I was so excited about the carpet slide files, but I didn't mean we should sign up to be hunted! She looked right through me in the lobby, Doc. I got so nervous I tried to hide behind a coat rack, but I knocked it over. Twice! What is our play here?
 player: [i]Everything I learned in those pristine lecture halls feels completely useless against a woman who treats this practice like her personal chessboard. She has raised the stakes to an extreme degree, and now the choice is entirely mine.[/i]
 player: [i]I can treat this strictly as a clinical challenge to cure a profound neurosis, I can meet her match on a purely personal level, or I can find a way to navigate this leverage entirely to my own advantage. The board is set, and every single move from here on out is going to be a massive gamble.[/i]
-player: Open the Hypothesis Board, Bea. We have exactly forty-eight hours to map her mind before she steps back into this room.
+player: Help me clean up these files, Bea. Then open the Hypothesis Board. We have exactly forty-eight hours to map her mind before she steps back into this room.
 leave --All--
 [add_note patient="kamila" note="Kamila Vance. Yoga instructor, control-oriented personality. Insomnia and psychosomatic tension are byproducts of exhaustive self-domination. Uses physical proximity and provocative framing as deflection and assessment tools. Knows about the clinic's financial situation — leverage is already on the table."]
 do PatientManager.mark_session_done("kamila")
