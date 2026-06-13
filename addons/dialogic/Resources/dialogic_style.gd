@@ -192,7 +192,8 @@ func get_inheritance_root() -> DialogicStyle:
 func merge_layer_infos(new_layer_info:Dictionary, ancestor_info:Dictionary) -> Dictionary:
 	var combined := new_layer_info.duplicate(true)
 
-	combined.path = ancestor_info.path
+	if combined.path.is_empty():
+		combined.path = ancestor_info.path
 	combined.overrides.merge(ancestor_info.overrides)
 
 	return combined

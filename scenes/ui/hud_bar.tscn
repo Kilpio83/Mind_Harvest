@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://luc2ti00uehn" path="res://scripts/ui/hud_bar.gd" id="1_j4ipw"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
 content_margin_left = 20.0
 content_margin_top = 10.0
@@ -67,47 +65,6 @@ vertical_alignment = 1
 [node name="Spacer" type="Control" parent="Panel/Row" unique_id=2055233589]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="DialogueTools" type="HBoxContainer" parent="Panel/Row"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 18
-
-[node name="HistoryBtn" type="Button" parent="Panel/Row/DialogueTools"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-theme_override_colors/font_color = Color(0.953, 0.933, 0.890, 0.75)
-theme_override_colors/font_hover_color = Color(0.886, 0.639, 0.243, 1)
-theme_override_colors/font_pressed_color = Color(0.886, 0.639, 0.243, 1)
-theme_override_colors/font_focus_color = Color(0.953, 0.933, 0.890, 0.75)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_btn")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_btn")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_btn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_btn")
-text = "History"
-flat = true
-
-[node name="HudSep" type="Label" parent="Panel/Row/DialogueTools"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.953, 0.933, 0.89, 0.25)
-theme_override_font_sizes/font_size = 13
-text = "·"
-vertical_alignment = 1
-
-[node name="AutoBtn" type="Button" parent="Panel/Row/DialogueTools"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-theme_override_colors/font_color = Color(0.953, 0.933, 0.890, 0.75)
-theme_override_colors/font_hover_color = Color(0.886, 0.639, 0.243, 1)
-theme_override_colors/font_pressed_color = Color(0.886, 0.639, 0.243, 1)
-theme_override_colors/font_focus_color = Color(0.953, 0.933, 0.890, 0.75)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_btn")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_btn")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_btn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_btn")
-text = "Auto"
-flat = true
-toggle_mode = true
 
 [node name="Right" type="HBoxContainer" parent="Panel/Row" unique_id=326548585]
 layout_mode = 2
