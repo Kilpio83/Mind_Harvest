@@ -3,7 +3,7 @@ extends CanvasLayer
 ## All structure is in patient_file_view.tscn + patient_tab_page.tscn.
 ## This script is orchestration + tooltip positioning + photo popup only.
 
-@onready var _close_btn:   Button          = $Panel/VBox/CloseButton
+@onready var _close_btn:   Button          = $Panel/VBox/Header/CloseButton
 @onready var _photo_popup: Control         = $PhotoPopup
 @onready var _popup_photo: TextureRect     = $PhotoPopup/PopupPhoto
 @onready var _popup_close: Button          = $PhotoPopup/PopupClose

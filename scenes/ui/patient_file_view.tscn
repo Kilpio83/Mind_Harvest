@@ -14,10 +14,10 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tooltip"]
 content_margin_left = 12.0
@@ -63,6 +63,18 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="VBox" type="VBoxContainer" parent="Panel" unique_id=1384116160]
 layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="Panel/VBox" unique_id=111111100]
+layout_mode = 2
+
+[node name="HeaderSpacer" type="Control" parent="Panel/VBox/Header" unique_id=111111101]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="Panel/VBox/Header" unique_id=461637972]
+layout_mode = 2
+text = "✕  Close"
 
 [node name="Tabs" type="TabContainer" parent="Panel/VBox" unique_id=907946528]
 custom_minimum_size = Vector2(0, 520)
@@ -86,10 +98,6 @@ visible = false
 layout_mode = 2
 patient_id = "kamila"
 metadata/_tab_index = 2
-
-[node name="CloseButton" type="Button" parent="Panel/VBox" unique_id=461637972]
-layout_mode = 2
-text = "Close"
 
 [node name="PhotoPopup" type="Control" parent="." unique_id=566634014]
 visible = false
