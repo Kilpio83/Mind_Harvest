@@ -1,7 +1,7 @@
 narrator: Marisol is seven minutes late. She doesn't apologize for this.
 narrator: She's carrying a leather-bound notebook clutched to her chest like a recovered relic.
 join marisol (Neutral) leftmost
-marisol: "Dr. {game.player_name}. I've been writing."
+marisol: "{game.player_formal}. I've been writing."
 narrator: She says it like a confession and a boast simultaneously.
 player: "The block lifted?"
 marisol: "The block redirected."
@@ -64,7 +64,7 @@ if {check_result}:
 		narrator: A long silence.
 		player: "You write connection as inevitable because in practice it keeps not being."
 		narrator: She looks at the notebook.
-		marisol: "That's a confident interpretation, Dr. {game.player_name}."
+		marisol: "That's a confident interpretation, {game.player_formal}."
 		player: "Is it wrong?"
 		narrator: She puts the cigarette holder down.
 		marisol: "...My cats are named after qualities my husbands lacked. Constancy. Presence. Sincerity."

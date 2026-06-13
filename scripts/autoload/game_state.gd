@@ -88,14 +88,11 @@ func open_save_menu() -> void:
 	get_tree().root.add_child(scene.instantiate())
 
 
-func request_player_name() -> void:
-	Dialogic.paused = true
-	var dialog: Node = load("res://scenes/ui/name_input_dialog.tscn").instantiate()
-	get_tree().root.add_child(dialog)
-	dialog.name_confirmed.connect(func(player_name: String) -> void:
-		Dialogic.VAR.set_variable("game.player_name", player_name)
-		Dialogic.paused = false
-	)
+func build_player_name() -> void:
+	var first := str(Dialogic.VAR.get_variable("game.player_first", "Adrian"))
+	var last := str(Dialogic.VAR.get_variable("game.player_last", "Cole"))
+	Dialogic.VAR.set_variable("game.player_formal", "Dr. " + last)
+	Dialogic.VAR.set_variable("game.player_name", first)
 
 
 const MORNING_ACTIVITY_FLAGS := [

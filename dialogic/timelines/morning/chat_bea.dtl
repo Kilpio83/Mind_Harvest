@@ -4,13 +4,10 @@ if {game.bea_relationship} == 0:
 	narrator: "Bea glances up from her magazine."
 	narrator: "One eyebrow, as usual, doing most of the work."
 	bea: "You're going to want to know where the coffee is."
-	- "Good morning. I'm —"
-		[text_input var="game.player_name" text="Your name:" placeholder="Adrian" default="Adrian"]
-		bea: "I know who you are, {game.player_name}."
+	- "Good morning."
+		bea: "{game.player_formal}."
 		narrator: "She turns a page."
-		bea: "You signed my paycheck."
-		narrator: "A pause."
-		bea: "It cleared. We're fine."
+		bea: "Paycheck cleared. We're fine."
 	- "What's on the schedule?"
 		bea: "One cancellation, two confirmations, and someone who called to ask if the couch was comfortable."
 		narrator: "She turns a page without looking at it."
@@ -19,7 +16,7 @@ if {game.bea_relationship} == 0:
 else:
 	if {game.bea_relationship} <= 2:
 		narrator: "Bea looks up the moment you walk in. She always does."
-		bea: "{game.player_name}."
+		bea: "{game.player_first}."
 		narrator: "The full vocabulary of a greeting."
 		if {flags.met_anna}:
 			bea: "Your accountant rearranged the waiting room chairs last session. By colour."

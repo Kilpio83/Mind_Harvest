@@ -4,7 +4,7 @@ bea: Marisol Reyes, 11 AM. Writer's block. She brought her own chair cushion.
 join marisol (Neutral) leftmost
 narrator: She doesn't so much enter as arrive. There's a distinction.
 narrator: The cigarette holder has no cigarette. It doesn't need one. It's doing its job.
-marisol (Annoyance): "Dr. {game.player_name}."
+marisol (Annoyance): "{game.player_formal}."
 narrator: The word lands like a ship name.
 player: "Ms. Reyes."
 marisol (Caring): "Marisol. The pen name is for the books."

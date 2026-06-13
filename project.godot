@@ -114,6 +114,10 @@ variables={
 "last_random_stat": "",
 "morning_slots_left": 2,
 "phase": "morning",
+"player_first": "Adrian",
+"player_formal": "Dr. Cole",
+"player_gender": "male",
+"player_last": "Cole",
 "player_name": "Adrian"
 },
 "patients": {

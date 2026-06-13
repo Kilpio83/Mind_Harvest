@@ -1,7 +1,7 @@
 [background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 set {flags.met_kamila} = true
 join bea rightmost [mirrored="true"]
-bea: {game.player_name}? Your first official patient is currently turning our waiting room into a high-stakes psychological battlefield. Her name is Kamila Vance.
+bea: {game.player_first}? Your first official patient is currently turning our waiting room into a high-stakes psychological battlefield. Her name is Kamila Vance.
 player: Is there an issue, Bea? Did she refuse to fill out the medical history form?
 bea: Oh, she filled it out. In flawless, terrifyingly neat calligraphy. But right now, she's wearing an athletic outfit that looks less like clothing and more like a collection of strategically placed structural ribbons.
 bea: And the real kicker? She is executing a perfect, vertical over-split against our main bookshelf while silently judging the chronological order of your DSM-5 manuals.
@@ -14,11 +14,11 @@ narrator: The heavy oak door glides open without making a single sound. Kamila s
 join kamila (Pride) leftmost
 kamila (Disapproval): A bit stark, isn't it? The ambient lighting is sub-optimal, the Feng Shui is entirely congested, and your desk...
 narrator: She runs a sharply manicured fingernail along the edge of the wood, creating a crisp, unnerving clicking sound that echoes through the quiet room.
-kamila (Disapproval): Cheap veneer. It lacks grounding. It screams 'fresh out of graduate school and drowning in debt.' But your posture, Dr. {game.player_name}... now that is fascinatingly defensive.
+kamila (Disapproval): Cheap veneer. It lacks grounding. It screams 'fresh out of graduate school and drowning in debt.' But your posture, {game.player_formal}... now that is fascinatingly defensive.
 player: Welcome, Ms. Vance. I assure you my qualifications are quite real. Please, make yourself comfortable.
 kamila (Amusement): Comfortable? Comfort is the opium of the unaligned.
 narrator: She halts exactly three paces away from your chair, locking her eyes onto yours with unblinking intensity.
-kamila (Curiosity): You're hyperventilating slightly. Your chest is moving two centimeters too high. Are you intimidated by me, {game.player_name}? Or is it just the room temperature?
+kamila (Curiosity): You're hyperventilating slightly. Your chest is moving two centimeters too high. Are you intimidated by me, {game.player_first}? Or is it just the room temperature?
 - "In this room, we focus on internal architecture rather than furniture, Ms. Vance. And I prefer we maintain professional titles." | [if {stats.composure} >= 1] [else="disable" alt_text="Composure 1 required"]
 	set {flags.kamila.CH_KAM_S1_01} = "OPT_KAM_S1_01_01"
 	jump Path_Clinical_Intro
@@ -34,7 +34,7 @@ do PatientManager.add_therapy("kamila", 4)
 do PatientManager.add_bond("kamila", -2)
 narrator: Kamila's eyes narrow slightly, glinting like polished glass as a slow, razor-thin smile touches her lips.
 kamila (Amusement): "Ms. Vance." A verbal shield. How wonderfully retro.
-kamila (Disapproval): You're hiding behind the weight of your newly minted diploma, aren't you, Dr. {game.player_name}? You think that if you wrap yourself tightly enough in clinical jargon, I won't notice how fast your carotid artery is pulsing right now.
+kamila (Disapproval): You're hiding behind the weight of your newly minted diploma, aren't you, {game.player_formal}? You think that if you wrap yourself tightly enough in clinical jargon, I won't notice how fast your carotid artery is pulsing right now.
 player: My pulse is quite normal. I am simply establishing the boundaries necessary for effective therapeutic work.
 kamila (Approval): Effective work requires absolute honesty, not a cardboard fortress of professional etiquette. But very well. Let us respect your little rules of engagement. For now.
 narrator: She drops onto the leather couch, fluidly melting into a posture that manages to look completely relaxed yet utterly dominant.
@@ -46,7 +46,7 @@ do PatientManager.add_therapy("kamila", 1)
 do PatientManager.add_bond("kamila", 2)
 kamila (Curiosity): "Unconstrained." An interesting choice of words for someone whose shoulders are currently locked in a minor state of panic.
 narrator: She moves toward the couch, but instead of sitting down normally, she smoothly drapes her torso over the backrest, her hips tilting at a highly deliberate angle.
-kamila (Pride): Space is an illusion, {game.player_name}. Most people are prisoners of chairs, desks, and social expectations. They want to be told exactly where to put their bodies because their minds are completely formless.
+kamila (Pride): Space is an illusion, {game.player_first}. Most people are prisoners of chairs, desks, and social expectations. They want to be told exactly where to put their bodies because their minds are completely formless.
 player: And you prefer to dictate your own geometry?
 kamila (Desire): Always. I appreciate a man who doesn't mind letting me find my own equilibrium. It shows a lack of rigidity. It makes me wonder, though... how far does your flexibility extend when someone truly pushes your boundaries?
 kamila (Disapproval): Because a doctor who bends too easily might just snap when the weight gets too heavy.
@@ -59,7 +59,7 @@ narrator: Kamila's breath catches sharply for a fraction of a second. She halts,
 kamila (Realization): Twelve seconds. A quick tongue and an appetite for conflict. You certainly don't lack nerve, do you?
 player: I simply call out patterns when I see them. You stepped into this room looking for a fight, not a diagnosis.
 kamila (Desire): Most men spend weeks trying to find my trigger points, and here you are, swinging a scalpel like a seasoned surgeon. You think I'm deflecting? Maybe I'm just evaluating the structural integrity of my new caretaker.
-kamila (Desire): Tell me, {game.player_name}... do you always treat your patients with such delicious ruthlessness? It's almost a shame to sit all the way over on the couch now.
+kamila (Desire): Tell me, {game.player_first}... do you always treat your patients with such delicious ruthlessness? It's almost a shame to sit all the way over on the couch now.
 [photo_opportunity id="kamila_desk_lean" patient="kamila" title="The Predatory Stance" description="Kamila testing the boundaries of the desk, challenging the rookie doctor's composure." portrait="res://assets/photos/kamila/kamila_desk_lean.png"]
 jump Merge_After_Intro
 
@@ -71,9 +71,9 @@ narrator: She scoffs softly, tracing the outer seam of her athletic tights with 
 kamila (Disgust): "Wellness." What a bloated, castrated word.
 kamila (Pride): The public thinks yoga is about soft music, lavender mist, and finding inner peace. It's pathetic. It's a commercial lie sold to people who want an excuse to be lazy. True yoga is an act of violent colonization over the self.
 player: Colonization? That is an incredibly aggressive framework for a therapeutic practice.
-kamila (Anger): Because it [i]is[/i] aggressive, {game.player_name}. It is forcing a stubborn, chaotic skeleton into absolute, uncompromising submission. It is reclaiming dominion over flesh that wants to decay and distort.
+kamila (Anger): Because it [i]is[/i] aggressive, {game.player_first}. It is forcing a stubborn, chaotic skeleton into absolute, uncompromising submission. It is reclaiming dominion over flesh that wants to decay and distort.
 narrator: Kamila suddenly stands up. She takes a slow, deliberate step toward your desk, her entire posture shifting into alignment.
-kamila (Pride): Look at my left shoulder. Tell me what you see, Dr. {game.player_name}. Don't look at my chart. Look at [i]me[/i].
+kamila (Pride): Look at my left shoulder. Tell me what you see, {game.player_formal}. Don't look at my chart. Look at [i]me[/i].
 player: [i]Is this another trap? If I look too closely, I'm playing into her hand. If I look away, I fail as an observer. In this professional arena, every micro-expression is a tactical move, and my experience is dangerously low compared to hers.[/i]
 - "Your trapezius is locked in a severe hyper-tonic spasm. It's not geometry, Kamila — it's sheer, unadulterated physical stress." | [if {stats.perception} >= 2] [else="disable" alt_text="Perception 2 required"]
 	set {flags.kamila.CH_KAM_S1_02} = "OPT_KAM_S1_02_01"
@@ -92,7 +92,7 @@ narrator: She freezes instantly, her breath hitching slightly as she looks down 
 kamila (Realization): Hyper-tonic spasm. How clinical. But you're right.
 kamila (Remorse): It's like iron. No matter how much I breathe into it, no matter how much I meditate, it refuses to yield to my command. My own body is staging a miniature mutiny against me.
 player: Because you treat your body like an occupied territory instead of a part of yourself. It's fighting back against your tyranny.
-kamila (Realization): Tyranny? What a fascinatingly heavy word. I don't dominate it out of hatred, {game.player_name}. I dominate it because if I don't, it will fall apart into complete, unmitigated chaos. Just like everything else.
+kamila (Realization): Tyranny? What a fascinatingly heavy word. I don't dominate it out of hatred, {game.player_first}. I dominate it because if I don't, it will fall apart into complete, unmitigated chaos. Just like everything else.
 jump Merge_After_Standoff
 
 label Path_Order_Back
@@ -109,7 +109,7 @@ label Path_Trace_Tension
 do PatientManager.add_therapy("kamila", -3)
 do PatientManager.add_bond("kamila", 6)
 narrator: Her pupils visibly dilate. She takes another half-step forward, her collarbone shifting elegantly beneath the tight fabric of her athletic gear.
-kamila (Desire): And are you brave enough, {game.player_name}? Or are you just a boy playing dress-up in a therapist's suit, using clever words to mask your own racing heart?
+kamila (Desire): And are you brave enough, {game.player_first}? Or are you just a boy playing dress-up in a therapist's suit, using clever words to mask your own racing heart?
 player: [i]The air in this room is getting thick. If Bea walks in right now, I'm going to have to explain why my very first patient is standing close enough for me to count her eyelashes. I have to keep my footing here.[/i]
 player: I am brave enough to handle whatever you bring into this office, Kamila. But right now, you are using your body as a weapon because you are terrified of what happens when we actually start talking about your mind.
 narrator: She lets out a low, breathy laugh, finally shifting her weight back against the edge of the desk.
@@ -125,7 +125,7 @@ else:
 - "The Somatic Control Mechanism" | [if {discoveries.kamila_somatic_control} != true] [else="hide" disco="kamila_somatic_control"]
 - Skip it
 player: Let's return to your clients. You mentioned that their lack of discipline distresses you. Tell me what happens in your studio.
-kamila (Disgust): They are spineless, {game.player_name}. They crawl into my studio like limp pieces of overcooked pasta, begging me to make them feel something. They want an easy shortcut to transcendence. And I refuse to give it to them.
+kamila (Disgust): They are spineless, {game.player_first}. They crawl into my studio like limp pieces of overcooked pasta, begging me to make them feel something. They want an easy shortcut to transcendence. And I refuse to give it to them.
 kamila (Pride): I stretch them until their muscles scream, until their joints pop, until their fragile little egos shatter on the hardwood floor. They weep, they sweat, and then they thank me for "enlightening" them. They crave the pain because they have no structure of their own.
 player: And you embrace that responsibility?
 kamila (Anger): No — I embrace it. But lately... it isn't enough. I go home, I lie down in the dark, and my brain won't shut off.
@@ -150,7 +150,7 @@ narrator: She leans back against the cushions, her eyes tracking your facial mus
 kamila (Disapproval): You think you've figured me out? You think because you read a few case studies on sadism and occupational ego-inflation, you can categorize me like a specimen in a jar?
 player: I don't need a textbook to see that your insomnia is the price you pay for being an absolute tyrant for eight hours a day. Your mind won't sleep because it's still on guard duty, waiting for a rebellion.
 narrator: A sudden, breathless laugh escapes her lips — half irritated, half intensely intrigued.
-kamila (Amusement): Fascinating. You have quite a bite for a beginner, Dr. {game.player_name}. Most people soften their blows. You just drove a rusty spike right into my center of gravity.
+kamila (Amusement): Fascinating. You have quite a bite for a beginner, {game.player_formal}. Most people soften their blows. You just drove a rusty spike right into my center of gravity.
 jump Merge_After_Analysis
 
 label Path_Diagnostic
@@ -163,7 +163,7 @@ narrator: Her hand tightens over her knee, her knuckles turning completely white
 kamila (Anger): Insignificance? You dare call me insignificant? I reshape lives every single day.
 kamila (Remorse): But... it refuses. No matter how much I breathe into it, no matter how much I meditate — the tension never yields.
 narrator: She bites her lower lip gently, turning her gaze away toward the large window.
-kamila (Disapproval): If all you have are footnotes and insults from the university syllabus, {game.player_name}, I might as well go back to treating my clients like putty. Give me something real, or stop wasting my time.
+kamila (Disapproval): If all you have are footnotes and insults from the university syllabus, {game.player_first}, I might as well go back to treating my clients like putty. Give me something real, or stop wasting my time.
 jump Merge_After_Analysis
 
 label Path_Seductive_Insight
@@ -172,17 +172,17 @@ do PatientManager.add_bond("kamila", 7)
 narrator: Her pupils visibly dilate. She slowly rises from the couch, her movements agonizingly deliberate, resembling a predator tracking an unexpected counter-attack.
 kamila (Desire): "Someone strong enough to hold me down..."
 narrator: Her voice drops into a smoky, dangerous register that sends a direct jolt through the quiet office.
-kamila (Desire): That is a highly unprofessional hypothesis, {game.player_name}. A very... provocative thing to say to a woman who can dislocate a man's shoulder with three fingers. Are you volunteering for the position?
+kamila (Desire): That is a highly unprofessional hypothesis, {game.player_first}. A very... provocative thing to say to a woman who can dislocate a man's shoulder with three fingers. Are you volunteering for the position?
 player: I am volunteering to be your doctor. But a doctor has to be able to handle a volatile patient, doesn't he?
 narrator: She leans over your desk once more, her scent of sandalwood and spice completely filling the small space between you.
-kamila (Desire): Or maybe you're just a boy playing with matches, hoping I'll burn your office down just so you can feel alive. Tell me, Dr. {game.player_name}... what happens to a man when he tries to hold down a wildfire?
+kamila (Desire): Or maybe you're just a boy playing with matches, hoping I'll burn your office down just so you can feel alive. Tell me, {game.player_formal}... what happens to a man when he tries to hold down a wildfire?
 player: He either gets burned... or he learns how to control it.
 jump Merge_After_Analysis
 
 label Merge_After_Analysis
 narrator: Kamila glances at the sleek clock on the wall, clicking her tongue in genuine disappointment as the ticking grows louder.
 kamila (Neutral): Our fifty minutes are dissolving, and we've encoded data on barely a fraction of my... irregularities.
-kamila (Curiosity): You're a strange creature, {game.player_name}. You don't have the heavy, sluggish aura of the old doctors who ran this clinic before you. You feel ungrounded. Like you dropped into this chair out of nowhere, completely detached from reality.
+kamila (Curiosity): You're a strange creature, {game.player_first}. You don't have the heavy, sluggish aura of the old doctors who ran this clinic before you. You feel ungrounded. Like you dropped into this chair out of nowhere, completely detached from reality.
 player: I am fully present, Kamila. And I think you know exactly how dangerous that makes me to your little illusions of total control.
 kamila (Amusement): Perhaps. The real question is whether your young bones can withstand the pressure when I decide to truly unleash my weight upon you.
 - "We are done for today, Kamila. For your homework: do not touch your students during adjustments. Observe their chaos without correcting it. Let's see if you can handle being powerless for forty-eight hours." | [if {stats.composure} >= 2] [else="disable" alt_text="Composure 2 required"]
@@ -203,7 +203,7 @@ kamila (Amusement): Perhaps. The real question is whether your young bones can w
 
 label Path_End_Ironclad
 narrator: Her jaw tightens instantly. A visible flicker of genuine frustration crosses her face, followed immediately by an intense look of begrudging respect.
-kamila (Annoyance): "Observe without correcting..." That is... an excruciatingly cruel assignment. You're a bit of a monster under that neat little suit, aren't you, Dr. {game.player_name}?
+kamila (Annoyance): "Observe without correcting..." That is... an excruciatingly cruel assignment. You're a bit of a monster under that neat little suit, aren't you, {game.player_formal}?
 jump Final_Cliffhanger_Beat
 
 label Path_End_Intimate
@@ -211,7 +211,7 @@ if {flags.kamila.CH_KAM_S1_03} == "OPT_KAM_S1_03_03":
 	narrator: Remaining pinned close to your face over the desk, she leans down slightly further, sliding a small, amethyst-tinted card onto your open notebook. The paper is warm, thoroughly saturated with her signature scent.
 else:
 	narrator: She stands up from the couch and glides back over to your desk. Leaning down smoothly, she slides a small, amethyst-tinted card onto your open notebook. The paper is warm, thoroughly saturated with her signature scent.
-kamila (Desire): Consider me booked, {game.player_name}. I'll bring the raw, unvarnished version of myself next time. Make sure you don't blink... you might miss the moment I decide to take your queen.
+kamila (Desire): Consider me booked, {game.player_first}. I'll bring the raw, unvarnished version of myself next time. Make sure you don't blink... you might miss the moment I decide to take your queen.
 jump Final_Cliffhanger_Beat
 
 label Path_End_Standard
@@ -219,8 +219,8 @@ if {flags.kamila.CH_KAM_S1_03} == "OPT_KAM_S1_03_03":
 	narrator: She straightens up fully, stepping back from your desk and smoothing down the fabric of her outfit with a light, dismissive sigh.
 else:
 	narrator: She stands up fully from the couch, smoothing down the fabric of her outfit with a light, dismissive sigh.
-kamila (Disgust): Caffeine isn't my poison, {game.player_name}. But very well. Back to the mundane world of ordinary people.
-kamila (Amusement): Try not to let my geometry haunt your dreams too much tonight, Dr. {game.player_name}. You look like you need the sleep far more than I do.
+kamila (Disgust): Caffeine isn't my poison, {game.player_first}. But very well. Back to the mundane world of ordinary people.
+kamila (Amusement): Try not to let my geometry haunt your dreams too much tonight, {game.player_formal}. You look like you need the sleep far more than I do.
 jump Final_Cliffhanger_Beat
 
 label Final_Cliffhanger_Beat
@@ -228,18 +228,18 @@ narrator: Kamila walks slowly toward the exit. She places her palm on the brass 
 narrator: She turns around slowly, her face entirely expressionless as she drops all remaining masks. She walks back across the room with terrifying, silent speed.
 narrator: Before you can offer a word of protest, she leans completely over your chair, her face inches from your ear, pinning you in place with her gaze.
 update kamila (Neutral)
-kamila: Oh, I almost forgot. I checked your clinic registration before I walked in, {game.player_name}. This practice is entirely in your name, but the lease... the lease requires a minimum patient quota to stay afloat, doesn't it?
+kamila: Oh, I almost forgot. I checked your clinic registration before I walked in, {game.player_first}. This practice is entirely in your name, but the lease... the lease requires a minimum patient quota to stay afloat, doesn't it?
 player: [i]How the hell did she find out about my financial liabilities? That data should be completely confidential![/i]
 narrator: She whispers softly, her lips brushing lightly against your earlobe, sending a violent shiver straight down your spine.
-kamila (Desire): You need me to keep this practice alive, Dr. {game.player_name}. You need my money, and you need my neurosis to prove you aren't a failure.
+kamila (Desire): You need me to keep this practice alive, {game.player_formal}. You need my money, and you need my neurosis to prove you aren't a failure.
 kamila (Pride): So remember this when we begin Session Two\: You aren't the one holding the leash here. We are trapped in this cage together. And next time... I will be the one conducting the dissection.
 narrator: She pulls away instantly, gives you a chilling, triumphant wink, and slips out the door, shutting it with a loud, resounding click.
 leave kamila
 join bea rightmost [mirrored="true"]
-bea: {game.player_name}... tell me you recorded that session, because if you didn't, the police are going to have a really hard time figuring out your cause of death.
+bea: {game.player_first}... tell me you recorded that session, because if you didn't, the police are going to have a really hard time figuring out your cause of death.
 player: She... she has my financial records, Bea. She knows exactly how critical it is for me to keep this office open.
 bea: Great. Fantastic. My new boss is being psychologically blackmailed by a hyper-flexible yoga tyrant on literally Day One of his career.
-bea: You looked into the abyss, {game.player_name}, and the abyss just gave you her private phone number and a threat to ruin your life. What's our play?
+bea: You looked into the abyss, {game.player_first}, and the abyss just gave you her private phone number and a threat to ruin your life. What's our play?
 player: [i]Everything I learned in those pristine lecture halls feels completely useless against a woman who treats this practice like her personal chessboard. She has raised the stakes to an extreme degree, and now the choice is entirely mine.[/i]
 player: [i]I can treat this strictly as a clinical challenge to cure a profound neurosis, I can meet her match on a purely personal level, or I can find a way to navigate this leverage entirely to my own advantage. The board is set, and every single move from here on out is going to be a massive gamble.[/i]
 player: Open the Hypothesis Board, Bea. We have exactly forty-eight hours to map her mind before she steps back into this room.
