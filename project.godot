@@ -118,7 +118,8 @@ variables={
 "player_formal": "Dr. Cole",
 "player_gender": "male",
 "player_last": "Cole",
-"player_name": "Adrian"
+"player_name": "Adrian",
+"player_title": "Mr."
 },
 "patients": {
 "anna": {

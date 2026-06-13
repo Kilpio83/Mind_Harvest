@@ -1,14 +1,50 @@
+[background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 set {flags.intro_done} = true
-[text_input var="game.player_first" text="First name:" placeholder="Adrian" default="Adrian"]
-[text_input var="game.player_last" text="Last name:" placeholder="Cole" default="Cole"]
-- "He / Him"
+narrator: The morning sun cuts through the blinds in sharp, blinding slats, illuminating floating dust motes over a completely immaculate, pristine mahogany desk.
+narrator: The smell of fresh paint, packing cardboard, and high-gloss floor varnish fills the room. It is the overwhelming scent of an absolute, terrifyingly clean slate.
+player: [i]Five years of sitting in safe, crowded lecture halls. Countless exams filled with multiple-choice questions about disorders I've never actually seen in a real human being. The ink on my psychology license is practically still wet.[/i]
+player: [i]I spent literally every cent of my savings to open this solo practice immediately after graduation. No residency safety blanket. Just a mountain of student debt, an unforgiving commercial lease, and a completely empty filing cabinet. Today, I am officially a psychologist... and I have absolutely no idea what is about to walk through that door.[/i]
+narrator: A sudden, violent thump rattles the frosted glass door. It sounds like a heavy object colliding with the frame at high speed.
+narrator: A beat of absolute silence follows. Then, the doorknob jiggles frantically, and the door bursts open. A young woman stumbles into the room sideways, desperately balancing a heavily overloaded metallic clipboard, a box of legal folders, and a paper cup of coffee.
+join bea leftmost
+narrator: Gasping, she executes a chaotic but miraculous recovery as she drops the box onto your desk with a resounding crash.
+bea: I'm upright! Nobody panic, I am entirely vertical!
+narrator: She stands there, breathing heavily, quickly adjusting her glasses which have slid entirely down to the tip of her nose. Her sharp tailored pencil skirt is slightly twisted, and a single, stray sticky note is stuck directly to her forearm. She beams at you with a massive, absolutely radiant smile.
+bea: Good morning, Doctor! Welcome to your first official morning in the arena! I brought you a celebratory pastry, but I accidentally sat on it in the elevator, so now it's more of a... celebratory pancake. I assumed you wouldn't mind.
+player: Good morning. You must be Beatrix. The landlord mentioned you came with the lease.
+bea: [i]Bea[/i] is fine, Boss! 'Beatrix' sounds like a medieval queen who orders executions, and I am entirely too soft for that. And yes! The last therapist packed his bags in a panic and fled to a tropical island with no extradition laws, but he left me behind. Think of me as your highly enthusiastic, slightly gravitationally challenged administrative anchor!
+player: Gravitationally challenged?
+bea: Physics and I have an ongoing, highly toxic relationship, Doctor. Floors just jump out at me sometimes. But what I lack in spatial awareness, I make up for in pure, unadulterated organizational loyalty! I managed to save all our client software licenses from the previous tenant before the bank locked the servers.
+player: Well, I'm glad to have you on team survival, Bea. I could definitely use the help today.
+bea: Exactly! We are underdogs, Doctor! A fresh graduate and a girl who regularly fights her own shoelaces against the world. It's poetic. Now, before the medical board realizes we're open and audits our database, we need to initialize your digital profile. Let's lock in your data so the system recognizes you as the official captain of this ship.
+bea: First variable: what administrative box are we checking for your gender identity? The registry software requires this to automatically format the formal headers on your official diagnostic reports.
+- "Male."
 	set {game.player_gender} = "male"
-- "She / Her"
+	set {game.player_title} = "Mr."
+- "Female."
 	set {game.player_gender} = "female"
-- "They / Them"
-	set {game.player_gender} = "neutral"
+	set {game.player_title} = "Ms."
+- "Non-binary."
+	set {game.player_gender} = "nonbinary"
+	set {game.player_title} = "Mx."
+bea: Perfect! The digital registry has swallowed the parameters without crashing. Progress! Now, type in your official, legal first name. The one your professors inevitably stumbled over during your graduation ceremony.
+[text_input var="game.player_first" text="First name:" placeholder="Adrian" default="Adrian"]
+bea: And your legal surname? Make sure it's spelled exactly how you want it to look on our front door plaque when we become notoriously famous.
+[text_input var="game.player_last" text="Last name:" placeholder="Cole" default="Cole"]
 do GameState.build_player_name()
-Mind Harvest — {game.player_formal}, Licensed Therapist.
-Day one. The lease is signed, the couch is second-hand, and the coffee machine is borrowed.
-Bea, who apparently came with the building, is already at the front desk — coffee in hand, eyebrow raised.
+narrator: Bea aggressively types your inputs into her clipboard. In her excitement, her stylus flies out of her hand, bounces off your empty filing cabinet, and lands perfectly back in her open palm. She blinks, completely stunned by her own accidental luck.
+bea: Did you see that?! I am basically a clinical ninja. Profile is saved, encrypted, and live! Welcome to the real world, {game.player_formal}.
+player: Good catch, Bea. Now, what does our actual intake queue look like today? Do we have any patients lined up?
+narrator: Grinning brightly, Bea leans her hip against your desk, entirely too excited.
+bea: Oh, we have a magnificent pool of potential disasters, Boss! I filtered our incoming requests through a highly advanced, proprietary selection methodology this morning.
+player: A proprietary methodology? What did you do?
+bea: Well, I was carrying the giant box of printed applications up the hallway, and I tripped spectacularly over the threshold of your door. The papers flew absolutely everywhere. It was majestic, really.
+player: Bea...
+narrator: Bea waves her hands defensively.
+bea: No, wait, it's genius! I decided that the three files that managed to slide all the way under your desk are our new clientele. It's a cosmic screening process, Doctor! Fate clearly chose them. Plus, I checked their files while I was on the floor, and they are all fabulously wealthy high-society types who are in massive denial about their problems. They're going to pay our commercial rent for months!
+player: [i]My very first real-world cases were selected entirely by a physical collision and a carpet slide. The parameters are locked, my textbook theories are completely useless, and a wave of expensive chaos is about to crash directly into this room. There's absolutely no turning back now. Let's see what kind of world I've stumbled into.[/i]
+bea: Take a deep breath, Boss. I'm going back to the front desk to clean up the rest of the paper hurricane and unlock the primary entrance. I've got your back out there! Let's go heal some minds, Doctor.
+narrator: Bea turns around to exit, trips slightly on the edge of the rug, catches herself with a little hop, and zips out of the door with a cheerful wave. She leaves a thoroughly warm, energetic, and completely unpretentious life bouncing off the sterile walls. The countdown to your first official session has officially begun.
+leave bea
+do PatientManager.add_bea_relationship(1)
 jump morning_menu/
