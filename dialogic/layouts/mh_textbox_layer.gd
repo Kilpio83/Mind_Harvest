@@ -10,6 +10,7 @@ var _generation := 0
 
 var _auto_btn: Button
 var _skip_btn: Button
+var _ctrl_row: HBoxContainer
 var _sync_t    := 0.0
 var _auto_state: int  = 0   # 0=off  1=normal  2=fast
 var _base_fixed_delay: float    = 1.0
@@ -36,11 +37,12 @@ func _build_controls() -> void:
 	if ResourceLoader.exists("res://assets/fonts/Mulish-SemiBold.ttf"):
 		font = load("res://assets/fonts/Mulish-SemiBold.ttf")
 
-	var row := HBoxContainer.new()
-	row.size_flags_horizontal = Control.SIZE_SHRINK_END
-	row.size_flags_vertical   = Control.SIZE_SHRINK_END
-	row.add_theme_constant_override("separation", 8)
-	panel.add_child(row)
+	_ctrl_row = HBoxContainer.new()
+	_ctrl_row.size_flags_horizontal = Control.SIZE_SHRINK_END
+	_ctrl_row.size_flags_vertical   = Control.SIZE_SHRINK_END
+	_ctrl_row.add_theme_constant_override("separation", 8)
+	panel.add_child(_ctrl_row)
+	var row := _ctrl_row
 
 	var history_btn := _make_btn("History", false, font)
 	history_btn.pressed.connect(_on_history_pressed)
@@ -175,11 +177,29 @@ func _check_overflow() -> void:
 	await get_tree().process_frame
 	if gen != _generation or not _dialog_text.revealing:
 		return
-	if _dialog_text.get_content_height() <= _dialog_text.size.y + 2:
+
+	# get_combined_minimum_size gives the actual button height, not the container fill height
+	var row_h    := maxf(_ctrl_row.get_combined_minimum_size().y if is_instance_valid(_ctrl_row) else 0.0, 20.0)
+	var usable_h := _dialog_text.size.y - row_h
+
+	if _dialog_text.get_content_height() <= usable_h + 2:
 		return
 
-	var visible_lines := _dialog_text.get_visible_line_count()
+	# Count lines whose top starts within the usable area (buttons float on top so
+	# the bottom of the last line may overlap them slightly — that's acceptable)
+	var line_count    := _dialog_text.get_line_count()
+	var visible_lines := 0
+	for i in range(line_count):
+		var line_top := _dialog_text.get_line_offset(i)
+		if line_top < usable_h:
+			visible_lines += 1
+		else:
+			break
+
 	if visible_lines <= 0:
+		return
+	# All lines start in the usable area — last line may overlap buttons slightly, skip paging
+	if visible_lines >= line_count:
 		return
 
 	var parsed := _dialog_text.get_parsed_text()
@@ -197,7 +217,7 @@ func _check_overflow() -> void:
 	var raw := _dialog_text.text
 	_page_queue.push_back(raw.substr(cutoff).lstrip(" "))
 	_dialog_text.revealing = false
-	_dialog_text.text = raw.substr(0, cutoff).rstrip(" ")
+	_dialog_text.text = raw.substr(0, cutoff).rstrip(" ") + " ..."
 	_dialog_text.finish_text(true)
 
 
