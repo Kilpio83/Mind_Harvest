@@ -17,7 +17,7 @@ player: Gravitationally challenged?
 bea: Physics and I have an ongoing, highly toxic relationship, Doctor. Floors just jump out at me sometimes. But what I lack in spatial awareness, I make up for in pure, unadulterated organizational loyalty! I managed to save all our client software licenses from the previous tenant before the bank locked the servers.
 player: Well, I'm glad to have you on team survival, Bea. I could definitely use the help today.
 bea: Exactly! We are underdogs, Doctor! A fresh graduate and a girl who regularly fights her own shoelaces against the world. It's poetic. Now, before the medical board realizes we're open and audits our database, we need to initialize your digital profile. Let's lock in your data so the system recognizes you as the official captain of this ship.
-bea: First variable: what administrative box are we checking for your gender identity? The registry software requires this to automatically format the formal headers on your official diagnostic reports.
+bea: First variable\: what administrative box are we checking for your gender identity? The registry software requires this to automatically format the formal headers on your official diagnostic reports.
 - "Male."
 	set {game.player_gender} = "male"
 	set {game.player_title} = "Mr."
@@ -28,9 +28,9 @@ bea: First variable: what administrative box are we checking for your gender ide
 	set {game.player_gender} = "nonbinary"
 	set {game.player_title} = "Mx."
 bea: Perfect! The digital registry has swallowed the parameters without crashing. Progress! Now, type in your official, legal first name. The one your professors inevitably stumbled over during your graduation ceremony.
-[text_input var="game.player_first" text="First name:" placeholder="Adrian" default="Adrian"]
+[text_input text="First name:" var="game.player_first" placeholder="Adrian" default="Adrian"]
 bea: And your legal surname? Make sure it's spelled exactly how you want it to look on our front door plaque when we become notoriously famous.
-[text_input var="game.player_last" text="Last name:" placeholder="Cole" default="Cole"]
+[text_input text="Last name:" var="game.player_last" placeholder="Cole" default="Cole"]
 do GameState.build_player_name()
 narrator: Bea aggressively types your inputs into her clipboard. In her excitement, her stylus flies out of her hand, bounces off your empty filing cabinet, and lands perfectly back in her open palm. She blinks, completely stunned by her own accidental luck.
 bea: Did you see that?! I am basically a clinical ninja. Profile is saved, encrypted, and live! Welcome to the real world, {game.player_formal}.
