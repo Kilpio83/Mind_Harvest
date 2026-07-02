@@ -38,7 +38,7 @@ else:
 if {flags.last_photo_success}:
 	narrator: She's watching your face. This time she doesn't look like she's mapping responses. She just looks like she wants to know what you think.
 	do PatientManager.add_therapy("marisol", 3)
-- What did you learn from writing him? | [if {patients.marisol.therapy_progress} >= 50] [else="disable" alt_text="need 50 therapy"]
+- What did you learn from writing him? | [if {patients.marisol.therapy_progress} >= 50] [else="disable"]
 	marisol: "That I am a very good novelist."
 	narrator: A beat.
 	marisol: "And that I have been using very good novelists as an excuse not to be a person."

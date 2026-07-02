@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wc8sm5jwg2k7"
+path="res://.godot/imported/Cosy therapist office, ambient sound of the city s.mp3-bcda594f8f6fc58a7bc612a7eddad483.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Cosy therapist office, ambient sound of the city s.mp3"
+dest_files=["res://.godot/imported/Cosy therapist office, ambient sound of the city s.mp3-bcda594f8f6fc58a7bc612a7eddad483.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -58,7 +58,7 @@ narrator: She uncaps the cigarette holder. Recaps it.
 if {check_result}:
 	do GameState.add_stat_xp("intellect", 1)
 	narrator: Three divorced husbands. Six books. Elaborate pirate fantasies. A very specific chapter about a therapist. The pattern is not subtle once you see it — she builds perfectly ordered worlds where desire is requited and connection is inevitable, because the real version has kept not being.
-	- Marisol. The block isn't in the writing. | [if {patients.marisol.therapy_progress} >= 45] [else="disable" alt_text="need 45 therapy"]
+	- Marisol. The block isn't in the writing. | [if {patients.marisol.therapy_progress} >= 45] [else="disable"]
 		marisol: "I beg your—"
 		player: "You can write. You wrote this. What you're blocked on isn't the page."
 		narrator: A long silence.

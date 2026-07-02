@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/dice_roll_overlay.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.063, 0.055, 0.043, 0.97)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.886, 0.639, 0.243, 0.35)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.031, 0.027, 0.024, 1.0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="DiceRollOverlay" type="CanvasLayer"]
+layer = 22
+script = ExtResource("1_script")
+
+[node name="BeatOverlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.886, 0.639, 0.243, 0.0)
+
+[node name="RollWidget" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 20.0
+offset_right = 170.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="RollWidget"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_bottom = 13
+
+[node name="VBox" type="VBoxContainer" parent="RollWidget/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="StatRow" type="HBoxContainer" parent="RollWidget/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="StatName" type="Label" parent="RollWidget/Margin/VBox/StatRow"]
+layout_mode = 2
+text = "PERCEPTION CHECK"
+theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
+theme_override_font_sizes/font_size = 11
+vertical_alignment = 1
+
+[node name="StatSpacer" type="Control" parent="RollWidget/Margin/VBox/StatRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChanceLabel" type="Label" parent="RollWidget/Margin/VBox/StatRow"]
+layout_mode = 2
+text = "47%"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.45)
+theme_override_font_sizes/font_size = 11
+vertical_alignment = 1
+
+[node name="BarStack" type="Control" parent="RollWidget/Margin/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 11)
+size_flags_horizontal = 3
+
+[node name="RollBar" type="ProgressBar" parent="RollWidget/Margin/VBox/BarStack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+min_value = 0.0
+max_value = 100.0
+value = 0.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+
+[node name="ThresholdMark" type="ColorRect" parent="RollWidget/Margin/VBox/BarStack"]
+layout_mode = 0
+position = Vector2(0, 0)
+size = Vector2(2, 11)
+color = Color(0.886, 0.639, 0.243, 0.9)
+mouse_filter = 2
+
+[node name="InfoRow" type="HBoxContainer" parent="RollWidget/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RollLabel" type="Label" parent="RollWidget/Margin/VBox/InfoRow"]
+layout_mode = 2
+text = "d100 : 00"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.45)
+theme_override_font_sizes/font_size = 11
+
+[node name="InfoSpacer" type="Control" parent="RollWidget/Margin/VBox/InfoRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NeedLabel" type="Label" parent="RollWidget/Margin/VBox/InfoRow"]
+layout_mode = 2
+text = "need < 40"
+theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.45)
+theme_override_font_sizes/font_size = 11
+
+[node name="ResultLabel" type="Label" parent="RollWidget/Margin/VBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
+theme_override_font_sizes/font_size = 19
+modulate = Color(1, 1, 1, 0)

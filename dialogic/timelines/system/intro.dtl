@@ -1,10 +1,13 @@
 [background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 set {flags.intro_done} = true
+audio mbg1 "res://assets/audio/ElevenLabs_Cosy_therapist_office,_ full.mp3"
+audio mbg2 "res://assets/audio/Silent clock ticking.mp3" [volume="-4.0"]
 narrator: The morning sun cuts through the blinds in sharp, blinding slats, illuminating floating dust motes over a completely immaculate, pristine mahogany desk.
 narrator: The smell of fresh paint, packing cardboard, and high-gloss floor varnish fills the room. It is the overwhelming scent of an absolute, terrifyingly clean slate.
 player: [i]Five years of sitting in safe, crowded lecture halls. Countless exams filled with multiple-choice questions about disorders I've never actually seen in a real human being. The ink on my psychology license is practically still wet.[/i]
 player: [i]I spent literally every cent of my savings to open this solo practice immediately after graduation. No residency safety blanket. Just a mountain of student debt, an unforgiving commercial lease, and a completely empty filing cabinet. Today, I am officially a psychologist... and I have absolutely no idea what is about to walk through that door.[/i]
 narrator: A sudden, violent thump rattles the frosted glass door. It sounds like a heavy object colliding with the frame at high speed.
+audio "res://assets/audio/Door sound - Entering the room.mp3"
 narrator: A beat of absolute silence follows. Then, the doorknob jiggles frantically, and the door bursts open. A young woman stumbles into the room sideways, desperately balancing a heavily overloaded metallic clipboard, a box of legal folders, and a paper cup of coffee.
 join bea leftmost
 narrator: Gasping, she executes a chaotic but miraculous recovery as she drops the box onto your desk with a resounding crash.

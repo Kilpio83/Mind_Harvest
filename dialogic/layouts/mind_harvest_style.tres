@@ -46,6 +46,7 @@ overrides = {
 "boxes_stylebox_hovered": "\"res://dialogic/layouts/mh_choice_hovered.tres\"",
 "boxes_stylebox_normal": "\"res://dialogic/layouts/mh_choice_normal.tres\"",
 "boxes_v_separation": "8",
+"choices_custom_button": "\"res://dialogic/layouts/mh_choice_button.tscn\"",
 "font_size_custom": "22.0",
 "font_size_use_global": "false",
 "text_color_custom": "Color(0.961, 0.925, 0.859, 1)",

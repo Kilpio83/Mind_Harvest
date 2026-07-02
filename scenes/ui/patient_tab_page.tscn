@@ -1,15 +1,63 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/patient_tab_page.gd" id="1_tabpage"]
+[ext_resource type="Shader" path="res://shaders/ui_zone_pattern.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" path="res://assets/ui/portrait_corners.svg" id="3_corners"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
-bg_color = Color(0.110, 0.098, 0.082, 1.0)
+bg_color = Color(0.055, 0.049, 0.040, 1.0)
 border_width_bottom = 1
 border_color = Color(0.886, 0.639, 0.243, 0.18)
 content_margin_left = 20.0
 content_margin_right = 20.0
 content_margin_top = 11.0
 content_margin_bottom = 11.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_portrait"]
+bg_color = Color(0.031, 0.027, 0.024, 1.0)
+border_width_bottom = 1
+border_color = Color(0.886, 0.639, 0.243, 0.10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sidebar"]
+bg_color = Color(0.043, 0.039, 0.031, 1.0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sidebar"]
+shader = ExtResource("2_shader")
+shader_parameter/bg_color = Color(0.043, 0.039, 0.031, 1.0)
+shader_parameter/pattern_color = Color(0.769, 0.569, 0.165, 0.05)
+shader_parameter/pattern = 0
+shader_parameter/spacing = 8.0
+shader_parameter/thickness = 0.9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_center"]
+bg_color = Color(0.059, 0.055, 0.047, 1.0)
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 14.0
+content_margin_bottom = 14.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_center"]
+shader = ExtResource("2_shader")
+shader_parameter/bg_color = Color(0.059, 0.055, 0.047, 1.0)
+shader_parameter/pattern_color = Color(0.769, 0.569, 0.165, 0.030)
+shader_parameter/pattern = 1
+shader_parameter/spacing = 22.0
+shader_parameter/thickness = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timeline"]
+bg_color = Color(0.039, 0.035, 0.027, 1.0)
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 14.0
+content_margin_bottom = 14.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_timeline"]
+shader = ExtResource("2_shader")
+shader_parameter/bg_color = Color(0.039, 0.035, 0.027, 1.0)
+shader_parameter/pattern_color = Color(0.769, 0.569, 0.165, 0.040)
+shader_parameter/pattern = 2
+shader_parameter/spacing = 20.0
+shader_parameter/thickness = 0.4
 
 [node name="PatientTabPage" type="VBoxContainer"]
 script = ExtResource("1_tabpage")
@@ -83,23 +131,33 @@ theme_override_constants/separation = 0
 
 [node name="LeftScroll" type="ScrollContainer" parent="Body"]
 layout_mode = 2
-custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(230, 0)
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+material = SubResource("ShaderMaterial_sidebar")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sidebar")
 
 [node name="LeftVBox" type="VBoxContainer" parent="Body/LeftScroll"]
 layout_mode = 2
-custom_minimum_size = Vector2(360, 0)
-theme_override_constants/separation = 13
+custom_minimum_size = Vector2(230, 0)
+theme_override_constants/separation = 12
 
-[node name="Portrait" type="TextureRect" parent="Body/LeftScroll/LeftVBox"]
+[node name="PortraitZone" type="PanelContainer" parent="Body/LeftScroll/LeftVBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(360, 360)
+custom_minimum_size = Vector2(0, 210)
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_portrait")
+
+[node name="Portrait" type="TextureRect" parent="Body/LeftScroll/LeftVBox/PortraitZone"]
+layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
-[node name="HSep1" type="HSeparator" parent="Body/LeftScroll/LeftVBox"]
+[node name="CornerMarks" type="TextureRect" parent="Body/LeftScroll/LeftVBox/PortraitZone"]
 layout_mode = 2
+texture = ExtResource("3_corners")
+stretch_mode = 0
+mouse_filter = 2
 
 [node name="TherapyHeader" type="HBoxContainer" parent="Body/LeftScroll/LeftVBox"]
 layout_mode = 2
@@ -109,7 +167,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 text = "THERAPY PROGRESS"
 theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
 vertical_alignment = 1
 
 [node name="TherapySpacer" type="Control" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
@@ -120,24 +178,24 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "—"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.85)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 vertical_alignment = 1
 
 [node name="TherapyValueGap" type="Label" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
 layout_mode = 2
 text = "  "
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
 
 [node name="TherapyValue" type="Label" parent="Body/LeftScroll/LeftVBox/TherapyHeader"]
 layout_mode = 2
 text = "0 / 100"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.7)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 vertical_alignment = 1
 
 [node name="TherapyBar" type="ProgressBar" parent="Body/LeftScroll/LeftVBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 14)
+custom_minimum_size = Vector2(0, 10)
 min_value = 0.0
 max_value = 100.0
 value = 30.0
@@ -151,7 +209,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 text = "PERSONAL BOND"
 theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
 vertical_alignment = 1
 
 [node name="BondSpacer" type="Control" parent="Body/LeftScroll/LeftVBox/BondHeader"]
@@ -162,30 +220,30 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "—"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.85)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 vertical_alignment = 1
 
 [node name="BondValueGap" type="Label" parent="Body/LeftScroll/LeftVBox/BondHeader"]
 layout_mode = 2
 text = "  "
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
 
 [node name="BondValue" type="Label" parent="Body/LeftScroll/LeftVBox/BondHeader"]
 layout_mode = 2
 text = "+0 / 50"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 0.7)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 vertical_alignment = 1
 
 [node name="BondBarRow" type="HBoxContainer" parent="Body/LeftScroll/LeftVBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 14)
+custom_minimum_size = Vector2(0, 10)
 theme_override_constants/separation = 2
 
 [node name="NegBar" type="ProgressBar" parent="Body/LeftScroll/LeftVBox/BondBarRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 14)
+custom_minimum_size = Vector2(0, 10)
 min_value = 0.0
 max_value = 50.0
 value = 0.0
@@ -200,7 +258,7 @@ custom_minimum_size = Vector2(3, 0)
 [node name="PosBar" type="ProgressBar" parent="Body/LeftScroll/LeftVBox/BondBarRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 14)
+custom_minimum_size = Vector2(0, 10)
 min_value = 0.0
 max_value = 50.0
 value = 0.0
@@ -214,13 +272,13 @@ layout_mode = 2
 layout_mode = 2
 text = "COMMITTED INTENT"
 theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
 
 [node name="IntentValue" type="Label" parent="Body/LeftScroll/LeftVBox"]
 layout_mode = 2
 text = "None committed"
 theme_override_colors/font_color = Color(0.961, 0.925, 0.859, 1.0)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 13
 
 [node name="HSep3" type="HSeparator" parent="Body/LeftScroll/LeftVBox"]
 layout_mode = 2
@@ -229,79 +287,135 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Hypothesis Board"
-theme_override_font_sizes/font_size = 16
-
-[node name="VSep1" type="VSeparator" parent="Body"]
-layout_mode = 2
+theme_override_font_sizes/font_size = 13
 
 [node name="CenterScroll" type="ScrollContainer" parent="Body"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+material = SubResource("ShaderMaterial_center")
+theme_override_styles/panel = SubResource("StyleBoxFlat_center")
 
 [node name="CenterVBox" type="VBoxContainer" parent="Body/CenterScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 13
+theme_override_constants/separation = 14
 
-[node name="NotesSection" type="Label" parent="Body/CenterScroll/CenterVBox"]
+[node name="NotesSection" type="HBoxContainer" parent="Body/CenterScroll/CenterVBox"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="NotesSectionAccent" type="ColorRect" parent="Body/CenterScroll/CenterVBox/NotesSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(2, 12)
+color = Color(0.886, 0.639, 0.243, 0.8)
+
+[node name="NotesSectionLabel" type="Label" parent="Body/CenterScroll/CenterVBox/NotesSection"]
 layout_mode = 2
 text = "CASE NOTES"
 theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+
+[node name="NotesSectionRule" type="ColorRect" parent="Body/CenterScroll/CenterVBox/NotesSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.886, 0.639, 0.243, 0.15)
 
 [node name="NotesContainer" type="VBoxContainer" parent="Body/CenterScroll/CenterVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="NotesHSep" type="HSeparator" parent="Body/CenterScroll/CenterVBox"]
+[node name="DiscoveriesSection" type="HBoxContainer" parent="Body/CenterScroll/CenterVBox"]
 layout_mode = 2
+theme_override_constants/separation = 7
 
-[node name="DiscoveriesSection" type="Label" parent="Body/CenterScroll/CenterVBox"]
+[node name="DiscoveriesSectionAccent" type="ColorRect" parent="Body/CenterScroll/CenterVBox/DiscoveriesSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(2, 12)
+color = Color(0.886, 0.639, 0.243, 0.8)
+
+[node name="DiscoveriesSectionLabel" type="Label" parent="Body/CenterScroll/CenterVBox/DiscoveriesSection"]
 layout_mode = 2
 text = "DISCOVERIES"
 theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+
+[node name="DiscoveriesSectionRule" type="ColorRect" parent="Body/CenterScroll/CenterVBox/DiscoveriesSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.886, 0.639, 0.243, 0.15)
 
 [node name="DiscoveriesContainer" type="VBoxContainer" parent="Body/CenterScroll/CenterVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="PhotosHSep" type="HSeparator" parent="Body/CenterScroll/CenterVBox"]
+[node name="PhotosSection" type="HBoxContainer" parent="Body/CenterScroll/CenterVBox"]
 layout_mode = 2
+theme_override_constants/separation = 7
 
-[node name="PhotosSection" type="Label" parent="Body/CenterScroll/CenterVBox"]
+[node name="PhotosSectionAccent" type="ColorRect" parent="Body/CenterScroll/CenterVBox/PhotosSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(2, 12)
+color = Color(0.886, 0.639, 0.243, 0.8)
+
+[node name="PhotosSectionLabel" type="Label" parent="Body/CenterScroll/CenterVBox/PhotosSection"]
 layout_mode = 2
 text = "PHOTOS"
 theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+
+[node name="PhotosSectionRule" type="ColorRect" parent="Body/CenterScroll/CenterVBox/PhotosSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.886, 0.639, 0.243, 0.15)
 
 [node name="PhotosContainer" type="HFlowContainer" parent="Body/CenterScroll/CenterVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSep2" type="VSeparator" parent="Body"]
-layout_mode = 2
-
 [node name="RightScroll" type="ScrollContainer" parent="Body"]
 layout_mode = 2
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(200, 0)
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+material = SubResource("ShaderMaterial_timeline")
+theme_override_styles/panel = SubResource("StyleBoxFlat_timeline")
 
 [node name="RightVBox" type="VBoxContainer" parent="Body/RightScroll"]
 layout_mode = 2
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(200, 0)
 theme_override_constants/separation = 16
 
-[node name="TimelineSection" type="Label" parent="Body/RightScroll/RightVBox"]
+[node name="TimelineSection" type="HBoxContainer" parent="Body/RightScroll/RightVBox"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="TimelineSectionAccent" type="ColorRect" parent="Body/RightScroll/RightVBox/TimelineSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(2, 12)
+color = Color(0.886, 0.639, 0.243, 0.8)
+
+[node name="TimelineSectionLabel" type="Label" parent="Body/RightScroll/RightVBox/TimelineSection"]
 layout_mode = 2
 text = "TIMELINE"
 theme_override_colors/font_color = Color(0.886, 0.639, 0.243, 1.0)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
+
+[node name="TimelineSectionRule" type="ColorRect" parent="Body/RightScroll/RightVBox/TimelineSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(0, 1)
+color = Color(0.886, 0.639, 0.243, 0.15)
 
 [node name="TimelineContainer" type="VBoxContainer" parent="Body/RightScroll/RightVBox"]
 layout_mode = 2

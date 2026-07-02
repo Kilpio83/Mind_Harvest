@@ -13,7 +13,7 @@ marisol (Disgust): "It's the block. Three months. Nothing. The words simply..."
 narrator: She pauses. Her hand drifts upward.
 marisol (Fear): "...refuse to come."
 player: "Tell me about the block."
-- What were you working on when it started? | [if {stats.knowledge} >= 2] [else="disable" alt_text="need 2 knowledge"]
+- What were you working on when it started? | [if {stats.knowledge} >= 2] [else="disable"]
 	marisol: "The Corsair's Surrender. Book seven of the Crimson Tide series."
 	narrator: She says it the way other people say "my family."
 	player: "What happens in book seven?"
@@ -27,7 +27,8 @@ player: "Tell me about the block."
 	narrator: She catches herself.
 	marisol: "That's — I apologize. I narrate. It's a professional hazard."
 	do PatientManager.add_trust("marisol", 3)
-[stat_check stat="perception"]
+narrator: Something about the cigarette holder. You run back over the last two minutes.
+[stat_check stat="perception" beat=true]
 if {check_result}:
 	narrator: She's not distressed. She's performing distress. The cigarette holder spins when she's composing, not when she's suffering — and it's been spinning since she sat down.
 	- You don't actually seem that upset about it.

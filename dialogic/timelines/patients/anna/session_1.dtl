@@ -1,12 +1,16 @@
 [background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
+audio music "res://assets/audio/Cosy therapist office, ambient sound of the city s.mp3"
+audio music "res://assets/audio/Silent clock ticking.mp3"
 set {flags.met_anna} = true
 [voice path="res://assets/audio/audio.wav" volume="-4.0"]
 bea: Anna Volkov, 9 AM. Work stress, insomnia..
 join anna (Nervousness) leftmost
+audio "res://assets/audio/Door sound - Entering the room.mp3"
 [voice path="res://assets/audio/audio (1).wav" volume="-10.0"]
 narrator: She arrives three minutes early. You know this because she pointedly checks her watch when you open the door at the scheduled time.
 [voice path="res://assets/audio/audio (2).wav" volume="0.0"]
 narrator: Your desk is in a different configuration by the time you've both sat down.
+audio "res://assets/audio/woman taking a sit on a leather sofa.mp3"
 [voice path="res://assets/audio/audio (3).wav" volume="0.0"]
 anna (Amusement): "Sorry, ... Anyway."
 player: <Empty Text Event>
@@ -21,7 +25,7 @@ player: <Empty Text Event>
 	do PatientManager.add_therapy("anna", -5)
 anna (Sadness): "The sleep thing, That's the main issue. I wake up at four and just — lie there. Thinking about what I didn't finish."
 player: "What kind of things?"
-- Work tasks, you mean? | [if {stats.knowledge} >= 2] [else="disable" alt_text="need 2 knowledge"]
+- Work tasks, you mean? | [if {stats.knowledge} >= 2] [else="disable"]
 	anna (Anger): "Yes. Mostly." .... "Work things."
 	narrator: You note the hesitation. She notes you noting it. A small negotiation passes between you.
 	do PatientManager.add_bond("anna", 10)
@@ -36,9 +40,13 @@ player: "What kind of things?"
 anna: "My boss, He gives me a lot of latitude. Which is obviously ideal."
 player: "Obviously."
 narrator: She doesn't look like it's ideal.
+narrator: Something about the word — "obviously" — doesn't land right.
+[stat_check stat="perception" result="anna_latitude_check"]
+if {anna_latitude_check}:
+	narrator: The jaw. A slight compression before she spoke, then the word chosen carefully. She's been managing this for a while — the freedom she isn't sure she wanted.
 narrator: Something registers. What do you file away?
 - "Anyway" as a hard pivot | [if {discoveries.anna_anyway_tell} != true] [else="hide" disco="anna_anyway_tell"]
-- Discomfort with autonomy | [if {discoveries.anna_autonomy_discomfort} != true] [else="hide" disco="anna_autonomy_discomfort"]
+- Discomfort with autonomy | [if {anna_latitude_check} and {discoveries.anna_autonomy_discomfort} != true] [else="hide" disco="anna_autonomy_discomfort"]
 - Nothing stands out yet.
 narrator: Before you can push further, she's already pivoting.
 anna (Caring): "The desk — I could actually show you. A better layout."

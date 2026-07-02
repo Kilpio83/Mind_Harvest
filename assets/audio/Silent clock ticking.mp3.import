@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://diwruwdaf827l"
+path="res://.godot/imported/Silent clock ticking.mp3-d0f48885de70180aa5123142dc0f435f.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Silent clock ticking.mp3"
+dest_files=["res://.godot/imported/Silent clock ticking.mp3-d0f48885de70180aa5123142dc0f435f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

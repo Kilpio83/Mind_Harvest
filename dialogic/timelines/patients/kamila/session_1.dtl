@@ -1,5 +1,7 @@
 [background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
 set {flags.met_kamila} = true
+audio mbg1 "res://assets/audio/ElevenLabs_Cosy_therapist_office,_ full.mp3"
+audio mbg2 "res://assets/audio/Silent clock ticking.mp3" [volume="0.0"]
 join bea rightmost [mirrored="true"]
 bea: Boss! Boss, emergency! Well, not a medical emergency, but definitely a spiritual-gravitational crisis. Your very first carpet-slide lottery winner is currently in the waiting room, and she is... entirely terrifying.
 player: Is there an issue, Bea? Did she refuse to fill out the medical history form?
@@ -19,13 +21,13 @@ player: Welcome, Ms. Vance. I assure you my qualifications are quite real. Pleas
 kamila (Amusement): Comfortable? Comfort is the opium of the unaligned.
 narrator: She halts exactly three paces away from your chair, locking her eyes onto yours with unblinking intensity.
 kamila (Curiosity): You're hyperventilating slightly. Your chest is moving two centimeters too high. Are you intimidated by me, {game.player_first}? Or is it just the room temperature?
-- "In this room, we focus on internal architecture rather than furniture, Ms. Vance. And I prefer we maintain professional titles." | [if {stats.composure} >= 1] [else="disable" alt_text="Composure 1 required"]
+- "In this room, we focus on internal architecture rather than furniture, Ms. Vance. And I prefer we maintain professional titles." | [if {stats.composure} >= 1] [else="disable"]
 	set {flags.kamila.CH_KAM_S1_01} = "OPT_KAM_S1_01_01"
 	jump Path_Clinical_Intro
 - "I'm still setting up the space, Kamila. If you find the room lacking, feel free to choose whichever seating arrangement makes you feel unconstrained."
 	set {flags.kamila.CH_KAM_S1_01} = "OPT_KAM_S1_01_02"
 	jump Path_Adaptive_Intro
-- "You've been in my office for exactly twelve seconds, and you're already trying to re-engineer it. Is this how you deflect from the fact that you can't sleep at night?" | [if {stats.nerve} >= 2] [else="disable" alt_text="Nerve 2 required"]
+- "You've been in my office for exactly twelve seconds, and you're already trying to re-engineer it. Is this how you deflect from the fact that you can't sleep at night?" | [if {stats.nerve} >= 2] [else="disable"]
 	set {flags.kamila.CH_KAM_S1_01} = "OPT_KAM_S1_01_03"
 	jump Path_Razor_Intro
 
@@ -75,17 +77,36 @@ kamila (Anger): Because it [i]is[/i] aggressive, {game.player_first}. It is forc
 narrator: Kamila suddenly stands up. She takes a slow, deliberate step toward your desk, her entire posture shifting into alignment.
 kamila (Pride): Look at my left shoulder. Tell me what you see, {game.player_formal}. Don't look at my chart. Look at [i]me[/i].
 player: [i]Is this another trap? If I look too closely, I'm playing into her hand. If I look away, I fail as an observer. In this professional arena, every micro-expression is a tactical move, and my experience is dangerously low compared to hers.[/i]
-- "Your trapezius is locked in a severe hyper-tonic spasm. It's not geometry, Kamila — it's sheer, unadulterated physical stress." | [if {stats.perception} >= 2] [else="disable" alt_text="Perception 2 required"]
-	set {flags.kamila.CH_KAM_S1_02} = "OPT_KAM_S1_02_01"
-	jump Path_Observe_Spasm
-- "Step back and return to the couch, Kamila. I cannot diagnose your somatic symptoms while you are attempting to crowd my professional space." | [if {stats.composure} >= 2] [else="disable" alt_text="Composure 2 required"]
-	set {flags.kamila.CH_KAM_S1_02} = "OPT_KAM_S1_02_02"
-	jump Path_Order_Back
-- "I see a woman who is deliberately holding her breath just to see if I'm brave enough to trace the line of her collarbone." | [if {stats.nerve} >= 2] [else="disable" alt_text="Nerve 2 required"]
-	set {flags.kamila.CH_KAM_S1_02} = "OPT_KAM_S1_02_03"
-	jump Path_Trace_Tension
+- "Your trapezius is locked in a severe hyper-tonic spasm. It's not geometry, Kamila — it's sheer, unadulterated physical stress." | [dice="perception:medium" win="Path_Observe_Spasm" lose="Fail_Standoff_Spasm"]
+- "Step back and return to the couch, Kamila. I cannot diagnose your somatic symptoms while you are attempting to crowd my professional space." | [dice="composure:hard" win="Path_Order_Back" lose="Fail_Standoff_Order"]
+- "I see a woman who is deliberately holding her breath just to see if I'm brave enough to trace the line of her collarbone." | [dice="nerve:easy" win="Path_Trace_Tension" lose="Fail_Standoff_Tension"]
+
+label Fail_Standoff_Spasm
+narrator: You pause, eyes tracing the line of her shoulder. Something is there — a slight wrongness in the elevation, a subtle asymmetry — but the precise clinical name for it refuses to surface under her unwavering gaze.
+player: [i]Too much. She can read the hesitation on my face before I can mask it.[/i]
+kamila (Amusement): Your mouth opened and then just... stopped. Fascinating. Perhaps have another look at your anatomy textbooks before our next session, {game.player_formal}.
+do PatientManager.add_therapy("kamila", -2)
+do PatientManager.add_bond("kamila", 1)
+jump Merge_After_Standoff
+
+label Fail_Standoff_Order
+narrator: "Step back —" The words leave your mouth flat and without authority. You feel the wobble in them the instant they land. So does she.
+kamila (Amusement): Mm. You want me back on the couch. But you're asking, not telling. That is a very telling difference, {game.player_formal}.
+narrator: She takes one more deliberate step forward before deciding — entirely on her own terms — to retreat toward the couch.
+do PatientManager.add_therapy("kamila", -2)
+do PatientManager.add_bond("kamila", 1)
+jump Merge_After_Standoff
+
+label Fail_Standoff_Tension
+narrator: The observation forms cleanly in your mind — sharp, precise, designed to cut straight through her posture — and then dissolves in the silence between thought and speech.
+player: [i]No. Not yet. She is watching for exactly this.[/i]
+kamila (Amusement): That silence was interesting. Something almost got out. Keep it caged if you prefer, {game.player_formal}. Some locked doors tell me far more than open ones ever could.
+do PatientManager.add_therapy("kamila", -1)
+do PatientManager.add_bond("kamila", 2)
+jump Merge_After_Standoff
 
 label Path_Observe_Spasm
+set {flags.kamila.CH_KAM_S1_02} = "OPT_KAM_S1_02_01"
 do PatientManager.add_therapy("kamila", 4)
 do PatientManager.add_bond("kamila", 1)
 narrator: She freezes instantly, her breath hitching slightly as she looks down toward her own shoulder, then back up to lock eyes with you.
@@ -96,6 +117,7 @@ kamila (Realization): Tyranny? What a fascinatingly heavy word. I don't dominate
 jump Merge_After_Standoff
 
 label Path_Order_Back
+set {flags.kamila.CH_KAM_S1_02} = "OPT_KAM_S1_02_02"
 do PatientManager.add_therapy("kamila", 5)
 do PatientManager.add_bond("kamila", -2)
 narrator: She stops dead in her tracks. Her eyes widen slightly in genuine surprise, a flash of irritation crossing her features before dissolving back into a cold, appreciative stare.
@@ -106,6 +128,7 @@ kamila (Approval): Fascinating. You don't flinch. Most men turn to jelly when I 
 jump Merge_After_Standoff
 
 label Path_Trace_Tension
+set {flags.kamila.CH_KAM_S1_02} = "OPT_KAM_S1_02_03"
 do PatientManager.add_therapy("kamila", -3)
 do PatientManager.add_bond("kamila", 6)
 narrator: Her pupils visibly dilate. She takes another half-step forward, her collarbone shifting elegantly beneath the tight fabric of her athletic gear.
@@ -131,13 +154,13 @@ player: And you embrace that responsibility?
 kamila (Anger): No — I embrace it. But lately... it isn't enough. I go home, I lie down in the dark, and my brain won't shut off.
 kamila (Remorse): Because no matter how many bodies I bend into perfect geometry during the day, the moment I close my eyes, the world outside feels completely... frictionless. Uncontrolled. Everyone is weak, everyone is soft, and it makes me want to scream.
 player: You are projecting your own internal chaos onto them.
-- "You aren't suffering from stress, Kamila. You are suffering from an addiction to dominance. You use your students as a canvas because you're terrified of what happens when you aren't the one holding the whip." | [if {stats.intellect} >= 2] [else="disable" alt_text="Intellect 2 required"]
+- "You aren't suffering from stress, Kamila. You are suffering from an addiction to dominance. You use your students as a canvas because you're terrified of what happens when you aren't the one holding the whip." | [if {stats.intellect} >= 2] [else="disable"]
 	set {flags.kamila.CH_KAM_S1_03} = "OPT_KAM_S1_03_01"
 	jump Path_Deconstruction
-- "This appears to be a classic case of compensation. When a person feels an existential dread regarding their lack of control over life's macro-events, they hyper-fixate on micromanaging their immediate physical reality." | [if {stats.knowledge} >= 2] [else="disable" alt_text="Knowledge 2 required"]
+- "This appears to be a classic case of compensation. When a person feels an existential dread regarding their lack of control over life's macro-events, they hyper-fixate on micromanaging their immediate physical reality." | [if {stats.knowledge} >= 2] [else="disable"]
 	set {flags.kamila.CH_KAM_S1_03} = "OPT_KAM_S1_03_02"
 	jump Path_Diagnostic
-- "So, you spend your days breaking everyone else, but you come home to an empty bed and realize there's no one strong enough to hold you down. You don't want more control, Kamila. You're exhausted from having all of it." | [if {stats.nerve} >= 2] [else="disable" alt_text="Nerve 2 required"]
+- "So, you spend your days breaking everyone else, but you come home to an empty bed and realize there's no one strong enough to hold you down. You don't want more control, Kamila. You're exhausted from having all of it." | [if {stats.nerve} >= 2] [else="disable"]
 	set {flags.kamila.CH_KAM_S1_03} = "OPT_KAM_S1_03_03"
 	jump Path_Seductive_Insight
 
@@ -185,12 +208,12 @@ kamila (Neutral): Our fifty minutes are dissolving, and we've encoded data on ba
 kamila (Curiosity): You're a strange creature, {game.player_first}. You don't have the heavy, sluggish aura of the old doctors who ran this clinic before you. You feel ungrounded. Like you dropped into this chair out of nowhere, completely detached from reality.
 player: I am fully present, Kamila. And I think you know exactly how dangerous that makes me to your little illusions of total control.
 kamila (Amusement): Perhaps. The real question is whether your young bones can withstand the pressure when I decide to truly unleash my weight upon you.
-- "We are done for today, Kamila. For your homework: do not touch your students during adjustments. Observe their chaos without correcting it. Let's see if you can handle being powerless for forty-eight hours." | [if {stats.composure} >= 2] [else="disable" alt_text="Composure 2 required"]
+- "We are done for today, Kamila. For your homework: do not touch your students during adjustments. Observe their chaos without correcting it. Let's see if you can handle being powerless for forty-eight hours." | [if {stats.composure} >= 2] [else="disable"]
 	set {flags.kamila.CH_KAM_S1_04} = "OPT_KAM_S1_04_01"
 	do PatientManager.add_therapy("kamila", 6)
 	do PatientManager.add_bond("kamila", -3)
 	jump Path_End_Ironclad
-- "If you want to find out what I can withstand, you'll have to keep your appointments. Next time, leave the wellness guru persona at the door. I want to see the woman who's actually terrified of the dark." | [if {stats.nerve} >= 2] [else="disable" alt_text="Nerve 2 required"]
+- "If you want to find out what I can withstand, you'll have to keep your appointments. Next time, leave the wellness guru persona at the door. I want to see the woman who's actually terrified of the dark." | [if {stats.nerve} >= 2] [else="disable"]
 	set {flags.kamila.CH_KAM_S1_04} = "OPT_KAM_S1_04_02"
 	do PatientManager.add_therapy("kamila", -2)
 	do PatientManager.add_bond("kamila", 6)

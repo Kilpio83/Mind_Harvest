@@ -28,6 +28,7 @@ ScreenTransition="*res://scripts/ui/screen_transition.gd"
 SettingsManager="*res://scripts/autoload/settings_manager.gd"
 ThemeManager="*res://scripts/autoload/theme_manager.gd"
 DebugPanel="*res://scripts/autoload/debug_panel.gd"
+DiceRoll="*res://scripts/autoload/dice_roll.gd"
 MCPScreenshot="*res://addons/godot_mcp/mcp_screenshot_service.gd"
 MCPInputService="*res://addons/godot_mcp/mcp_input_service.gd"
 MCPGameInspector="*res://addons/godot_mcp/mcp_game_inspector_service.gd"
@@ -189,6 +190,18 @@ audio/channel_defaults={
 "audio_bus": "",
 "fade_length": 0.0,
 "loop": false,
+"volume": 0.0
+},
+"mbg1": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+},
+"mbg2": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
 "volume": 0.0
 },
 "music": {
