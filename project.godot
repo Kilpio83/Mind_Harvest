@@ -54,6 +54,7 @@ directories/dtl_directory={
 "intro": "res://dialogic/timelines/system/intro.dtl",
 "jogging": "res://dialogic/timelines/morning/jogging.dtl",
 "kamila/session_1": "res://dialogic/timelines/patients/kamila/session_1.dtl",
+"kamila/session_2": "res://dialogic/timelines/patients/kamila/session_2.dtl",
 "marisol/session_1": "res://dialogic/timelines/patients/marisol/session_1.dtl",
 "marisol/session_2": "res://dialogic/timelines/patients/marisol/session_2.dtl",
 "marisol/session_3": "res://dialogic/timelines/patients/marisol/session_3.dtl",
@@ -80,10 +81,12 @@ variables={
 "anna_desk_compulsion": false,
 "anna_dream_spreadsheet": false,
 "anna_rubric_wish": false,
+"kamila_control_for_self": false,
 "kamila_somatic_control": false,
 "kamila_tyranny_geometry": false
 },
 "flags": {
+"CH_INTRO_01": "",
 "analyzed_anna": false,
 "analyzed_marisol": false,
 "anna_named_fixation_s2": false,
@@ -99,7 +102,13 @@ variables={
 "CH_KAM_S1_01": "",
 "CH_KAM_S1_02": "",
 "CH_KAM_S1_03": "",
-"CH_KAM_S1_04": ""
+"CH_KAM_S1_04": "",
+"CH_KAM_S1_DOOR": "",
+"CH_KAM_S1_PREV": "",
+"CH_KAM_S2_01": "",
+"CH_KAM_S2_02": "",
+"CH_KAM_S2_03": "",
+"CH_KAM_S2_04": ""
 },
 "last_photo_success": false,
 "marisol_named_escapism_s2": false,
@@ -108,12 +117,12 @@ variables={
 "met_marisol": false
 },
 "game": {
-"bea_relationship": 0,
+"bea_relationship": 0.0,
 "current_patient": "",
-"day": 1,
+"day": 1.0,
 "has_patients": false,
 "last_random_stat": "",
-"morning_slots_left": 2,
+"morning_slots_left": 2.0,
 "phase": "morning",
 "player_first": "Adrian",
 "player_formal": "Dr. Cole",
@@ -126,42 +135,42 @@ variables={
 "anna": {
 "committed_intent": "",
 "ending": "",
-"next_day": 0,
-"personal_bond": 0,
-"progress": 0,
-"therapy_progress": 30
+"next_day": 0.0,
+"personal_bond": 0.0,
+"progress": 0.0,
+"therapy_progress": 30.0
 },
 "kamila": {
 "committed_intent": "",
 "ending": "",
-"next_day": 0,
-"personal_bond": 0,
-"progress": 0,
-"therapy_progress": 30
+"next_day": 0.0,
+"personal_bond": 0.0,
+"progress": 0.0,
+"therapy_progress": 30.0
 },
 "marisol": {
 "committed_intent": "",
 "ending": "",
-"next_day": 0,
-"personal_bond": 0,
-"progress": 0,
-"therapy_progress": 30
+"next_day": 0.0,
+"personal_bond": 0.0,
+"progress": 0.0,
+"therapy_progress": 30.0
 }
 },
 "photos": {
-"count": 0
+"count": 0.0
 },
 "stats": {
-"composure": 1,
-"composure_xp": 0,
-"intellect": 1,
-"intellect_xp": 0,
-"knowledge": 1,
-"knowledge_xp": 0,
-"nerve": 1,
-"nerve_xp": 0,
-"perception": 1,
-"perception_xp": 0
+"composure": 1.0,
+"composure_xp": 0.0,
+"intellect": 1.0,
+"intellect_xp": 0.0,
+"knowledge": 1.0,
+"knowledge_xp": 0.0,
+"nerve": 1.0,
+"nerve_xp": 0.0,
+"perception": 1.0,
+"perception_xp": 0.0
 }
 }
 glossary/default_case_sensitive=true

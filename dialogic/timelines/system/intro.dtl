@@ -2,25 +2,70 @@
 set {flags.intro_done} = true
 audio mbg1 "res://assets/audio/ElevenLabs_Cosy_therapist_office,_ full.mp3"
 audio mbg2 "res://assets/audio/Silent clock ticking.mp3" [volume="-4.0"]
-narrator: The morning sun cuts through the blinds in sharp, blinding slats, illuminating floating dust motes over a completely immaculate, pristine mahogany desk.
-narrator: The smell of fresh paint, packing cardboard, and high-gloss floor varnish fills the room. It is the overwhelming scent of an absolute, terrifyingly clean slate.
-player: [i]Five years of sitting in safe, crowded lecture halls. Countless exams filled with multiple-choice questions about disorders I've never actually seen in a real human being. The ink on my psychology license is practically still wet.[/i]
-player: [i]I spent literally every cent of my savings to open this solo practice immediately after graduation. No residency safety blanket. Just a mountain of student debt, an unforgiving commercial lease, and a completely empty filing cabinet. Today, I am officially a psychologist... and I have absolutely no idea what is about to walk through that door.[/i]
-narrator: A sudden, violent thump rattles the frosted glass door. It sounds like a heavy object colliding with the frame at high speed.
+narrator: The office smells of fresh paint, someone else's furniture polish, and whatever decision made the last occupant leave in a hurry.
+narrator: The desk is mahogany. Real mahogany. Expensive taste for a man who apparently vanished on a Tuesday.
+player: [i]The ink on my license is six weeks old. The filing cabinet is empty. The lease is paid through March. This is either the beginning of something or the evidence of it.[/i]
+narrator: The door hits the frame hard enough to rattle the frosted glass. A beat of silence. Then the handle moves.
 audio "res://assets/audio/Door sound - Entering the room.mp3"
-narrator: A beat of absolute silence follows. Then, the doorknob jiggles frantically, and the door bursts open. A young woman stumbles into the room sideways, desperately balancing a heavily overloaded metallic clipboard, a box of legal folders, and a paper cup of coffee.
+narrator: A young woman enters sideways, balancing a clipboard, a box of folders, and a coffee that has already lost the structural argument. She deposits the box on the desk with both intention and consequence.
 join bea leftmost
-narrator: Gasping, she executes a chaotic but miraculous recovery as she drops the box onto your desk with a resounding crash.
-bea: I'm upright! Nobody panic, I am entirely vertical!
-narrator: She stands there, breathing heavily, quickly adjusting her glasses which have slid entirely down to the tip of her nose. Her sharp tailored pencil skirt is slightly twisted, and a single, stray sticky note is stuck directly to her forearm. She beams at you with a massive, absolutely radiant smile.
-bea: Good morning, Doctor! Welcome to your first official morning in the arena! I brought you a celebratory pastry, but I accidentally sat on it in the elevator, so now it's more of a... celebratory pancake. I assumed you wouldn't mind.
-player: Good morning. You must be Beatrix. The landlord mentioned you came with the lease.
-bea: [i]Bea[/i] is fine, Boss! 'Beatrix' sounds like a medieval queen who orders executions, and I am entirely too soft for that. And yes! The last therapist packed his bags in a panic and fled to a tropical island with no extradition laws, but he left me behind. Think of me as your highly enthusiastic, slightly gravitationally challenged administrative anchor!
-player: Gravitationally challenged?
-bea: Physics and I have an ongoing, highly toxic relationship, Doctor. Floors just jump out at me sometimes. But what I lack in spatial awareness, I make up for in pure, unadulterated organizational loyalty! I managed to save all our client software licenses from the previous tenant before the bank locked the servers.
-player: Well, I'm glad to have you on team survival, Bea. I could definitely use the help today.
-bea: Exactly! We are underdogs, Doctor! A fresh graduate and a girl who regularly fights her own shoelaces against the world. It's poetic. Now, before the medical board realizes we're open and audits our database, we need to initialize your digital profile. Let's lock in your data so the system recognizes you as the official captain of this ship.
-bea: First variable\: what administrative box are we checking for your gender identity? The registry software requires this to automatically format the formal headers on your official diagnostic reports.
+bea: I'm fine. Nobody needed to see that, and nobody did.
+narrator: She straightens her glasses. A sticky note migrates from the box to her forearm without her noticing. She looks at you with the focused assessment of someone who has done this before and is deciding whether to do it again.
+bea: Good morning. I'm Beatrix. You'll call me Bea. I came with the lease.
+player: Morning. I gathered. What exactly did you come with?
+bea: Everything that survived the previous arrangement. The client licenses, the appointment calendar, the good coffee machine he didn't think to take because he left in something of a hurry. I kept everything running for three weeks while the management company found you.
+player: [i]Three weeks. She ran this practice alone and didn't say it like a complaint.[/i]
+narrator: She opens the folder on the clipboard with the efficiency of someone who has already organized the morning in her head and is now executing it from memory.
+bea: He left a few things I didn't know what to do with.
+player: Like what?
+bea: The filing cabinet is cleared out. Most of the books are gone. There's a door at the back that was locked when he left and I haven't found the key. I haven't looked very hard.
+narrator: She says this last part to the clipboard.
+# CH_INTRO_01 | OPT_01=Clinical [composure:easy]  OPT_02=Filed [default]  OPT_03=Sharp [nerve:easy]
+- "What's behind it?" | [dice="composure:easy" win="Path_Intro_Clinical" lose="Fail_Intro_Clinical"]
+- "We'll deal with it when it comes up."
+	set {flags.CH_INTRO_01} = "OPT_INTRO_01_02"
+	jump Path_Intro_Filed
+- "You haven't looked very hard, or you haven't looked at all?" | [dice="nerve:easy" win="Path_Intro_Sharp" lose="Fail_Intro_Sharp"]
+
+label Path_Intro_Clinical
+set {flags.CH_INTRO_01} = "OPT_INTRO_01_01"
+narrator: She looks up from the clipboard for the first time since she mentioned it.
+bea: Storage, I think. That's what the building manager said when I asked. Storage.
+player: [i]The pause before "storage" was one beat too long.[/i]
+bea: Right. Where were we.
+jump Merge_After_Door
+
+label Fail_Intro_Clinical
+set {flags.CH_INTRO_01} = "OPT_INTRO_01_01"
+bea: Storage. Building manager confirmed it. Nothing interesting.
+narrator: She's already back to the clipboard. You got the answer. It didn't feel like the answer.
+jump Merge_After_Door
+
+label Path_Intro_Filed
+narrator: Bea's posture relaxes by a degree she probably thinks isn't visible.
+bea: Good instinct. We have enough to deal with on this side of the door.
+player: [i]She approved of that. Worth noting.[/i]
+jump Merge_After_Door
+
+label Path_Intro_Sharp
+set {flags.CH_INTRO_01} = "OPT_INTRO_01_03"
+narrator: A brief pause. She weighs you.
+bea: At all. There. That's accurate.
+narrator: The first real thing she's said since she walked in.
+bea: I'll tell you if it becomes relevant.
+jump Merge_After_Door
+
+label Fail_Intro_Sharp
+set {flags.CH_INTRO_01} = "OPT_INTRO_01_03"
+narrator: She hears what you're doing. Decides not to confirm it.
+bea: Haven't looked very hard. Like I said.
+narrator: The clipboard comes back up. Subject closed.
+jump Merge_After_Door
+
+label Merge_After_Door
+narrator: She moves on with the exact energy of someone who moves on for a living.
+bea: Before we open the doors I need to register your profile. The admin software formats your formal correspondence — I need a few details.
+bea: Gender identity, for the official records.
 - "Male."
 	set {game.player_gender} = "male"
 	set {game.player_title} = "Mr."
@@ -30,24 +75,27 @@ bea: First variable\: what administrative box are we checking for your gender id
 - "Non-binary."
 	set {game.player_gender} = "nonbinary"
 	set {game.player_title} = "Mx."
-bea: Perfect! The digital registry has swallowed the parameters without crashing. Progress! Now, type in your official, legal first name. The one your professors inevitably stumbled over during your graduation ceremony.
+bea: First name.
 [text_input text="First name:" var="game.player_first" placeholder="Adrian" default="Adrian"]
-bea: And your legal surname? Make sure it's spelled exactly how you want it to look on our front door plaque when we become notoriously famous.
+bea: Last name.
 [text_input text="Last name:" var="game.player_last" placeholder="Cole" default="Cole"]
 do GameState.build_player_name()
-narrator: Bea aggressively types your inputs into her clipboard. In her excitement, her stylus flies out of her hand, bounces off your empty filing cabinet, and lands perfectly back in her open palm. She blinks, completely stunned by her own accidental luck.
-bea: Did you see that?! I am basically a clinical ninja. Profile is saved, encrypted, and live! Welcome to the real world, {game.player_formal}.
-player: Good catch, Bea. Now, what does our actual intake queue look like today? Do we have any patients lined up?
-narrator: Grinning brightly, Bea leans her hip against your desk, entirely too excited.
-bea: Oh, we have a magnificent pool of potential disasters, Boss! I filtered our incoming requests through a highly advanced, proprietary selection methodology this morning.
-player: A proprietary methodology? What did you do?
-bea: Well, I was carrying the giant box of printed applications up the hallway, and I tripped spectacularly over the threshold of your door. The papers flew absolutely everywhere. It was majestic, really.
-player: Bea...
-narrator: Bea waves her hands defensively.
-bea: No, wait, it's genius! I decided that the three files that managed to slide all the way under your desk are our new clientele. It's a cosmic screening process, Doctor! Fate clearly chose them. Plus, I checked their files while I was on the floor, and they are all fabulously wealthy high-society types who are in massive denial about their problems. They're going to pay our commercial rent for months!
-player: [i]My very first real-world cases were selected entirely by a physical collision and a carpet slide. The parameters are locked, my textbook theories are completely useless, and a wave of expensive chaos is about to crash directly into this room. There's absolutely no turning back now. Let's see what kind of world I've stumbled into.[/i]
-bea: Take a deep breath, Boss. I'm going back to the front desk to clean up the rest of the paper hurricane and unlock the primary entrance. I've got your back out there! Let's go heal some minds, Doctor.
-narrator: Bea turns around to exit, trips slightly on the edge of the rug, catches herself with a little hop, and zips out of the door with a cheerful wave. She leaves a thoroughly warm, energetic, and completely unpretentious life bouncing off the sterile walls. The countdown to your first official session has officially begun.
+bea: Saved. You're officially in the system. Welcome to the building, {game.player_formal}.
+player: [i]The building. Not the practice. Not the chair. The building.[/i]
+narrator: She pulls three manila folders from the bottom of the box and sets them on the desk with the careful placement of someone presenting evidence.
+bea: Your first intake pool. I filtered applications this morning.
+player: How?
+bea: I was carrying the full box up the stairs and tripped on the landing. These three slid the furthest under the fire door. I took that as a sign.
+player: That's not a methodology.
+bea: It's a working methodology. I read the files while I was down there. All three are exactly the kind of people who need this practice and will never admit it. They'll pay on time, they'll be difficult, and they'll be interesting. I have excellent instincts.
+player: [i]She has, demonstrably, excellent instincts.[/i]
+bea: I'm going to open the front entrance and forward the morning calls. You have forty minutes. Try not to rearrange the books — I have a system.
+if {flags.CH_INTRO_01} == "OPT_INTRO_01_03":
+	narrator: She pauses at the door. Doesn't look at the locked one.
+	bea: I'll find out about the key. If I find anything worth telling you, I'll tell you.
+	narrator: She leaves before you can answer.
+else:
+	narrator: She turns to go, steps neatly over the edge of the rug, and closes the door behind her with the deliberate care of someone who has made a point of it.
 leave bea
 do PatientManager.add_bea_relationship(1)
 jump morning_menu/

@@ -24,7 +24,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Amusement": {
 "export_overrides": {
@@ -33,7 +33,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Anger": {
 "export_overrides": {
@@ -42,7 +42,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Annoyance": {
 "export_overrides": {
@@ -51,7 +51,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Approval": {
 "export_overrides": {
@@ -60,7 +60,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Caring": {
 "export_overrides": {
@@ -69,7 +69,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Confusion": {
 "export_overrides": {
@@ -78,7 +78,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Curiosity": {
 "export_overrides": {
@@ -87,7 +87,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Desire": {
 "export_overrides": {
@@ -96,7 +96,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Disappointment": {
 "export_overrides": {
@@ -105,7 +105,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Disapproval": {
 "export_overrides": {
@@ -114,7 +114,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Disgust": {
 "export_overrides": {
@@ -123,7 +123,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Embarrassment": {
 "export_overrides": {
@@ -132,7 +132,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Excitement": {
 "export_overrides": {
@@ -141,7 +141,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Fear": {
 "export_overrides": {
@@ -150,7 +150,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Gratitude": {
 "export_overrides": {
@@ -159,7 +159,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Grief": {
 "export_overrides": {
@@ -168,7 +168,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Joy": {
 "export_overrides": {
@@ -177,7 +177,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Love": {
 "export_overrides": {
@@ -186,7 +186,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Nervousness": {
 "export_overrides": {
@@ -195,7 +195,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Neutral": {
 "export_overrides": {
@@ -204,7 +204,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Optimism": {
 "export_overrides": {
@@ -213,7 +213,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Pride": {
 "export_overrides": {
@@ -222,7 +222,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Realization": {
 "export_overrides": {
@@ -231,7 +231,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Relief": {
 "export_overrides": {
@@ -240,7 +240,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Remorse": {
 "export_overrides": {
@@ -249,7 +249,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Sadness": {
 "export_overrides": {
@@ -258,7 +258,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "Surprise": {
 "export_overrides": {
@@ -267,7 +267,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
 "default": {
 "export_overrides": {

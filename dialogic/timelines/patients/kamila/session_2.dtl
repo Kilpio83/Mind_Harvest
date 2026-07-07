@@ -1,0 +1,332 @@
+[background arg="res://assets/backgrounds/Therapy room.png" fade="0.0"]
+audio mbg1 "res://assets/audio/ElevenLabs_Cosy_therapist_office,_ full.mp3"
+audio mbg2 "res://assets/audio/Silent clock ticking.mp3" [volume="0.0"]
+join bea rightmost [mirrored="true"]
+if {flags.kamila.CH_KAM_S1_04} == "OPT_KAM_S1_04_01":
+	bea: She was here before me. Seven forty-three. She brought her own tea.
+	bea: She hasn't rearranged anything. She's just sitting there. I find this significantly more alarming than the yoga.
+	player: [i]The woman who reorganized my psychology shelf mid-split is sitting quietly in a waiting room. Something happened this week.[/i]
+else:
+	bea: She's punctual today. I want that on record.
+	bea: She looked at the clock twice while she waited. I don't think she knew she was doing it.
+	player: [i]Seven days. Apparently she counted them.[/i]
+leave bea
+narrator: She enters the way you close a door very carefully — all the force redirected inward. Something is being held at a specific temperature.
+join kamila (Neutral_Animated) leftmost
+kamila (Neutral_Animated): You didn't change anything.
+player: [i]She expected you would. She checked.[/i]
+kamila (Neutral): The chair moved three inches.
+player: It was reading at an angle.
+kamila (Amusement): It still does.
+narrator: She sits without the architecture of last time. Still precise — Kamila is always precise — but the precision is quieter. Less deployed.
+# CH_KAM_S2_01 | OPT_01=Name [nerve:easy]  OPT_02=Wait [composure:easy]  OPT_03=Clinical [default]
+- "You're different today." | [dice="nerve:easy" win="Path_S2_Name" lose="Fail_S2_Name"]
+- [Wait. Let her lead.] | [dice="composure:easy" win="Path_S2_Wait" lose="Fail_S2_Wait"]
+- "Tell me about the week."
+	set {flags.kamila.CH_KAM_S2_01} = "OPT_KAM_S2_01_03"
+	jump Path_S2_Clinical
+
+label Path_S2_Name
+set {flags.kamila.CH_KAM_S2_01} = "OPT_KAM_S2_01_01"
+do PatientManager.add_bond("kamila", 2)
+narrator: A pause. She decides something.
+kamila (Neutral): I'm not different. I'm quieter. Those are different things.
+player: Quieter is different.
+kamila (Amusement): Don't push your luck.
+narrator: But she's still here. Still talking. The protest is its own evidence.
+jump Merge_S2_Opening
+
+label Fail_S2_Name
+set {flags.kamila.CH_KAM_S2_01} = "OPT_KAM_S2_01_01"
+do PatientManager.add_therapy("kamila", -1)
+narrator: Too direct. She angles away from it.
+kamila (Neutral): Good morning to you too, {game.player_first}.
+narrator: Not an answer. The deflection is information — she noticed she needed one.
+jump Merge_S2_Opening
+
+label Path_S2_Wait
+set {flags.kamila.CH_KAM_S2_01} = "OPT_KAM_S2_01_02"
+do PatientManager.add_therapy("kamila", 2)
+do PatientManager.add_bond("kamila", 3)
+narrator: The silence lands in the room. She watches you not fill it.
+narrator: Something in her expression — not approval, exactly. Recognition.
+kamila (Curiosity): You're not going to ask.
+player: You'll tell me when it's worth telling.
+kamila (Neutral): Mm.
+narrator: Not a concession. She's weighing whether she agrees.
+jump Merge_S2_Opening
+
+label Fail_S2_Wait
+set {flags.kamila.CH_KAM_S2_01} = "OPT_KAM_S2_01_02"
+do PatientManager.add_therapy("kamila", -1)
+do PatientManager.add_bond("kamila", 1)
+narrator: Three seconds. Four. The silence goes one beat past its usefulness and she claims it.
+kamila (Amusement): Interesting strategy. The problem with silence is it favors whoever needs it less.
+narrator: She settles back. Comfortable. She needed it less.
+jump Merge_S2_Opening
+
+label Path_S2_Clinical
+kamila (Neutral): The week.
+narrator: She says it the way you'd repeat a word in a foreign language. Not the meaning. Just the sound of it.
+jump Merge_S2_Opening
+
+label Merge_S2_Opening
+if {flags.kamila.CH_KAM_S1_04} == "OPT_KAM_S1_04_01":
+	kamila (Neutral): I didn't correct them.
+	player: The whole week?
+	kamila (Neutral): You said not to. I don't do things halfway.
+	narrator: A flat delivery. Underneath it, something that has been sitting with her for seven days.
+	kamila (Anger): A student held the warrior sequence wrong for the entire second half of class. Her knee was going to give inside three months. I stood at the back of the room and watched.
+	player: What happened?
+	kamila (Neutral): Nothing.
+	narrator: She says this like it's the worst possible answer.
+	kamila (Anger): Forty minutes of accumulated errors and the ceiling didn't fall in. They left. Some of them said thank you. The studio is still standing.
+	player: [i]She sounds furious. The fury is aimed at herself.[/i]
+	kamila (Anger): The control was never for them.
+	narrator: She says it in the tone of someone presenting evidence at their own trial.
+else:
+	kamila (Neutral): I thought about the session.
+	player: Which part?
+	kamila (Amusement): The parts that were worth thinking about.
+	narrator: That's all she'll give. For now.
+narrator: She's quiet for a moment. Then she stands — not to leave. To move. She crosses to the window and stops with her back to it, studying the room from a different angle.
+kamila (Neutral): The shoulder is different.
+player: Different how?
+kamila (Neutral): I want to show you. Come here.
+player: [i]Clinical pretext. Probably.[/i]
+# CH_KAM_S2_02 | OPT_01=Distance [composure:medium]  OPT_02=Engage [perception:easy]  OPT_03=Temperature [nerve:medium]
+- "Describe it first. Then we'll see." | [dice="composure:medium" win="Path_S2_Distance" lose="Fail_S2_Distance"]
+- [Cross to her.] | [dice="perception:easy" win="Path_S2_Engage" lose="Fail_S2_Engage"]
+- "You're going to make me cross the room." | [dice="nerve:medium" win="Path_S2_Temperature" lose="Fail_S2_Temperature"]
+
+label Path_S2_Distance
+set {flags.kamila.CH_KAM_S2_02} = "OPT_KAM_S2_02_01"
+do PatientManager.add_therapy("kamila", 4)
+do PatientManager.add_bond("kamila", -2)
+narrator: A flicker of something — not disappointment. Recalibration.
+kamila (Neutral): The trapezius released two degrees this week. Involuntarily. I don't know when.
+player: Your body stopped asking permission.
+kamila (Realization): That's an extremely annoying way to put it.
+player: It's accurate.
+kamila (Amusement): I'm aware.
+narrator: She returns to the couch. The extra distance, accepted.
+jump Merge_S2_Standoff
+
+label Fail_S2_Distance
+set {flags.kamila.CH_KAM_S2_02} = "OPT_KAM_S2_02_01"
+do PatientManager.add_therapy("kamila", -2)
+do PatientManager.add_bond("kamila", 1)
+narrator: The instinct to manage the frame — and she hears it.
+kamila (Amusement): "Describe it." You're stalling.
+kamila (Neutral): The left shoulder has two degrees of new mobility I can't account for. Are we going to proceed?
+jump Merge_S2_Standoff
+
+label Path_S2_Engage
+set {flags.kamila.CH_KAM_S2_02} = "OPT_KAM_S2_02_02"
+do PatientManager.add_therapy("kamila", 5)
+do PatientManager.add_bond("kamila", 3)
+narrator: She raises her left arm — elbow at ninety degrees, the restriction angle from last week. The movement is precise. Controlled.
+narrator: The distance between you reduces to something that has a clinical name and a different one.
+kamila (Neutral): There. Two degrees further than last week. Without forcing it. It just — moved.
+player: [i]The sandalwood again. The specific quality of her stillness — she knows exactly how close this is.[/i]
+kamila (Neutral): I didn't notice until yesterday. I was running the same sequence I've done a thousand times and it was different.
+player: Surprised?
+kamila (Amusement): Disgusted. My own skeleton did something without my permission.
+narrator: A beat. Then something breaks through the disgust — small, brief.
+kamila (Curiosity): And relieved. Briefly. Which I found more disgusting.
+[photo_opportunity id="kamila_shoulder" patient="kamila" title="Two Degrees" description="Kamila demonstrating the shoulder's new range. Something in her expression that isn't the instructor." portrait="res://assets/photos/kamila/kamila_shoulder.png"]
+if {flags.last_photo_success}:
+	do PatientManager.add_therapy("kamila", 2)
+	do PatientManager.add_bond("kamila", 1)
+jump Merge_S2_Standoff
+
+label Fail_S2_Engage
+set {flags.kamila.CH_KAM_S2_02} = "OPT_KAM_S2_02_02"
+do PatientManager.add_therapy("kamila", -1)
+do PatientManager.add_bond("kamila", 2)
+narrator: You cross. She raises her arm at the exact moment you arrive, and the geometry is more complicated than either of you planned.
+narrator: She lowers it. Methodical.
+kamila (Neutral): Two degrees of new mobility in the left shoulder. Involuntary. That's what I wanted to show you.
+player: [i]She recalibrated. The moment passed through her hands and she managed it.[/i]
+kamila (Amusement): You could look a little less interested in what just happened.
+jump Merge_S2_Standoff
+
+label Path_S2_Temperature
+set {flags.kamila.CH_KAM_S2_02} = "OPT_KAM_S2_02_03"
+do PatientManager.add_therapy("kamila", -2)
+do PatientManager.add_bond("kamila", 5)
+narrator: A pause. She decides whether that was a test or an observation. Decides it's both. Likes that better.
+kamila (Desire): Yes. I am.
+narrator: She waits. The invitation and the challenge are the same gesture.
+player: [i]Walk into that room and everything is negotiated. Don't walk in and it's also negotiated. There is no neutral position on this board.[/i]
+narrator: You cross.
+narrator: She raises the arm. Elbow at ninety. The demonstration is technically clinical. Everything else isn't.
+kamila (Neutral): Two degrees of new mobility. This week. Without force.
+player: Your body stopped fighting the room.
+kamila (Desire): My body stopped fighting something.
+narrator: Neither of you clarifies what.
+jump Merge_S2_Standoff
+
+label Fail_S2_Temperature
+set {flags.kamila.CH_KAM_S2_02} = "OPT_KAM_S2_02_03"
+do PatientManager.add_therapy("kamila", -2)
+do PatientManager.add_bond("kamila", 2)
+narrator: It lands as observation, not move. She adjusts accordingly.
+kamila (Neutral): I'm demonstrating a shoulder mobility change. For clinical purposes.
+kamila (Amusement): The subtext you were hunting for is yours. I just work here.
+narrator: She moves on before you can recover. She's had practice.
+jump Merge_S2_Standoff
+
+label Merge_S2_Standoff
+narrator: She returns to the couch. Something in the room has moved — not the furniture this time.
+kamila (Neutral): The insomnia is better. Two nights this week I slept through.
+player: What changed?
+kamila (Neutral): I don't know. That's the part that bothers me.
+narrator: Said like a confession against her nature. Not weakness — uncertainty. For Kamila these are probably the same thing.
+player: Maybe nothing changed. Maybe you let something put itself down.
+narrator: She looks at you for a moment without the armor fully in place.
+# CH_KAM_S2_03 | OPT_01=Hold [intellect:medium]  OPT_02=Exit [default]  OPT_03=Follow [nerve:easy]
+- [Stay still. Don't fill it.] | [dice="intellect:medium" win="Path_S2_Hold" lose="Fail_S2_Hold"]
+- "That's the first good sign. Let's not overthink it."
+	set {flags.kamila.CH_KAM_S2_03} = "OPT_KAM_S2_03_02"
+	jump Path_S2_Exit
+- "What does it feel like? Putting it down." | [dice="nerve:easy" win="Path_S2_Follow" lose="Fail_S2_Follow"]
+
+label Path_S2_Hold
+set {flags.kamila.CH_KAM_S2_03} = "OPT_KAM_S2_03_01"
+do PatientManager.add_therapy("kamila", 6)
+do PatientManager.add_bond("kamila", 1)
+narrator: The silence holds. She stays inside it.
+narrator: The clock. A car outside. The specific quality of not being asked anything.
+kamila (Remorse): There are forty students in my Thursday class. Three of them have been coming for six years.
+player: [i]She didn't answer the question. She answered a harder one.[/i]
+kamila (Remorse): I don't know their last names. I've never asked.
+narrator: A thing she knows. A thing she just said out loud for, possibly, the first time.
+kamila (Neutral): That's all. I just thought of it.
+jump Merge_S2_Crack
+
+label Fail_S2_Hold
+set {flags.kamila.CH_KAM_S2_03} = "OPT_KAM_S2_03_01"
+do PatientManager.add_therapy("kamila", -1)
+do PatientManager.add_bond("kamila", 1)
+narrator: One second too long. The silence tips and she fills it before it can mean something.
+kamila (Neutral): Right. The insomnia. We were talking about the insomnia.
+narrator: The armor, smoothly replaced. She does this with the practiced ease of someone who's had years to learn the motion.
+jump Merge_S2_Crack
+
+label Path_S2_Exit
+narrator: She takes the door. Not a decision — a reflex.
+kamila (Neutral): Exactly. One variable at a time. I prefer that approach.
+narrator: The moment, carefully filed. You gave her the exit. She used it cleanly.
+do PatientManager.add_therapy("kamila", 1)
+do PatientManager.add_bond("kamila", -1)
+jump Merge_S2_Crack
+
+label Path_S2_Follow
+set {flags.kamila.CH_KAM_S2_03} = "OPT_KAM_S2_03_03"
+do PatientManager.add_therapy("kamila", 3)
+do PatientManager.add_bond("kamila", 4)
+kamila (Neutral): Like stopping to hold your breath. And finding you'd been doing it for years.
+narrator: A quiet answer. Not performed. She surprised herself with it.
+kamila (Amusement): Don't write that down yet. I'll deny it.
+player: I already did.
+kamila (Amusement): Of course you did.
+narrator: Something that isn't quite a smile, but lives in the same neighborhood.
+jump Merge_S2_Crack
+
+label Fail_S2_Follow
+set {flags.kamila.CH_KAM_S2_03} = "OPT_KAM_S2_03_03"
+do PatientManager.add_therapy("kamila", -1)
+do PatientManager.add_bond("kamila", 2)
+narrator: Too direct. She feels the question shape the space around it and steps sideways.
+kamila (Amusement): It feels like progress. Which I find irritating. Can we move on?
+player: [i]That was the answer. She delivered it at speed.[/i]
+jump Merge_S2_Crack
+
+label Merge_S2_Crack
+narrator: Kamila glances toward the window. Her gaze passes the locked door without stopping — a fraction of a beat, barely — and she redirects it.
+narrator: Neither of you says anything about it.
+kamila (Curiosity): You're not going to interpret what I said.
+player: Not today.
+kamila (Neutral): Why not?
+player: Because you're still deciding if you meant it.
+narrator: She considers this for a genuine moment. Something not immediately defended.
+kamila (Neutral): Fair.
+# CH_KAM_S2_04 | OPT_01=Standard [default]  OPT_02=Acknowledge [composure:medium]  OPT_03=Open [nerve:easy]
+- "Same time next week. Notice what you're avoiding correcting — not what you correct. The gap is where we're working."
+	set {flags.kamila.CH_KAM_S2_04} = "OPT_KAM_S2_04_01"
+	do PatientManager.add_therapy("kamila", 2)
+	jump Path_S2_Standard
+- "Today was different from last week." | [dice="composure:medium" win="Path_S2_Acknowledge" lose="Fail_S2_Acknowledge"]
+- [Say nothing. Let her leave first.] | [dice="nerve:easy" win="Path_S2_Open" lose="Fail_S2_Open"]
+
+label Path_S2_Standard
+kamila (Amusement): The gap.
+player: That's where everything interesting lives.
+kamila (Neutral): Next week.
+narrator: She picks up her bag. The movement is slightly lighter than last time. She hasn't noticed.
+jump S2_Final_Beat
+
+label Path_S2_Acknowledge
+set {flags.kamila.CH_KAM_S2_04} = "OPT_KAM_S2_04_02"
+do PatientManager.add_therapy("kamila", 3)
+do PatientManager.add_bond("kamila", 2)
+kamila (Neutral): Most things are different from last week.
+player: Not most things.
+narrator: She stands. Adjusts her bag. Something considered in the movement.
+kamila (Neutral): Next week, {game.player_first}.
+narrator: The name. Not "the doctor." Not "you."
+jump S2_Final_Beat
+
+label Fail_S2_Acknowledge
+set {flags.kamila.CH_KAM_S2_04} = "OPT_KAM_S2_04_02"
+do PatientManager.add_therapy("kamila", -1)
+do PatientManager.add_bond("kamila", 1)
+narrator: She receives it with the precision of someone deciding how much to hand back.
+kamila (Neutral): Most sessions are. I've been told I'm a demanding patient.
+narrator: She stands. The door is her exit and she knows where it is.
+jump S2_Final_Beat
+
+label Path_S2_Open
+set {flags.kamila.CH_KAM_S2_04} = "OPT_KAM_S2_04_03"
+do PatientManager.add_bond("kamila", 5)
+narrator: She waits for the session to close. It doesn't.
+narrator: She waits a beat longer. Picks up her bag.
+kamila (Curiosity): That's it?
+player: For today.
+kamila (Curiosity): You're not going to give me something to think about.
+player: You already have it.
+narrator: She looks at you for exactly one second. The kind of second that takes longer than that.
+kamila (Neutral): Evidently.
+jump S2_Final_Beat
+
+label Fail_S2_Open
+set {flags.kamila.CH_KAM_S2_04} = "OPT_KAM_S2_04_03"
+do PatientManager.add_bond("kamila", 2)
+narrator: The silence is meant to hold. It folds.
+player: Same time next week?
+kamila (Amusement): Obviously.
+narrator: She says it like there was never a question. Maybe there wasn't.
+jump S2_Final_Beat
+
+label S2_Final_Beat
+narrator: She walks to the door. Something in the movement — less resolved, more actual.
+narrator: She stops with her hand on the handle.
+kamila (Neutral): The chair.
+player: I'll move it back.
+kamila (Neutral): Don't.
+narrator: She leaves.
+leave kamila
+join bea rightmost [mirrored="true"]
+bea: She said goodbye on the way out. I want that on record. She said goodbye.
+narrator: Bea looks at the closed door with the expression of someone revising a threat assessment downward. Reluctantly.
+leave bea
+if {flags.kamila.CH_KAM_S2_03} == "OPT_KAM_S2_03_01":
+	[add_note patient="kamila" note="K.V. — Session 2. Shoulder released two degrees this week — involuntary, she couldn't say when. Body negotiating without permission. She did the experiment. Watched the knee misalignment for forty minutes and said nothing. 'The control was never for them.' Six years of students whose last names she doesn't know. She said that out loud, then moved on. She hasn't moved on."]
+else:
+	[add_note patient="kamila" note="K.V. — Session 2. Two nights of sleep. Shoulder released two degrees without force. She arrived early and left the furniture alone. These are the same fact: something inside the structure loosened. She knows it. She's watching it the way you watch ice — gauging the weight it will hold."]
+if {flags.kamila.CH_KAM_S1_04} == "OPT_KAM_S1_04_01":
+	- "The Control Was Never for Them" | [if {discoveries.kamila_control_for_self} != true] [else="hide" disco="kamila_control_for_self"]
+	- Skip it
+do PatientManager.mark_session_done("kamila")
+jump between_patients/

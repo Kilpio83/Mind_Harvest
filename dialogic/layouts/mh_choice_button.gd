@@ -98,6 +98,11 @@ func _pressed() -> void:
 	_tooltip.visible  = false
 
 	var target_label := _win_label if passed else _lose_label
+
+	var choice_text: String = _choice_info.get("text", "")
+	if not choice_text.is_empty():
+		Dialogic.History.store_simple_history_entry(choice_text, "Choice", {"all_choices": [choice_text]})
+
 	Dialogic.Choices._choice_blocker.stop()
 	Dialogic.Choices.choice_selected.emit(_choice_info)
 	Dialogic.Choices.hide_all_choices()
