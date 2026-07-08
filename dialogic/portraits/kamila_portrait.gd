@@ -32,6 +32,9 @@ const EMOTION_TEXTURES := {
 	"Surprise":      "res://assets/portraits/kamila/surprise.png",
 }
 
+@export_file var eye_half := ""
+@export_file var eye_closed := ""
+
 var _blink_timer: Timer
 var _breath_time := 0.0
 var _rest_y := 0.0
@@ -85,7 +88,25 @@ func _update_portrait(passed_character: DialogicCharacter, passed_portrait: Stri
 	$Blink.centered = false
 	$Blink.position = $Base.position
 
+	_setup_blink_frames()
 	set_meta("texture_holder_node", $Base)
+
+
+func _setup_blink_frames() -> void:
+	if eye_half.is_empty() or eye_closed.is_empty():
+		return
+	var half_tex: Texture2D = load(eye_half)
+	var closed_tex: Texture2D = load(eye_closed)
+	if not half_tex or not closed_tex:
+		return
+	var frames := SpriteFrames.new()
+	frames.add_animation("blink")
+	frames.set_animation_loop("blink", false)
+	frames.set_animation_speed("blink", 8.0)
+	frames.add_frame("blink", half_tex)
+	frames.add_frame("blink", closed_tex)
+	frames.add_frame("blink", half_tex)
+	$Blink.sprite_frames = frames
 
 
 func _get_covered_rect() -> Rect2:

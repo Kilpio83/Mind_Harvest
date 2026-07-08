@@ -10,8 +10,8 @@ bea: She looked at me once. My pen resigned. Not fell — resigned. I have to re
 bea: I've established a warning protocol. One knock means tea. Two means I've tripped over something again. Three means she's critiquing my posture and I need immediate emotional reinforcement. You're going to be brilliant. I'm going to go have a small quiet crisis. Goodbye.
 leave bea
 narrator: The door opens. She enters the way weather enters a room — not dramatically, just inevitably.
-join kamila (Neutral_Animated) leftmost
-kamila (Neutral_Animated): Stark. And this desk is performing poverty.
+join kamila (Embarrassment_Animated) leftmost
+kamila (Embarrassment_Animated): Stark. And this desk is performing poverty.
 narrator: She draws a fingernail along the wood. Not aggressive. The way you test a bruise — to see how deep it goes.
 kamila (Disapproval): Cheap veneer. You want to look established. It almost works.
 player: Welcome, Ms. Vance. I'm Dr. Cole.

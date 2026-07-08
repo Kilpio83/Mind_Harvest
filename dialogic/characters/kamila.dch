@@ -134,6 +134,16 @@
 "scale": 1,
 "scene": "res://dialogic/portraits/breathing_portrait.tscn"
 },
+"Embarrassment_Animated": {
+"export_overrides": {
+"eye_closed": "\"res://assets/portraits/kamila/embarrassment_eye_closed.png\"",
+"eye_half": "\"res://assets/portraits/kamila/embarrassment_eye_half.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://dialogic/portraits/kamila_portrait.tscn"
+},
 "Excitement": {
 "export_overrides": {
 "image": "\"res://assets/portraits/kamila/excitement.png\""
